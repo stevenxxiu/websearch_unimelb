@@ -1,0 +1,11 @@
+
+The tf-idf matrix is quite sparse, hence computation is feasible with little
+memory.
+
+The matrix was stored in a list of dictionaries {term: score} format. If we
+define the matrix as being rows of documents, with elements being term
+weights, then this is in effect a row-sparse matrix. This is efficient since
+similarity computation only involves computation between rows.
+
+Let there be n total terms, then the size of the stored matrix is expected to
+be O(n), ignoring the size of store scores.
