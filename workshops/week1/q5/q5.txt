@@ -1,0 +1,3 @@
+
+the first pair is more similar, as they are both about athletics
+the cosine similarity results match this observation
