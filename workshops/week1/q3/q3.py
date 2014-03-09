@@ -21,7 +21,7 @@ def get_inverse_doc_freqs(coll_data):
 def get_doc_tf_idf(doc_id, idfs, coll_data):
 	res = {}
 	for term, term_count in coll_data.get_doc(doc_id).terms.items():
-		res[term] = term_count*idfs[term]
+		res[term] = math.log(1+term_count)*idfs[term]
 	return res
 
 def main():
