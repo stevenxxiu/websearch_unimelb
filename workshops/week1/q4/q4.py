@@ -20,8 +20,11 @@ def get_inverse_doc_freqs(coll_data):
 
 def get_doc_tf_idf(doc_id, idfs, coll_data):
 	res = {}
-	for term, term_count in coll_data.get_doc(doc_id).terms.items():
-		term_weight = math.log(1 + term_count)
+	doc = coll_data.get_doc(doc_id)
+	#l2 length
+	term_vector_length = math.sqrt(sum(term_count**2 for term_count in doc.terms.values()))
+	for term, term_count in doc.terms.items():
+		term_weight = math.log(1 + (term_count/term_vector_length))
 		res[term] = term_weight*idfs[term]
 	return res
 
