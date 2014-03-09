@@ -232,11 +232,11 @@ if __name__ == '__main__':
     coll = parse_lyrl_coll(sys.argv[1])
 
     for doc in coll:
-        print ".D %s" % doc.get_docid()
+        print(".D %s" % doc.get_docid())
         # PYTHON NOTE: as explained above, the iterator over BowDoc
         # returns _pairs_ of items (key, and value).  We unpack these
         # directly into their own variables
         for (term, freq) in doc:
             # PYTHON NOTE: syntax for multiple format arguments.
-            print "%s:%d" % (term, freq) 
-        print "\n"
+            print("%s:%d" % (term, freq))
+        print("\n")
