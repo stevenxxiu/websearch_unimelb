@@ -1,0 +1,5 @@
+
+We can use a column-sparse matrix in this case, as computing the similarity
+scores involves vectors indexed by the same term. If we use a row-sparse
+matrix, we would need to search for weights in each document with a fixed
+column index, which takes more time.
