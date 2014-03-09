@@ -1,0 +1,24 @@
+
+i)
+	year                                              13800
+	percent                                           11154
+	stat                                              11142
+	million                                           10762
+	newsroom                                          10012
+	market                                            9264
+	compan                                            8675
+	trad                                              8624
+	month                                             8207
+	expect                                            7847
+
+ii)
+	zwar                                              1
+	zwick                                             1
+	zwoll                                             1
+	zwy                                               1
+	zygo                                              1
+	zyklon                                            1
+	zyl                                               1
+	zylbersztajn                                      1
+	zynax                                             1
+	zyskowicz                                         1
