@@ -40,6 +40,8 @@ def main():
 	collection = client['websearch_workshops']['week02_tfidf_docs']
 	for doc_id in coll_data.get_docs():
 		collection.insert({'doc_id': doc_id, 'weights': get_doc_tf_idf(doc_id, idfs, coll_data)})
+	collection = client['websearch_workshops']['week02_idf_terms']
+	collection.insert({'tfidf': idfs})
 
 if __name__ == '__main__':
 	main()
