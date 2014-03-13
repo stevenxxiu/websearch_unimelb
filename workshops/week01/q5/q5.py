@@ -23,11 +23,13 @@ def get_inverse_doc_freqs(coll_data):
 def get_doc_tf_idf(doc_id, idfs, coll_data):
 	res = {}
 	doc = coll_data.get_doc(doc_id)
-	#l2 length
-	term_vector_length = math.sqrt(sum(term_count**2 for term_count in doc.terms.values()))
 	for term, term_count in doc.terms.items():
-		term_weight = math.log(1 + (term_count/term_vector_length))
-		res[term] = term_weight*idfs[term]
+		tf = math.log(1 + term_count)
+		res[term] = tf*idfs[term]
+	#l2 length
+	term_vector_length = math.sqrt(sum(term_weight**2 for term_weight in res.values()))
+	for term, term_weight in res.items():
+		res[term] = term_weight/term_vector_length
 	return res
 
 def cosine_similarity(weight_dict_1, weight_dict_2):
