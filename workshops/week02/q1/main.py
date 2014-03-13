@@ -20,7 +20,7 @@ def doc_similarity(doc_id_1, doc_id_2, distance_func, db_collection):
 
 def main():
 	client = pymongo.MongoClient()
-	collection = client['websearch_workshops']['week02']
+	collection = client['websearch_workshops']['week02_tfidf_index']
 	print(doc_similarity('26152', '26159', cosine_similarity, collection))
 	print(doc_similarity('26152', '26413', cosine_similarity, collection))
 

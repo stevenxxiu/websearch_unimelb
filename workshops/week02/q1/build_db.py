@@ -37,7 +37,7 @@ def main():
 	coll_data = coll.parse_lyrl_coll('../../../../data/lyrl_tokens_30k.dat')
 	idfs = get_inverse_doc_freqs(coll_data)
 	client = pymongo.MongoClient()
-	collection = client['websearch_workshops']['week02']
+	collection = client['websearch_workshops']['week02_tfidf_index']
 	for doc_id in coll_data.get_docs():
 		collection.insert({'doc_id': doc_id, 'weights': get_doc_tf_idf(doc_id, idfs, coll_data)})
 
