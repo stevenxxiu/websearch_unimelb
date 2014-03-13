@@ -1,6 +1,6 @@
 
 import sys
-sys.path.append('../')
+sys.path.append('../lib')
 import coll
 import numpy as np
 import matplotlib.pyplot as plt

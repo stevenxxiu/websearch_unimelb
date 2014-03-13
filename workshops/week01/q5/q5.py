@@ -1,6 +1,6 @@
 
 import sys
-sys.path.append('../')
+sys.path.append('../lib')
 import math
 import coll
 from collections import Counter
