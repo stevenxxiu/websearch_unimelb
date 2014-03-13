@@ -22,5 +22,5 @@ if __name__ == '__main__':
 
     for doc in sys.argv[2:]:
         freq_dict = index[doc]
-        print "%s: %s" % (doc, freq_dict)
+        print("%s: %s" % (doc, freq_dict))
     index.close()

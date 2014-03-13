@@ -10,7 +10,7 @@ class BowDoc:
         Set the ID of the document, and initiate an empty term dictionary.
         Call add_term to add terms to the dictionary."""
         self.docid = docid
-        self.terms = {} 
+        self.terms = {}
 
     def add_term(self, term):
         """Add a term occurrence to the BOW representation.
@@ -18,7 +18,7 @@ class BowDoc:
         This should be called each time the term occurs in the document."""
         try:
             self.terms[term] += 1
-        except KeyError:  
+        except KeyError:
             self.terms[term] = 1
 
     def get_term_count(self, term):
@@ -77,7 +77,7 @@ class BowColl:
 
     def inorder_iter(self):
         """Return an ordered iterator over the documents.
-        
+
         The iterator will traverse the collection in docid order.  Modifying
         the collection while iterating over it leads to undefined results.
         Each element is a document; to find the id, call doc.get_docid()."""
@@ -98,7 +98,7 @@ class BowCollInorderIterator:
 
     def __init__(self, coll):
         """Constructor.
-        
+
         Takes the collection we're going to iterator over as sole argument."""
         self.coll = coll
         self.keys = sorted(coll.get_docs().keys())
@@ -108,7 +108,7 @@ class BowCollInorderIterator:
         """Iterator interface."""
         return self
 
-    def next(self):
+    def __next__(self):
         """Get next element."""
         if self.i >= len(self.keys):
             raise StopIteration
@@ -129,7 +129,7 @@ def parse_lyrl_coll(fname):
             (dot, docid) = line.split()
             curr_doc = BowDoc(docid)
         elif line.startswith(".W"):
-            pass  
+            pass
         elif line == '':
             if curr_doc is not None:
                 coll.add_doc(curr_doc)
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     coll = parse_lyrl_coll(sys.argv[1])
 
     for doc in coll:
-        print ".D %s" % doc.get_docid()
+        print(".D %s" % doc.get_docid())
         for (term, freq) in doc:
-            print "%s:%d" % (term, freq) 
-        print "\n"
+            print("%s:%d" % (term, freq))
+        print("\n")
