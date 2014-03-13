@@ -1,4 +1,6 @@
 
+import sys
+sys.path.append('../')
 import math
 import coll
 from collections import Counter
