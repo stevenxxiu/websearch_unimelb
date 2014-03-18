@@ -42,7 +42,7 @@ def query_similarities(query_weight_dict, docs_db, distance_func, inverted_index
 		res[doc_id] = distance_func(query_weight_dict, weights)
 	return res
 
-def query_ranked_similarities(query_weight_dict, docs_db, distance_func, inverted_index_db):
+def query_similarities_sorted(query_weight_dict, docs_db, distance_func, inverted_index_db):
 	return sorted(query_similarities(query_weight_dict, docs_db, distance_func, inverted_index_db).items(), key=lambda t: (-t[1], t[0]))
 
 def main():
@@ -52,7 +52,7 @@ def main():
 	idfs_db = client['websearch_workshops']['week02']['idf']
 	inverted_index = client['websearch_workshops']['week02']['inverted_index']
 	query_weights = get_query_tf_idf(parse_query('jaguar car race'), idfs_db)
-	query_res = query_ranked_similarities(query_weights, tfidf_db, cosine_similarity, inverted_index)
+	query_res = query_similarities_sorted(query_weights, tfidf_db, cosine_similarity, inverted_index)
 	print('{:<50}{:}'.format('document id', 'score'))
 	for doc_id, score in query_res:
 		print('{:<50}{:}'.format(doc_id, score))
