@@ -50,6 +50,8 @@ def main():
 	query_res = query_ranked_similarities(query_weights, tfidf_db, cosine_similarity)
 	print('{:<50}{:}'.format('document id', 'score'))
 	for doc_id, score in query_res:
+		if score==0:
+			break
 		print('{:<50}{:}'.format(doc_id, score))
 	print('Took {:.6f} seconds'.format(time.clock()-start))
 
