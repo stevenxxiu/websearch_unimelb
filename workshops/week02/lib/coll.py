@@ -47,7 +47,7 @@ class BowDoc:
 
         Each element is a (term, frequency) tuple.  They are iterated
         in alphabetical order."""
-        return iter(sorted(self.terms.iteritems()))
+        return iter(sorted(self.terms.items()))
 
 
 class BowColl:
@@ -142,8 +142,7 @@ def parse_lyrl_coll(fname):
         coll.add_doc(curr_doc)
     return coll
 
-if __name__ == '__main__':
-
+def main():
     import sys
 
     if len(sys.argv) != 2:
@@ -156,3 +155,6 @@ if __name__ == '__main__':
         for (term, freq) in doc:
             print("%s:%d" % (term, freq))
         print("\n")
+
+if __name__ == '__main__':
+    main()
