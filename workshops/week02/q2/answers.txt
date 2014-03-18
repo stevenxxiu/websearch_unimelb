@@ -11,4 +11,4 @@ top 10 documents with query scores:
 	49868                                             1.08577130283106
 	36757                                             1.0799435408654774
 
-it takes 3.928893 seconds (when stdout is redirected to a file)
+it takes 1.946044 seconds (when stdout is redirected to a file)
