@@ -38,8 +38,8 @@ def query_similarities(query_weights, docs_db, distance_func):
 		res[doc['doc_id']] = distance_func(query_weights, weights)
 	return res
 
-def query_ranked_similarities(query, db_collection, distance_func):
-	return sorted(query_similarities(query, db_collection, distance_func).items(), key=lambda t: (-t[1], t[0]))
+def query_ranked_similarities(query, docs_db, distance_func):
+	return sorted(query_similarities(query, docs_db, distance_func).items(), key=lambda t: (-t[1], t[0]))
 
 def main():
 	start=time.clock()

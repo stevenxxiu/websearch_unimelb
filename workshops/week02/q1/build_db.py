@@ -3,19 +3,20 @@ import sys
 sys.path.append('../lib')
 import math
 import pymongo
+import pymongo.errors
 import coll
 from collections import Counter
 
-def get_doc_freqs(coll_data):
+def get_dfs(coll_data):
 	dfs = Counter()
 	for doc_id in coll_data.get_docs():
 		doc = coll_data.get_doc(doc_id)
 		dfs.update(dict(zip(doc.terms.keys(), [1]*len(doc.terms))))
 	return dfs
 
-def get_inverse_doc_freqs(coll_data):
+def get_idfs(coll_data):
 	res = {}
-	dfs = get_doc_freqs(coll_data)
+	dfs = get_dfs(coll_data)
 	num_docs = coll_data.get_num_docs()
 	for term, df in dfs.items():
 		res[term] = math.log(num_docs) - math.log(df)
@@ -35,11 +36,24 @@ def get_doc_tf_idf(doc_id, idfs, coll_data):
 
 def main():
 	coll_data = coll.parse_lyrl_coll('../../../../data/lyrl_tokens_30k.dat')
-	idfs = get_inverse_doc_freqs(coll_data)
+	idfs = get_idfs(coll_data)
 	client = pymongo.MongoClient()
-	collection = client['websearch_workshops']['week02_tfidf_docs']
+
+	tfidf = client['websearch_workshops']['week02']['tfidf']
+	tfidf.ensure_index('doc_id', unique=True)
 	for doc_id in coll_data.get_docs():
-		collection.insert({'doc_id': doc_id, 'weights': get_doc_tf_idf(doc_id, idfs, coll_data)})
+		try:
+			tfidf.insert({'doc_id': doc_id, 'weights': get_doc_tf_idf(doc_id, idfs, coll_data)})
+		except pymongo.errors.DuplicateKeyError:
+			pass
+
+	idf = client['websearch_workshops']['week02']['idf']
+	idf.ensure_index('term', unique=True)
+	for term, value in idfs.items():
+		try:
+			idf.insert({'term': term, 'value': value})
+		except pymongo.errors.DuplicateKeyError:
+			pass
 
 if __name__ == '__main__':
 	main()
