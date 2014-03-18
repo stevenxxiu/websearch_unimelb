@@ -39,7 +39,10 @@ def query_similarities(query_weights, docs_db, distance_func):
 	return res
 
 def query_ranked_similarities(query, docs_db, distance_func):
-	return sorted(query_similarities(query, docs_db, distance_func).items(), key=lambda t: (-t[1], t[0]))
+	for doc_id, score in sorted(query_similarities(query, docs_db, distance_func).items(), key=lambda t: (-t[1], t[0])):
+		if score==0:
+			break
+		yield doc_id, score
 
 def main():
 	start=time.clock()
@@ -50,8 +53,6 @@ def main():
 	query_res = query_ranked_similarities(query_weights, tfidf_db, cosine_similarity)
 	print('{:<50}{:}'.format('document id', 'score'))
 	for doc_id, score in query_res:
-		if score==0:
-			break
 		print('{:<50}{:}'.format(doc_id, score))
 	print('Took {:.6f} seconds'.format(time.clock()-start))
 
