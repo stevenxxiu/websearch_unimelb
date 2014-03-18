@@ -1,0 +1,4 @@
+
+the last operation takes time O(|q|*(\sum_{t\in q} df_t)) on average with a simple inverted index,
+	where q is the expanded query (we disregard the average document length constant)
+to speed this up, we can reduce the number of query terms using some cut-off to remove the lower-weighted query terms
