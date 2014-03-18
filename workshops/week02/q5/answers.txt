@@ -1,0 +1,38 @@
+
+data:
+	with tf-idf:
+		socc:
+			match, divid, cup, leagu, play, result, goal, halftim, scor, attend, club, draw, engl, minut, game
+
+		jaguar:
+			car, truck, ford, motor, chng, domest, gm, aug, import, sass, vehicl, hond, sale, pct, mazd
+
+		najibullah:
+			afgh, kabul, tajik, lafrai, taleb, rocket, sarmad, afghanist, tajikist, invit, murtaz, tehr, mikhailov, islam, iranian
+
+	with raw similarities (from lecture notes):
+		socc:
+			play, match, goal, cup, leagu, club, scor, divid, minut, result, game, year, win, team, champ
+
+		jaguar:
+			car, percent, sale, year, yard, touchdown, quart, motor, vehicl, unit, britain, pass, august, million, market
+
+		najibullah:
+			govern, taleb, kabul, afgh, minist, rocket, foreign, tajik, kill, invit, radio, islam, fight, confer, afghanist
+
+	with l2 normalized term vectors (from lecture notes):
+		socc:
+			tabulat, match, cup, goal, club, play, leag, halftim, goalkeep, internazional, divid, draw, scor, stand, turnstil
+
+		jaguar:
+			seahawk, rotons, precip, luckey, touchdown, dolphin, quarterback, redskin, harbaugh, chevrolet, porsch, xk8, throwaway, terrel
+
+		najibullah:
+			lafrai, murtaz, ivgin, seh, darulam, tajik, kart, arghand, sarmad, mikhailov, tajikist, rocket, afgh, frontlin, invit
+
+the tf-idf scoring seems better, as there are fewer rare terms and common terms
+
+document-length normalization normalizes term frequencies within documents,	and IDF normalizes term frequencies for all documents,
+	both make sense here, as longer documents doesn't mean greater term similarity should be much more important, and IDF discounts globally common terms
+
+some odd results include 'ford', 'hond', which are other brand names and not directly relevant to the search query, adding more terms may increase the accuracy
