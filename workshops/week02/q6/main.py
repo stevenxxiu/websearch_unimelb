@@ -13,6 +13,14 @@ class WeightDict(Counter):
 			res[key] = value*other
 		return res
 
+def normalize_weights(weights):
+	res = {}
+	# l2 norm
+	norm = math.sqrt(sum(v**2 for v in weights.values()))
+	for key, value in weights.items():
+		res[key] = value/norm
+	return res
+
 def parse_query(query):
 	'''
 	stemming is not done
@@ -68,7 +76,7 @@ def main():
 	inverted_index = client['websearch_workshops']['week02']['inverted_index']
 
 	#search using query
-	query_weights = get_query_tf_idf(parse_query('jaguar car race'), idfs_db)
+	query_weights = normalize_weights(parse_query('jaguar car race'))
 	query_res = query_similarities_sorted(query_weights, tfidf_db, cosine_similarity, inverted_index)
 
 	#get rocchio prf
