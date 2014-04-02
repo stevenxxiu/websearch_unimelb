@@ -1,7 +1,0 @@
-
-p@k user model:
-	User Actions:
-		The user visits the first page of the search results, with a listing of k results.
-		The user arbitrarily picks a document, and is satisfied when the result is relavant.
-
-	The probability of the user being satisfied is then |R_{k,q}|/k, where R_{k,q} is the set of relevant documents for the first k results.
