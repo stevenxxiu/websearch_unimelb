@@ -22,24 +22,24 @@ class BowDoc:
         self.docid = docid
         self.terms = {}  # PYTHON NOTE: this is creating an empty dictionary
 
-    def add_term(self, term):
-        """Add a term occurrence to the BOW representation.
+    def add_term(self, term_):
+        """Add a term_ occurrence to the BOW representation.
 
-        This should be called each time the term occurs in the document."""
+        This should be called each time the term_ occurs in the document."""
         try:
-            self.terms[term] += 1
+            self.terms[term_] += 1
         # PYTHON NOTE: dictionaries raise a KeyError exception if you try
         # to access a key that doesn't exist
         except KeyError:  
             # PYTHON NOTE: this is accessing a field in the dictionary by key
-            self.terms[term] = 1
+            self.terms[term_] = 1
 
-    def get_term_count(self, term):
-        """Get the term occurrence count for a term.
+    def get_term_count(self, term_):
+        """Get the term_ occurrence count for a term_.
 
-        Returns 0 if the term does not appear in the document."""
+        Returns 0 if the term_ does not appear in the document."""
         try:
-            return self.terms[term]
+            return self.terms[term_]
         except KeyError:
             return 0
 
@@ -59,7 +59,7 @@ class BowDoc:
         # PYTHON NOTE: iterators can be accessed and iterated using the syntax:
         #   "for element in object:"
         # See code at end of file.
-        return iter(sorted(self.terms.iteritems()))
+        return iter(sorted(self.terms.items()))
 
 
 class BowColl:
@@ -71,9 +71,9 @@ class BowColl:
         Creates an empty collection."""
         self.docs = {}
 
-    def add_doc(self, doc):
+    def add_doc(self, doc_):
         """Add a document to the collection."""
-        self.docs[doc.get_docid()] = doc
+        self.docs[doc_.get_docid()] = doc_
 
     def get_doc(self, docid):
         """Return a document by docid.
@@ -119,12 +119,12 @@ class BowCollInorderIterator:
     # order, but without actually returning the keys through the iterator),
     # let me know!
 
-    def __init__(self, coll):
+    def __init__(self, coll_):
         """Constructor.
         
         Takes the collection we're going to iterator over as sole argument."""
-        self.coll = coll
-        self.keys = sorted(coll.get_docs().keys())
+        self.coll = coll_
+        self.keys = sorted(coll_.get_docs().keys())
         self.i = 0
 
     def __iter__(self):
@@ -138,9 +138,9 @@ class BowCollInorderIterator:
         # loop.  One raises StopIteration when the iterator has finished.
         if self.i >= len(self.keys):
             raise StopIteration
-        doc = self.coll.get_doc(self.keys[self.i])
+        doc_ = self.coll.get_doc(self.keys[self.i])
         self.i += 1
-        return doc
+        return doc_
 
 # PYTHON NOTE: this defines a top-level function, whereas "def" indented
 # inside a class definition defines a method.
@@ -189,8 +189,8 @@ def parse_lyrl_coll(fname):
             terms = line.split()
             # PYTHON NOTE: terms is a list of the strings.  We iterate
             # over it like follows.
-            for term in terms:
-                curr_doc.add_term(term)
+            for term_ in terms:
+                curr_doc.add_term(term_)
     if curr_doc is not None:
         coll.add_doc(curr_doc)
     return coll
