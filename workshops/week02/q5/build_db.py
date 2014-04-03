@@ -1,10 +1,11 @@
-
 import sys
+
+from workshops.lib import coll
+
 sys.path.append('../lib')
 import math
 import pymongo
 import pymongo.errors
-import coll
 from collections import Counter
 
 def get_dfs(coll_data):

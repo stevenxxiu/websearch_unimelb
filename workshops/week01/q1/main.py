@@ -1,7 +1,8 @@
-
 import sys
+
+from workshops.lib import coll
+
 sys.path.append('../lib')
-import coll
 import numpy as np
 import matplotlib.pyplot as plt
 
