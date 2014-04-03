@@ -10,7 +10,7 @@ class TreeNode:
     def __eq__(self, other):
         if not isinstance(other, TreeNode):
             return False
-        return self.value == other.value and self.children == other.children and self.parent == other.parent
+        return self.value == other.value and self.children == other.children
 
 def cluster_aggloromotive_naive(weight_docs, similarity_metric):
     n = len(weight_docs)
