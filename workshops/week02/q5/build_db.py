@@ -1,6 +1,5 @@
 import sys
 
-from workshops.lib import coll
 
 sys.path.append('../lib')
 import math

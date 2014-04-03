@@ -1,10 +1,7 @@
-import sys
 
-from workshops.lib import coll
-
-sys.path.append('../lib')
 import numpy as np
 import matplotlib.pyplot as plt
+from workshops.lib import coll
 
 def get_docinfo(coll_data):
 	num_terms_cum=[]

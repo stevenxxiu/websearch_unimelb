@@ -1,6 +1,4 @@
 
-import sys
-sys.path.append('../lib')
 import time
 import pymongo
 
