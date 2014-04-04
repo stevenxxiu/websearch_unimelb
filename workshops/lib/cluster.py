@@ -1,6 +1,4 @@
 
-import heapq
-
 class DisjointSetTree:
     '''
     Represents an element in a partition.
