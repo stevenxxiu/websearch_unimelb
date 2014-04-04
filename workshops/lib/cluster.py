@@ -12,27 +12,36 @@ class TreeNode:
             return False
         return self.value == other.value and self.children == other.children
 
+    def leaves(self):
+        if not self.children:
+            yield self
+        else:
+            for child in self.children:
+                yield from child.leaves()
+
 def cluster_aggloromotive_naive(weight_docs, similarity_metric):
     n = len(weight_docs)
     # calculate all weights
     weights = []
     for i, weight_doc_i in enumerate(weight_docs):
         for j, weight_doc_j in enumerate(weight_docs[i+1:]):
+            j = i+j+1
             weights.append((similarity_metric(weight_doc_i['weights'], weight_doc_j['weights']), (i, j)))
     heapq.heapify(weights)
-    clusters = []
-    for i in range(n):
-        clusters.append(TreeNode(weight_docs[i]['doc_id']))
+    clusters = list(TreeNode(i) for i in range(n))
     cluster = None
     while weights:
         weight, edge = heapq.heappop(weights)
         u, v = edge
-        if clusters[u] == clusters[v]:
-            continue
         child_u, child_v = clusters[u], clusters[v]
+        if child_u is child_v:
+            continue
         cluster = TreeNode(None, [child_u, child_v])
-        clusters[u] = clusters[v] = cluster
+        for leaf in cluster.leaves():
+            clusters[leaf.value] = cluster
         child_u.parent = child_v.parent = cluster
+    for child in cluster.leaves():
+        child.value = weight_docs[child.value]['doc_id']
     return cluster
 
 def cluster_aggloromotive_mst(weight_docs, similarity_metric):
@@ -43,37 +52,39 @@ def cluster_aggloromotive_mst(weight_docs, similarity_metric):
     n = len(weight_docs)
     # calculate the MST using Prim's algorithm & store the edges of the MST
     mst_edges = []
-    # start at vertex 0
-    cur_vertex = 0
+    min_weights = [(None, None)]*n
     visited = [False]*n
+    # arbitrary starting vertex
+    v = 0
     for i in range(n-1):
-        visited[cur_vertex] = True
-        cur_weight_doc = weight_docs[cur_vertex]
-        min_weight = None
-        min_edge = None
-        adj_vertex = None
-        for adj_vertex, weight_doc in enumerate(weight_docs):
-            if visited[adj_vertex]:
+        # mark as visited
+        visited[v] = True
+        # update the minimums for vertices adjacent to v
+        weight_doc_v = weight_docs[v]
+        for j, weight_doc_j in enumerate(weight_docs):
+            if j==v or visited[j]:
                 continue
-            cur_weight = similarity_metric(cur_weight_doc['weights'], weight_doc['weights'])
-            if min_weight is None or cur_weight < min_weight:
-                min_weight = cur_weight
-                min_edge = (cur_vertex, adj_vertex)
-        mst_edges.append((min_weight, min_edge))
-        cur_vertex = adj_vertex
+            cur_weight = similarity_metric(weight_doc_v['weights'], weight_doc_j['weights'])
+            if min_weights[j][0] is None or cur_weight < min_weights[j][0]:
+                min_weights[j] = (cur_weight, v)
+        # find the minimum
+        w, (u, v) = min((w, (u, v)) for u, (w, v) in enumerate(min_weights) if not visited[u] and w is not None)
+        mst_edges.append((w, tuple(sorted((u, v)))))
+        # new vertex added to the tree
+        v = u
     # convert mst_edges into a cluster
     heapq.heapify(mst_edges)
     # the current cluster a vertex belongs to
-    clusters = []
-    for i in range(n):
-        clusters.append(TreeNode(weight_docs[i]['doc_id']))
+    clusters = list(TreeNode(i) for i in range(n))
     cluster = None
     for i in range(n-1):
-        min_weight, min_edge = heapq.heappop(mst_edges)
-        u, v = min_edge
+        weight, edge = heapq.heappop(mst_edges)
+        u, v = edge
         child_u, child_v = clusters[u], clusters[v]
         cluster = TreeNode(None, [child_u, child_v])
-        clusters[u] = clusters[v] = cluster
+        for leaf in cluster.leaves():
+            clusters[leaf.value] = cluster
         child_u.parent = child_v.parent = cluster
+    for child in cluster.leaves():
+        child.value = weight_docs[child.value]['doc_id']
     return cluster
-
