@@ -103,13 +103,12 @@ def mst_kruskal(n, get_weight):
 def cluster_aggl_mst(weight_docs, mst_edges):
     n = len(weight_docs)
     # convert mst_edges into a cluster
-    heapq.heapify(mst_edges)
+    mst_edges.sort()
     # use an extra partition list so we can quickly find and update the current largest cluster a document belongs to
     doc_to_partition = list(DisjointSetTree() for _ in range(n))
     partition_to_cluster = dict((doc_to_partition[i], TreeNode(weight_docs[i]['doc_id'])) for i in range(n))
     cluster = None
-    for i in range(n-1):
-        weight, edge = heapq.heappop(mst_edges)
+    for weight, edge in mst_edges:
         u, v = edge
         part_u, part_v = doc_to_partition[u], doc_to_partition[v]
         # update clusters
