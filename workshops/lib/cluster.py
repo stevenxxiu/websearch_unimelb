@@ -47,6 +47,7 @@ class TreeNode:
             for child in self.children:
                 yield from child.descendants(depth-1)
 
+
 def mst_prim(n, get_weight):
     # calculate the MST using Prim's algorithm
     mst_edges = []
