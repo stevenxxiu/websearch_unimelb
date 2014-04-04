@@ -52,20 +52,28 @@ def cluster_aggloromotive_naive(weight_docs, similarity_metric):
             j = i+j+1
             weights.append((similarity_metric(weight_doc_i['weights'], weight_doc_j['weights']), (i, j)))
     heapq.heapify(weights)
-    clusters = list(TreeNode(i) for i in range(n))
+    partition_to_doc = list([i] for i in range(n))
+    doc_to_partition = list(range(n))
+    partition_to_cluster = list(TreeNode(weight_docs[i]['doc_id']) for i in range(n))
     cluster = None
     while weights:
         weight, edge = heapq.heappop(weights)
         u, v = edge
-        child_u, child_v = clusters[u], clusters[v]
-        if child_u is child_v:
+        # update partitions
+        cur_part = len(partition_to_doc)
+        part_u, part_v = doc_to_partition[u], doc_to_partition[v]
+        if part_u == part_v:
             continue
+        partition_to_doc.append(partition_to_doc[part_u] + partition_to_doc[part_v])
+        partition_to_doc[part_u] = partition_to_doc[part_v] = None
+        for j in partition_to_doc[cur_part]:
+            doc_to_partition[j] = cur_part
+        # update clusters
+        child_u, child_v = partition_to_cluster[part_u], partition_to_cluster[part_v]
         cluster = TreeNode(None, [child_u, child_v])
-        for leaf in cluster.leaves():
-            clusters[leaf.value] = cluster
         child_u.parent = child_v.parent = cluster
-    for child in cluster.leaves():
-        child.value = weight_docs[child.value]['doc_id']
+        partition_to_cluster.append(cluster)
+        partition_to_cluster[part_u] = partition_to_cluster[part_v] = None
     return cluster
 
 def cluster_aggloromotive_mst(weight_docs, similarity_metric):
