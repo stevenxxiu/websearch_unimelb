@@ -3,7 +3,7 @@ import sys
 import time
 import pymongo
 from collections import Counter
-from workshops.lib.cluster import cluster_aggloromotive_mst
+from workshops.lib.cluster import cluster_aggl_mst_prim
 from workshops.lib.weights import cosine_similarity
 
 def cluster_average(cluster, weights_db):
@@ -18,7 +18,7 @@ def main():
     tfidf_db = client['websearch_workshops']['week02']['tfidf']
     docs = list(tfidf_db.find()[:4000])
     start = time.clock()
-    cluster = cluster_aggloromotive_mst(docs, cosine_similarity)
+    cluster = cluster_aggl_mst_prim(docs, cosine_similarity)
     for depth in range(1+5):
         print('depth {}'.format(depth))
         for descendant_cluster in cluster.descendants(depth):

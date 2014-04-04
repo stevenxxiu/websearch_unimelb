@@ -1,7 +1,7 @@
 
 import time
 import pymongo
-from workshops.lib.cluster import cluster_aggloromotive_mst
+from workshops.lib.cluster import cluster_aggl_mst_prim
 from workshops.lib.weights import cosine_similarity
 
 def tree_height(cluster):
@@ -21,7 +21,7 @@ def main():
     tfidf_db = client['websearch_workshops']['week02']['tfidf']
     docs = list(tfidf_db.find()[:6400])
     start = time.clock()
-    cluster = cluster_aggloromotive_mst(docs, cosine_similarity)
+    cluster = cluster_aggl_mst_prim(docs, cosine_similarity)
     print(tree_height(cluster))
     print('Took {:.6f} seconds'.format(time.clock()-start))
 
