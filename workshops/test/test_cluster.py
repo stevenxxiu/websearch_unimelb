@@ -1,7 +1,7 @@
 
 import unittest
 import pymongo
-from workshops.lib.similarity import cosine_similarity
+from workshops.lib.weights import cosine_similarity
 from workshops.lib.cluster import cluster_aggloromotive_mst, cluster_aggloromotive_naive
 
 class TestCluster(unittest.TestCase):

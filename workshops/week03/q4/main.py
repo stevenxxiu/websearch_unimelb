@@ -2,7 +2,7 @@
 import time
 import pymongo
 from workshops.lib.cluster import cluster_aggloromotive_mst
-from workshops.lib.similarity import cosine_similarity
+from workshops.lib.weights import cosine_similarity
 
 def tree_height(cluster):
     height = 0

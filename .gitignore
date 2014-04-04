@@ -1,6 +1,6 @@
 
 #tm cache files
-.tm~
+*.tm~
 
 #ide files
 .idea
