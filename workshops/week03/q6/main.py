@@ -16,7 +16,7 @@ def main():
     sys.setrecursionlimit(6500)
     client = pymongo.MongoClient()
     tfidf_db = client['websearch_workshops']['week02']['tfidf']
-    docs = list(tfidf_db.find()[:4000])
+    docs = list(tfidf_db.find().sort('doc_id', 1)[:4000])
     start = time.clock()
     cluster = cluster_aggl_mst_prim(docs, cosine_similarity)
     for depth in range(1+5):

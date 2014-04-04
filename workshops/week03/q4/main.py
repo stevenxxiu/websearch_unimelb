@@ -19,10 +19,10 @@ def tree_height(cluster):
 def main():
     client = pymongo.MongoClient()
     tfidf_db = client['websearch_workshops']['week02']['tfidf']
-    docs = list(tfidf_db.find()[:6400])
+    docs = list(tfidf_db.find().sort('doc_id', 1)[:1600])
     start = time.clock()
     cluster = cluster_aggl_mst_prim(docs, cosine_similarity)
-    print(tree_height(cluster))
+    print(tree_height(cluster) + 1)
     print('Took {:.6f} seconds'.format(time.clock()-start))
 
 if __name__ == '__main__':
