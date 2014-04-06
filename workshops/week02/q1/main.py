@@ -1,15 +1,7 @@
 
 import time
 import pymongo
-
-def cosine_similarity(weight_dict_1, weight_dict_2):
-	'''
-	assumes that both weight_dict_1 and weight_dict_2 are normalized
-	'''
-	score = 0
-	for term in set(weight_dict_1.keys()).intersection(weight_dict_2.keys()):
-		score += weight_dict_1[term]*weight_dict_2[term]
-	return score
+from workshops.lib.weights import cosine_similarity
 
 def doc_similarity(doc_id_1, doc_id_2, docs_db, distance_func):
 	return distance_func(
