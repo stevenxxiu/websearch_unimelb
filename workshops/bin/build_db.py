@@ -50,10 +50,8 @@ def main():
 	tfidf = client['websearch_workshops']['week02']['tfidf']
 	tfidf.ensure_index('doc_id', unique=True)
 	for doc_id in coll_data.get_docs():
-		try:
-			tfidf.insert({'doc_id': doc_id, 'weights': get_doc_tf_idf(doc_id, idfs, coll_data)})
-		except pymongo.errors.DuplicateKeyError:
-			pass
+		weights = get_doc_tf_idf(doc_id, idfs, coll_data)
+		tfidf.insert(list({'doc_id': doc_id, 'term': term, 'value': value} for term, value in weights.items()))
 
 	idf = client['websearch_workshops']['week02']['idf']
 	idf.ensure_index('term', unique=True)
