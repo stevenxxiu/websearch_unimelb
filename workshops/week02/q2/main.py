@@ -45,8 +45,8 @@ def query_similarities_sorted(query, docs_db, distance_func):
 def main():
 	start=time.clock()
 	client = pymongo.MongoClient()
-	tfidf_db = client['websearch_workshops']['week02']['tfidf']
-	idfs_db = client['websearch_workshops']['week02']['idf']
+	tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
+	idfs_db = client['websearch_workshops']['lyrl']['idf']
 	query_weights = parse_query('jaguar car race')
 	query_res = query_similarities_sorted(query_weights, tfidf_db, cosine_similarity)
 	print('{:<50}{:}'.format('document id', 'score'))

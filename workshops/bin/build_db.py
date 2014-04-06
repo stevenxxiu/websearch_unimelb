@@ -47,13 +47,13 @@ def main():
 	idfs = get_idfs(coll_data)
 	client = pymongo.MongoClient()
 
-	tfidf = client['websearch_workshops']['week02']['tfidf']
+	tfidf = client['websearch_workshops']['lyrl']['tfidf']
 	tfidf.ensure_index('doc_id', unique=True)
 	for doc_id in coll_data.get_docs():
 		weights = get_doc_tf_idf(doc_id, idfs, coll_data)
 		tfidf.insert(list({'doc_id': doc_id, 'term': term, 'value': value} for term, value in weights.items()))
 
-	idf = client['websearch_workshops']['week02']['idf']
+	idf = client['websearch_workshops']['lyrl']['idf']
 	idf.ensure_index('term', unique=True)
 	for term, value in idfs.items():
 		try:
@@ -61,7 +61,7 @@ def main():
 		except pymongo.errors.DuplicateKeyError:
 			pass
 
-	inverted_index = client['websearch_workshops']['week02']['inverted_index']
+	inverted_index = client['websearch_workshops']['lyrl']['inverted_index']
 	inverted_index.ensure_index('term', unique=True)
 	for term, doc_ids in get_inverted_index(coll_data).items():
 		try:

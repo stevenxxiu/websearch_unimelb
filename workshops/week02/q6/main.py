@@ -46,9 +46,9 @@ def rocchio_prf(query_weight_dict, alpha, beta, result_doc_ids, docs_db):
 def main():
 	start=time.clock()
 	client = pymongo.MongoClient()
-	tfidf_db = client['websearch_workshops']['week02']['tfidf']
-	idfs_db = client['websearch_workshops']['week02']['idf']
-	inverted_index = client['websearch_workshops']['week02']['inverted_index']
+	tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
+	idfs_db = client['websearch_workshops']['lyrl']['idf']
+	inverted_index = client['websearch_workshops']['lyrl']['inverted_index']
 
 	#search using query
 	query_weights = normalize_weights(parse_query('jaguar car race'))
