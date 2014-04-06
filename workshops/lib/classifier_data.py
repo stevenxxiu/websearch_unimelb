@@ -1,4 +1,5 @@
 
+import itertools
 import random
 
 class ClassifData:
@@ -25,7 +26,9 @@ class ClassifData:
         sample_docs = random.sample(self.docs, ntrain + ntest)
         test_docs = sample_docs[0:ntest]
         train_docs = sample_docs[ntest:(ntest + ntrain)]
-        return test_docs, train_docs
+        test_docs_dict = dict(itertools.groupby(test_docs, lambda docid_: self.get_doc_class(docid_)))
+        train_docs_dict = dict(itertools.groupby(train_docs, lambda docid_: self.get_doc_class(docid_)))
+        return test_docs_dict, train_docs_dict
 
 
 def parse_lyrl_topics(path):
