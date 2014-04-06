@@ -15,7 +15,7 @@ def get_inverted_index(coll_data):
 	return res
 
 def main():
-	coll_data = coll.parse_lyrl_coll('../../../../data/lyrl_tokens_30k.dat')
+	coll_data = coll.parse_lyrl_coll('../../../data/lyrl_tokens_30k.dat')
 	idfs = get_idfs(coll_data)
 	client = pymongo.MongoClient()
 
