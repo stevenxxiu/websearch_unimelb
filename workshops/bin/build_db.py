@@ -2,7 +2,7 @@
 import pymongo
 import pymongo.errors
 from workshops.lib import coll
-from workshops.lib.features import get_dfs, get_idfs, get_doc_tf_idf
+from workshops.lib.features import get_idfs, get_doc_tf_idf
 
 def get_inverted_index(coll_data):
 	res = {}
