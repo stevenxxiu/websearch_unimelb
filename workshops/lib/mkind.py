@@ -1,5 +1,8 @@
 import shelve
 
+from workshops.lib import coll
+
+
 def mkind(coll, filename):
     """Create a doc:docvec shelf index of a collection in a filename."""
 
@@ -10,7 +13,6 @@ def mkind(coll, filename):
 
 if __name__ == '__main__':
 
-    import coll
     import sys
 
     if len(sys.argv) != 3:

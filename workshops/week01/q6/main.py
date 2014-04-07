@@ -1,8 +1,9 @@
-
 import sys
+
+from workshops.lib import coll
+
 sys.path.append('../lib')
 import math
-import coll
 from collections import Counter
 
 def get_doc_freqs(coll_data):
