@@ -49,7 +49,7 @@ def main():
 	client = pymongo.MongoClient()
 	tfidf_db = client['websearch_workshops']['week02']['tfidf']
 	idfs_db = client['websearch_workshops']['week02']['idf']
-	query_weights = get_query_tf_idf(parse_query('jaguar car race'), idfs_db)
+	query_weights = parse_query('jaguar car race')
 	query_res = query_similarities_sorted(query_weights, tfidf_db, cosine_similarity)
 	print('{:<50}{:}'.format('document id', 'score'))
 	for doc_id, score in query_res:
