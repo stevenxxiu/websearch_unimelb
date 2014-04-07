@@ -1,18 +1,22 @@
 
-import itertools
 import random
 
 class ClassifData:
+    '''
+    A document can belong to more than one class.
+    '''
+
     def __init__(self, class_to_doc):
         self.class_to_docs = dict((key, set(val)) for key, val in class_to_doc.items())
         self.docs = set.union(*self.class_to_docs.values())
-        self.doc_to_class = {}
+        self.doc_to_classes = {}
         for doc_class, docs in self.class_to_docs.items():
             for doc in docs:
-                self.doc_to_class[doc] = doc_class
+                self.doc_to_classes.setdefault(doc, set())
+                self.doc_to_classes[doc].add(doc_class)
 
-    def get_doc_class(self, docid):
-        return self.doc_to_class[docid]
+    def get_doc_classes(self, docid):
+        return self.doc_to_classes[docid]
 
     def get_class_docs(self, doc_class):
         return self.class_to_docs[doc_class]
@@ -29,9 +33,9 @@ class ClassifData:
         sample_docs = random.sample(self.docs, ntrain + ntest)
         test_docs = sample_docs[0:ntest]
         train_docs = sample_docs[ntest:(ntest + ntrain)]
-        test_docs_lablled = dict((key, list(val)) for key, val in itertools.groupby(test_docs, lambda docid_: self.get_doc_class(docid_)))
-        train_docs_labelled = dict((key, list(val)) for key, val in itertools.groupby(train_docs, lambda docid_: self.get_doc_class(docid_)))
-        return test_docs_lablled, train_docs_labelled
+        test_docs_labelled = list((doc_id, self.get_doc_classes(doc_id)) for doc_id in test_docs)
+        train_docs_labelled = list((doc_id, self.get_doc_classes(doc_id)) for doc_id in train_docs)
+        return test_docs_labelled, train_docs_labelled
 
 
 def parse_lyrl_topics(path):
