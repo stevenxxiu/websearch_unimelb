@@ -1,5 +1,4 @@
 
-import sys
 import time
 import pymongo
 import matplotlib.pyplot as plt
@@ -7,7 +6,6 @@ from workshops.lib.cluster import cluster_aggloromotive_mst, cluster_aggloromoti
 from workshops.lib.similarity import cosine_similarity
 
 def main():
-    sys.setrecursionlimit(4000)
     client = pymongo.MongoClient()
     tfidf_db = client['websearch_workshops']['week02']['tfidf']
     ns = [100, 200, 300, 400, 500, 600, 700, 800, 1600, 3200]
