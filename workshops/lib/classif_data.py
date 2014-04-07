@@ -7,7 +7,7 @@ class ClassifData:
         self.class_to_docs = dict((key, set(val)) for key, val in class_to_doc.items())
         self.docs = set.union(*self.class_to_docs.values())
         self.doc_to_class = {}
-        for doc_class, docs in self.class_to_docs:
+        for doc_class, docs in self.class_to_docs.items():
             for doc in docs:
                 self.doc_to_class[doc] = doc_class
 
@@ -21,14 +21,17 @@ class ClassifData:
         return set(docs) - self.class_to_docs[doc_class]
 
     def get_train_test(self, ntrain, ntest, reproducible=True):
+        '''
+        Returns the labelled documents, convert to dict if needed, dicts are not returned as this is not necessary.
+        '''
         if reproducible:
             random.seed(1)
         sample_docs = random.sample(self.docs, ntrain + ntest)
         test_docs = sample_docs[0:ntest]
         train_docs = sample_docs[ntest:(ntest + ntrain)]
-        test_docs_dict = dict(itertools.groupby(test_docs, lambda docid_: self.get_doc_class(docid_)))
-        train_docs_dict = dict(itertools.groupby(train_docs, lambda docid_: self.get_doc_class(docid_)))
-        return test_docs_dict, train_docs_dict
+        test_docs_lablled = dict((key, list(val)) for key, val in itertools.groupby(test_docs, lambda docid_: self.get_doc_class(docid_)))
+        train_docs_labelled = dict((key, list(val)) for key, val in itertools.groupby(train_docs, lambda docid_: self.get_doc_class(docid_)))
+        return test_docs_lablled, train_docs_labelled
 
 
 def parse_lyrl_topics(path):
