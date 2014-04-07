@@ -2,6 +2,10 @@
 import heapq
 
 class DisjointSetTree:
+    '''
+    Represents an element in a partition.
+    '''
+
     def __init__(self):
         self.parent = self
         self.rank = 0
@@ -11,22 +15,28 @@ class DisjointSetTree:
         x_root = x.find()
         y_root = y.find()
         if x_root == y_root:
-            return
+            return x_root
         if x_root.rank < y_root.rank:
             x_root.parent = y_root
+            return y_root
         elif y_root.rank > x_root.rank:
             y_root.parent = x_root
+            return x_root
         else:
             y_root.parent = x_root
             x_root.rank += 1
+            return x_root
 
     def find(self):
         '''
         Finds a representative amongst the set containing self.
         '''
-        if self.parent != self:
+        if self.parent is not self:
             self.parent = self.parent.find()
         return self.parent
+
+    def __hash__(self):
+        return super().__hash__()
 
 
 class TreeNode:
@@ -95,26 +105,20 @@ def cluster_aggl_mst(weight_docs, mst_edges):
     # convert mst_edges into a cluster
     heapq.heapify(mst_edges)
     # use an extra partition list so we can quickly find and update the current largest cluster a document belongs to
-    partition_to_doc = list([i] for i in range(n))
-    doc_to_partition = list(range(n))
-    partition_to_cluster = list(TreeNode(weight_docs[i]['doc_id']) for i in range(n))
+    doc_to_partition = list(DisjointSetTree() for _ in range(n))
+    partition_to_cluster = dict((doc_to_partition[i], TreeNode(weight_docs[i]['doc_id'])) for i in range(n))
     cluster = None
     for i in range(n-1):
         weight, edge = heapq.heappop(mst_edges)
         u, v = edge
-        # update partitions
-        cur_part = n+i
         part_u, part_v = doc_to_partition[u], doc_to_partition[v]
-        partition_to_doc.append(partition_to_doc[part_u] + partition_to_doc[part_v])
-        partition_to_doc[part_u] = partition_to_doc[part_v] = None
-        for j in partition_to_doc[cur_part]:
-            doc_to_partition[j] = cur_part
         # update clusters
-        child_u, child_v = partition_to_cluster[part_u], partition_to_cluster[part_v]
+        child_u, child_v = partition_to_cluster.pop(part_u.find()), partition_to_cluster.pop(part_v.find())
         cluster = TreeNode(None, [child_u, child_v])
         child_u.parent = child_v.parent = cluster
-        partition_to_cluster.append(cluster)
-        partition_to_cluster[part_u] = partition_to_cluster[part_v] = None
+        # update partitions
+        part_union = DisjointSetTree.union(part_u, part_v)
+        partition_to_cluster[part_union] = cluster
     return cluster
 
 def cluster_aggl_mst_kruskal(weight_docs, similarity_metric):
