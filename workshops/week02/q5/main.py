@@ -53,8 +53,8 @@ def term_similarities_sorted(term, docs_db, distance_func, inverted_index_db):
 
 def main():
 	client = pymongo.MongoClient()
-	tfidf_db = client['websearch_workshops']['week02']['tfidf']
-	inverted_index_db = client['websearch_workshops']['week02']['inverted_index']
+	tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
+	inverted_index_db = client['websearch_workshops']['lyrl']['inverted_index']
 	for term in ['socc', 'jaguar', 'najibullah']:
 		start=time.clock()
 		query_res = term_similarities_sorted(term, tfidf_db, cosine_similarity, inverted_index_db)

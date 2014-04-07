@@ -7,7 +7,7 @@ from workshops.lib.weights import cosine_similarity
 
 def main():
     client = pymongo.MongoClient()
-    tfidf_db = client['websearch_workshops']['week02']['tfidf']
+    tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
     ns = [100, 200, 300, 400, 500, 600, 700, 800, 1600, 3200, 6400]
     deltas = []
     for n in ns:
