@@ -23,8 +23,7 @@ def main():
 	start=time.clock()
 	client = pymongo.MongoClient()
 	collection = client['websearch_workshops']['week02']['tfidf']
-	print(doc_similarity('26152', '26159', collection, cosine_similarity))
-	print(doc_similarity('26152', '26413', collection, cosine_similarity))
+	print(doc_similarity('26151', '26152', collection, cosine_similarity))
 	print('Took {:.6f} seconds'.format(time.clock()-start))
 
 if __name__ == '__main__':
