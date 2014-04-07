@@ -30,7 +30,9 @@ class ClassifData:
         '''
         if reproducible:
             random.seed(1)
-        sample_docs = random.sample(self.docs, ntrain + ntest)
+            sample_docs = random.sample(sorted(self.docs), ntrain + ntest)
+        else:
+            sample_docs = random.sample(self.docs, ntrain + ntest)
         test_docs = sample_docs[0:ntest]
         train_docs = sample_docs[ntest:(ntest + ntrain)]
         test_docs_labelled = list((doc_id, self.get_doc_classes(doc_id)) for doc_id in test_docs)
