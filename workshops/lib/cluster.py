@@ -123,7 +123,7 @@ def cluster_aggl_mst_kruskal(weight_docs, similarity_metric):
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
     n = len(weight_docs)
-    return cluster_aggl_mst(weight_docs, mst_kruskal(n, lambda i, j: similarity_metric(weight_docs[i]['weights'], weight_docs[j]['weights'])))
+    return cluster_aggl_mst(weight_docs, mst_kruskal(n, lambda i, j: -similarity_metric(weight_docs[i]['weights'], weight_docs[j]['weights'])))
 
 def cluster_aggl_mst_prim(weight_docs, similarity_metric):
     '''
@@ -131,4 +131,4 @@ def cluster_aggl_mst_prim(weight_docs, similarity_metric):
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
     n = len(weight_docs)
-    return cluster_aggl_mst(weight_docs, mst_prim(n, lambda i, j: similarity_metric(weight_docs[i]['weights'], weight_docs[j]['weights'])))
+    return cluster_aggl_mst(weight_docs, mst_prim(n, lambda i, j: -similarity_metric(weight_docs[i]['weights'], weight_docs[j]['weights'])))
