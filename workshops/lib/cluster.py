@@ -12,12 +12,12 @@ class TreeNode:
             return False
         return self.value == other.value and self.children == other.children
 
-    def leaves(self):
-        if not self.children:
+    def descendants(self, depth=float('inf')):
+        if depth<=0 or not self.children:
             yield self
         else:
             for child in self.children:
-                yield from child.leaves()
+                yield from child.descendants(depth-1)
 
 def mst_prim(n, get_weight):
     # calculate the MST using Prim's algorithm & store the edges of the MST
