@@ -29,7 +29,7 @@ def main():
     classifier.train(train_docs, tfidf_db)
     classif_docs_bin = classif_binary(test_docs, classifier, tfidf_db)
     # results
-    cf = ConfusionMatrix.generate(classif_docs_bin, test_docs_bin, 'GCAT', 'not-GCAT')
+    cf = ConfusionMatrix.generate(list(x[1] for x in classif_docs_bin), list(x[1] for x in test_docs_bin), 'GCAT', 'not-GCAT')
     print('TP: {}, FP: {}, TN: {}, FN: {}'.format(cf.tp, cf.fp, cf.tn, cf.fn))
     print('Accuracy: {}'.format(cf.accuracy()))
     print('F1 Score: {}'.format(cf.f1()))

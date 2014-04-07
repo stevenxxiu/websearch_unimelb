@@ -7,13 +7,9 @@ class ConfusionMatrix:
         self.fn = fn
 
     @classmethod
-    def generate(cls, classif_docs, test_docs, pos_class, neg_class):
+    def generate(cls, classif_classes, test_classes, pos_class, neg_class):
         tp = fp = tn = fn = 0
-        for classif_doc, test_doc in zip(classif_docs, test_docs):
-            classif_id, classif_class = classif_doc
-            test_id, test_class = test_doc
-            if classif_id != test_id:
-                raise ValueError('id mismatch')
+        for classif_class, test_class in zip(classif_classes, test_classes):
             if classif_class == pos_class and test_class == pos_class:
                 tp += 1
             elif classif_class == pos_class and test_class == neg_class:
