@@ -4,19 +4,10 @@ import time
 import pymongo
 
 class TreeNode:
-    def __init__(self, parent, children, value):
+    def __init__(self, value, children=None, parent=None):
         self.parenet = parent
-        self.children = children
+        self.children = children if children is not None else []
         self.value = value
-
-class Edge:
-    '''
-    stores a graph edge
-    '''
-
-    def __init__(self, v1, v2):
-        self.v1 = v1
-        self.v2 = v2
 
 def cosine_similarity(weight_dict_1, weight_dict_2):
     '''
@@ -27,41 +18,54 @@ def cosine_similarity(weight_dict_1, weight_dict_2):
         score += weight_dict_1[term]*weight_dict_2[term]
     return score
 
-def cluster_aggloromotive(weight_docs, similarity_metric):
+def cluster_aggloromotive_mst(weight_docs, similarity_metric):
     '''
     args:
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
-    # adjacency list graph, each value includes an Edge object so node merging doesn't need to care about the heap
-    graph = []
-    doc_ids = sorted(weight_doc['doc_id'] for weight_doc in weight_docs)
-    for i, doc_id in enumerate(doc_ids):
-        # make sure an edge is stored only once to better handle the undirected graph
-        adjacent = []
-        for j, doc_id_other in enumerate(doc_ids[i+1:]):
-            adjacent.append(Edge(i, j))
-        graph.append(adjacent)
-    # build similarity scores
-    edge_scores_heap = []
-    for i, weight_doc in enumerate(weight_docs):
-        for j, weight_doc_other in enumerate(weight_docs[i+1:]):
-            edge_scores_heap.append((similarity_metric(weight_doc['weights'], weight_doc_other['weights']), graph[i][j]))
-    heapq.heapify(edge_scores_heap)
-    # the current top-most cluster a document belongs to
-    doc_cluster = {}
-    # build the cluster tree
-    res = {}
-    for i, doc_id in enumerate(doc_ids):
-        res[i] = TreeNode(None, [], doc_id)
-    while len(res)>1:
-        heapq.heappop(edge_scores_heap)
+    n = len(weight_docs)
+    # calculate the MST using Prim's algorithm & store the edges of the MST
+    mst_edges = []
+    # start at vertex 0
+    cur_vertex = 0
+    visited = [False]*n
+    for i in range(n-1):
+        visited[cur_vertex] = True
+        cur_weight_doc = weight_docs[cur_vertex]
+        min_weight = None
+        min_edge = None
+        adj_vertex = None
+        for adj_vertex, weight_doc in enumerate(weight_docs):
+            if visited[adj_vertex]:
+                continue
+            cur_weight = similarity_metric(cur_weight_doc['weights'], weight_doc['weights'])
+            if min_weight is None or cur_weight < min_weight:
+                min_weight = cur_weight
+                min_edge = (cur_vertex, adj_vertex)
+        mst_edges.append((min_weight, min_edge))
+        cur_vertex = adj_vertex
+    # convert mst_edges into a cluster
+    heapq.heapify(mst_edges)
+    # the current cluster a vertex belongs to
+    clusters = []
+    for i in range(n):
+        clusters.append(TreeNode(weight_docs[i]['doc_id']))
+    cluster = None
+    for i in range(n-1):
+        min_weight, min_edge = heapq.heappop(mst_edges)
+        u, v = min_edge
+        child_u, child_v = clusters[u], clusters[v]
+        cluster = TreeNode(None, [child_u, child_v])
+        clusters[u] = clusters[v] = cluster
+        child_u.parent = child_v.parent = cluster
+    return cluster
 
 
 def main():
     start=time.clock()
     client = pymongo.MongoClient()
     tfidf_db = client['websearch_workshops']['week02']['tfidf']
-    cluster_aggloromotive(list(tfidf_db.find()[:100]), cosine_similarity)
+    cluster_aggloromotive_mst(list(tfidf_db.find()[:100]), cosine_similarity)
 
     print('Took {:.6f} seconds'.format(time.clock()-start))
 
