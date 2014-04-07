@@ -1,4 +1,7 @@
 
+#tm cache files
+.tm~
+
 #ide files
 .idea
 
