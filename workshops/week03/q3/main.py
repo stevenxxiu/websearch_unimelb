@@ -2,7 +2,7 @@
 import time
 import pymongo
 import matplotlib.pyplot as plt
-from workshops.lib.cluster import cluster_aggloromotive_mst
+from workshops.lib.cluster import cluster_aggl_mst_prim
 from workshops.lib.weights import cosine_similarity
 
 def main():
@@ -13,7 +13,7 @@ def main():
     for n in ns:
         docs = list(tfidf_db.find()[:n])
         start = time.clock()
-        cluster_aggloromotive_mst(docs, cosine_similarity)
+        cluster_aggl_mst_prim(docs, cosine_similarity)
         delta = time.clock()-start
         deltas.append(delta)
         print('{} docs took {:.6f} seconds'.format(n, delta))
