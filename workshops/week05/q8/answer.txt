@@ -1,0 +1,2 @@
+
+The classifier stops improving at around 2000 documents.
