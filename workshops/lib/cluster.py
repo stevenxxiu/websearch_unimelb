@@ -38,7 +38,7 @@ def mst_prim(n, get_weight):
                 min_weights[j] = (cur_weight, v)
         # find the minimum
         w, (u, v) = min((w, (u, v)) for u, (w, v) in enumerate(min_weights) if not visited[u] and w is not None)
-        mst_edges.append((w, tuple(sorted((u, v)))))
+        mst_edges.append((w, (min(u, v), max(u, v))))
         # new vertex added to the tree
         v = u
     return mst_edges
