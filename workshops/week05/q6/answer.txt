@@ -1,0 +1,33 @@
+
+2000 training documents, 500 test documents:
+	k=11:
+		TP: 495, FP: 33, TN: 1353, FN: 119
+		Accuracy: 0.924
+		F1 Score: 0.8669001751313485
+		Took 203.487117 seconds
+
+	k=15:
+		TP: 495, FP: 35, TN: 1351, FN: 119
+		Accuracy: 0.923
+		F1 Score: 0.8653846153846154
+		Took 192.337382 seconds
+
+	k=19:
+		TP: 492, FP: 31, TN: 1355, FN: 122
+		Accuracy: 0.9235
+		F1 Score: 0.8654353562005277
+		Took 229.110128 seconds
+
+	k=23:
+		TP: 484, FP: 29, TN: 1357, FN: 130
+		Accuracy: 0.9205
+		F1 Score: 0.8589174800354925
+		Took 226.786540 seconds
+
+	k=27:
+		TP: 485, FP: 28, TN: 1358, FN: 129
+		Accuracy: 0.9215
+		F1 Score: 0.8606921029281278
+		Took 227.094884 seconds
+
+kNN is more accurate than rocchio
