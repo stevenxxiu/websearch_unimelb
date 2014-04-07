@@ -2,6 +2,7 @@
 import math
 from collections import Counter
 from workshops.lib import coll
+from workshops.lib.weights import cosine_similarity
 
 def get_doc_freqs(coll_data):
 	dfs = Counter()
@@ -29,15 +30,6 @@ def get_doc_tf_idf(doc_id, idfs, coll_data):
 	for term, term_weight in res.items():
 		res[term] = term_weight/term_vector_length
 	return res
-
-def cosine_similarity(weight_dict_1, weight_dict_2):
-	'''
-	assumes that both weight_dict_1 and weight_dict_2 are normalized
-	'''
-	score = 0
-	for term in set(weight_dict_1.keys()).intersection(weight_dict_2.keys()):
-		score += weight_dict_1[term]*weight_dict_2[term]
-	return score
 
 def doc_similarity(doc_id_1, doc_id_2, distance_func, idfs, coll_data):
 	return distance_func(
