@@ -24,7 +24,7 @@ def main():
     for doc_id in coll_data.get_docs():
         weights = get_doc_tf_idf(doc_id, idfs, coll_data)
         try:
-            tfidf.insert({'doc_id': doc_id, 'weights': get_doc_tf_idf(doc_id, idfs, coll_data)})
+            tfidf.insert({'doc_id': doc_id, 'weights': weights})
         except pymongo.errors.DuplicateKeyError:
             pass
 
