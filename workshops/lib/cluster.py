@@ -19,6 +19,30 @@ class TreeNode:
             for child in self.children:
                 yield from child.leaves()
 
+def mst_prim(n, get_weight):
+    # calculate the MST using Prim's algorithm & store the edges of the MST
+    mst_edges = []
+    min_weights = [(None, None)]*n
+    visited = [False]*n
+    # arbitrary starting vertex
+    v = 0
+    for i in range(n-1):
+        # mark as visited
+        visited[v] = True
+        # update the minimums for vertices adjacent to v
+        for j in range(n):
+            if j==v or visited[j]:
+                continue
+            cur_weight = get_weight(v, j)
+            if min_weights[j][0] is None or cur_weight < min_weights[j][0]:
+                min_weights[j] = (cur_weight, v)
+        # find the minimum
+        w, (u, v) = min((w, (u, v)) for u, (w, v) in enumerate(min_weights) if not visited[u] and w is not None)
+        mst_edges.append((w, tuple(sorted((u, v)))))
+        # new vertex added to the tree
+        v = u
+    return mst_edges
+
 def cluster_aggloromotive_naive(weight_docs, similarity_metric):
     n = len(weight_docs)
     # calculate all weights
@@ -50,28 +74,8 @@ def cluster_aggloromotive_mst(weight_docs, similarity_metric):
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
     n = len(weight_docs)
-    # calculate the MST using Prim's algorithm & store the edges of the MST
-    mst_edges = []
-    min_weights = [(None, None)]*n
-    visited = [False]*n
-    # arbitrary starting vertex
-    v = 0
-    for i in range(n-1):
-        # mark as visited
-        visited[v] = True
-        # update the minimums for vertices adjacent to v
-        weight_doc_v = weight_docs[v]
-        for j, weight_doc_j in enumerate(weight_docs):
-            if j==v or visited[j]:
-                continue
-            cur_weight = similarity_metric(weight_doc_v['weights'], weight_doc_j['weights'])
-            if min_weights[j][0] is None or cur_weight < min_weights[j][0]:
-                min_weights[j] = (cur_weight, v)
-        # find the minimum
-        w, (u, v) = min((w, (u, v)) for u, (w, v) in enumerate(min_weights) if not visited[u] and w is not None)
-        mst_edges.append((w, tuple(sorted((u, v)))))
-        # new vertex added to the tree
-        v = u
+    # get the mst edges using prim's algorithm
+    mst_edges = mst_prim(n, lambda i, j: similarity_metric(weight_docs[i]['weights'], weight_docs[j]['weights']))
     # convert mst_edges into a cluster
     heapq.heapify(mst_edges)
     # the current cluster a vertex belongs to
