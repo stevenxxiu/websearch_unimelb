@@ -16,9 +16,11 @@ def main():
     (U, s, V_T) = la.svd(X)
     # s is sorted in decreasing order
     for d in range(5, 0, -1):
-        S_d = np.zeros((5, 6))
+        S_d = np.zeros((d, d))
         S_d[:d, :d] = np.diag(s[:d])
-        X_d = np.dot(np.dot(U, S_d), V_T)
+        U_d = U[:,:d]
+        V_d_T = V_T[:d,:]
+        X_d = np.dot(np.dot(U_d, S_d), V_d_T)
         trim_small(X_d)
         print(X_d)
         print(np.sum((np.array(X_d)-np.array(X))**2))
