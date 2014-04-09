@@ -14,17 +14,14 @@ def main():
         [0, 0, 0, 1, 0, 1],
     ])
     (U, s, V_T) = la.svd(X)
-    trim_small(U)
-    trim_small(V_T)
-    print('U, s, V_T:')
-    print(U)
-    print(s)
-    print(V_T)
-    S_ = np.zeros((5, 6))
-    S_[:5, :5] = np.diag(s)
-    X_ = np.dot(np.dot(U, S_), V_T)
-    trim_small(X_)
-    print(X_)
+    # s is sorted in decreasing order
+    for d in range(5, 0, -1):
+        S_d = np.zeros((5, 6))
+        S_d[:d, :d] = np.diag(s[:d])
+        X_d = np.dot(np.dot(U, S_d), V_T)
+        trim_small(X_d)
+        print(X_d)
+        print(np.sum((np.array(X_d)-np.array(X))**2))
 
 if __name__=='__main__':
     main()
