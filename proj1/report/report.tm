@@ -37,6 +37,24 @@
   ID>|<cell|Score>>|<row|<cell|Apache_Isis>|<cell|0.368171>>|<row|<cell|Southern_Apache_Museum>|<cell|0.343888>>|<row|<cell|Apache_Excalibur>|<cell|0.327800>>|<row|<cell|Apache_Rocks_the_Bottom!>|<cell|0.316355>>|<row|<cell|Apache_Aries>|<cell|0.313229>>|<row|<cell|Apache_Incubator>|<cell|0.310112>>|<row|<cell|Fort_Apache>|<cell|0.306531>>|<row|<cell|Aries>|<cell|0.304566>>|<row|<cell|Apache_Directory>|<cell|0.300640>>|<row|<cell|Apache_Forrest>|<cell|0.299363>>>>>|Query
   results for ``apache apache aries''>
 
+  <section|Pivoted Length Normalization Results>
+
+  \ <with|font-shape|italic|term>.
+
+  <section|TF-IDF Results>
+
+  <small-table|<block|<tformat|<table|<row|<cell|Document
+  ID>|<cell|Score>>|<row|<cell|Apache_(disambiguation)>|<cell|0.157835>>|<row|<cell|Apache_Rocks_the_Bottom!>|<cell|0.152856>>|<row|<cell|Mod_proxy>|<cell|0.151663>>|<row|<cell|Western_Apache_language>|<cell|0.145874>>|<row|<cell|Apache_Trail>|<cell|0.143866>>|<row|<cell|Plains_Apache_language>|<cell|0.141442>>|<row|<cell|Mod_ssl>|<cell|0.140792>>|<row|<cell|Fort_Apache_Indian_Reservation>|<cell|0.139391>>|<row|<cell|Apache_TomEE>|<cell|0.136530>>|<row|<cell|Fort_Apache>|<cell|0.135704>>>>>|Query
+  results for ``apache''>
+
+  <small-table|<block|<tformat|<table|<row|<cell|Document
+  ID>|<cell|Score>>|<row|<cell|Aries>|<cell|0.220485>>|<row|<cell|Apache_ServiceMix>|<cell|0.165268>>|<row|<cell|Apache_(disambiguation)>|<cell|0.157835>>|<row|<cell|Aries_Marine>|<cell|0.157389>>|<row|<cell|Aries_(comics)>|<cell|0.153568>>|<row|<cell|Apache_Rocks_the_Bottom!>|<cell|0.152856>>|<row|<cell|Mod_proxy>|<cell|0.151663>>|<row|<cell|Apache_Aries>|<cell|0.151362>>|<row|<cell|USS_Aries_(PHM-5)>|<cell|0.148377>>|<row|<cell|OSGi_Specification_Implementations>|<cell|0.147210>>>>>|Query
+  results for ``apache aries''>
+
+  <small-table|<block|<tformat|<table|<row|<cell|Document
+  ID>|<cell|Score>>|<row|<cell|Apache_(disambiguation)>|<cell|0.250162>>|<row|<cell|Apache_Rocks_the_Bottom!>|<cell|0.242271>>|<row|<cell|Aries>|<cell|0.241095>>|<row|<cell|Mod_proxy>|<cell|0.240380>>|<row|<cell|Apache_ServiceMix>|<cell|0.237173>>|<row|<cell|Western_Apache_language>|<cell|0.231205>>|<row|<cell|Apache_Trail>|<cell|0.228023>>|<row|<cell|Plains_Apache_language>|<cell|0.224180>>|<row|<cell|Mod_ssl>|<cell|0.223150>>|<row|<cell|Fort_Apache_Indian_Reservation>|<cell|0.220929>>>>>|Query
+  results for ``apache apache aries''>
+
   \;
 </body>
 
@@ -46,10 +64,15 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|6|?>>
     <associate|auto-2|<tuple|2|1>>
     <associate|auto-3|<tuple|1|1>>
     <associate|auto-4|<tuple|2|?>>
     <associate|auto-5|<tuple|3|?>>
+    <associate|auto-6|<tuple|3|?>>
+    <associate|auto-7|<tuple|4|?>>
+    <associate|auto-8|<tuple|4|?>>
+    <associate|auto-9|<tuple|5|?>>
   </collection>
 </references>
 
