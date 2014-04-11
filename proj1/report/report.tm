@@ -39,10 +39,6 @@
 
   <section|Pivoted Length Normalization Results>
 
-  \ <with|font-shape|italic|term>.
-
-  <section|TF-IDF Results>
-
   <small-table|<block|<tformat|<table|<row|<cell|Document
   ID>|<cell|Score>>|<row|<cell|Apache_(disambiguation)>|<cell|0.157835>>|<row|<cell|Apache_Rocks_the_Bottom!>|<cell|0.152856>>|<row|<cell|Mod_proxy>|<cell|0.151663>>|<row|<cell|Western_Apache_language>|<cell|0.145874>>|<row|<cell|Apache_Trail>|<cell|0.143866>>|<row|<cell|Plains_Apache_language>|<cell|0.141442>>|<row|<cell|Mod_ssl>|<cell|0.140792>>|<row|<cell|Fort_Apache_Indian_Reservation>|<cell|0.139391>>|<row|<cell|Apache_TomEE>|<cell|0.136530>>|<row|<cell|Fort_Apache>|<cell|0.135704>>>>>|Query
   results for ``apache''>
@@ -71,8 +67,8 @@
     <associate|auto-5|<tuple|3|?>>
     <associate|auto-6|<tuple|3|?>>
     <associate|auto-7|<tuple|4|?>>
-    <associate|auto-8|<tuple|4|?>>
-    <associate|auto-9|<tuple|5|?>>
+    <associate|auto-8|<tuple|5|?>>
+    <associate|auto-9|<tuple|6|?>>
   </collection>
 </references>
 
@@ -85,6 +81,13 @@
 
       <tuple|normal|Query results for ``apache apache
       aries''|<pageref|auto-5>>
+
+      <tuple|normal|Query results for ``apache''|<pageref|auto-8>>
+
+      <tuple|normal|Query results for ``apache aries''|<pageref|auto-9>>
+
+      <tuple|normal|Query results for ``apache apache
+      aries''|<pageref|auto-10>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Database
@@ -94,6 +97,14 @@
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>TF-IDF
       Results> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Pivoted
+      Length Normalization Results> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4<space|2spc>TF-IDF
+      Results> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
