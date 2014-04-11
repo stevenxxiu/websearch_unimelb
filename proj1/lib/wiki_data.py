@@ -6,7 +6,6 @@ class WikiDoc:
         self.doc_id = doc_id
         self.terms = Counter(terms)
 
-
 class WikiData:
     def __init__(self, docs):
         self.docs = docs
@@ -14,11 +13,11 @@ class WikiData:
     @classmethod
     def load(cls, path):
         docs = {}
-        with open(path, 'r') as sr:
-            for line in sr:
-                doc_id, doc = line.split(maxsplit=1)
-                terms = doc.split()
-                docs[doc_id] = WikiDoc(doc_id, terms)
+        with open(path, 'r', encoding='utf-8') as sr:
+            for i, line in enumerate(sr):
+                title, terms = line.split(maxsplit=1)
+                terms = terms.split()
+                docs[title] = WikiDoc(title, terms)
         return cls(docs)
 
     def get_docs(self):
@@ -26,3 +25,6 @@ class WikiData:
 
     def get_doc(self, docid):
         return self.docs[docid]
+
+    def get_num_docs(self):
+        return len(self.docs)
