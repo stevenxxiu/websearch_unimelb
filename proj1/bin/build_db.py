@@ -23,7 +23,7 @@ def main():
     idfs = get_idfs(wiki_data)
     client = pymongo.MongoClient()
 
-    tfidf = client['websearch_workshops']['wiki']['tfidf']
+    tfidf = client['websearch_proj1']['wiki']['tfidf']
     tfidf.ensure_index('doc_id', unique=True)
     for doc_id in wiki_data.get_docs():
         weights = get_doc_tf_idf(doc_id, idfs, wiki_data)
@@ -33,7 +33,7 @@ def main():
         except pymongo.errors.DuplicateKeyError:
             pass
 
-    idf = client['websearch_workshops']['wiki']['idf']
+    idf = client['websearch_proj1']['wiki']['idf']
     idf.ensure_index('term', unique=True)
     for term, value in idfs.items():
         try:
@@ -41,7 +41,7 @@ def main():
         except pymongo.errors.DuplicateKeyError:
             pass
 
-    inverted_index = client['websearch_workshops']['wiki']['inverted_index']
+    inverted_index = client['websearch_proj1']['wiki']['inverted_index']
     inverted_index.ensure_index('term', unique=True)
     for term, doc_ids in get_inverted_index(wiki_data).items():
         try:
