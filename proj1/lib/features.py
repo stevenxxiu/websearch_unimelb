@@ -23,8 +23,4 @@ def get_doc_tf_idf(doc_id, idfs, wiki_data):
 	for term, term_count in doc.terms.items():
 		tf = math.log(1 + term_count)
 		res[term] = tf*idfs[term]
-	#l2 length
-	term_vector_length = math.sqrt(sum(term_weight**2 for term_weight in res.values()))
-	for term, term_weight in res.items():
-		res[term] = term_weight/term_vector_length
 	return res
