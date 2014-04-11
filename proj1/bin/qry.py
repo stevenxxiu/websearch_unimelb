@@ -18,11 +18,23 @@ def get_query_weights(query_terms):
         res[term] = math.log(1+count)
     return res
 
-def query_similarities(query_weight_dict, distance_func, norm_func, docs_db, inverted_index_db):
+def query_similarities(query_weight_dict, distance_func, norm_func, include_all, docs_db, inverted_index_db):
     res = {}
-    doc_ids = set()
-    for doc_ids_entry in inverted_index_db.find({'$or': [{'term': query_term} for query_term in query_weight_dict]}, ['doc_ids']):
-        doc_ids.update(doc_ids_entry['doc_ids'])
+    doc_ids_entries = inverted_index_db.find({'$or': [{'term': query_term} for query_term in query_weight_dict]}, ['doc_ids'])
+    if not include_all:
+        # explicit iteration for faster results
+        doc_ids = set()
+        for doc_ids_entry in doc_ids_entries:
+            doc_ids.update(doc_ids_entry['doc_ids'])
+    else:
+        doc_ids = None
+        for doc_ids_entry in doc_ids_entries:
+            if doc_ids is None:
+                doc_ids = set(doc_ids_entry['doc_ids'])
+            else:
+                doc_ids.intersection_update(doc_ids_entry['doc_ids'])
+        if doc_ids is None:
+            doc_ids = set()
     for doc_id in doc_ids:
         doc = docs_db.find_one({'doc_id': doc_id})
         weights = norm_func(dict(doc['weights']))
@@ -36,6 +48,7 @@ def main():
     arg_parser=argparse.ArgumentParser(description='Run a query on the wiki.')
     arg_parser.add_argument('queries_path', type=str)
     arg_parser.add_argument('num_results', type=int)
+    arg_parser.add_argument('--include_all', action='store_true', default=False)
     arg_parser.add_argument('--pivot_slope', type=float, default=None)
     args=arg_parser.parse_args()
 
@@ -45,15 +58,17 @@ def main():
 
     if args.pivot_slope is not None:
         pl_norm = PivotedLengthNorm(l2_dist, (dict(doc['weights']) for doc in tfidf_db.find()))
-        norm = lambda w: pl_norm.norm(w, args.pivot_slope)
+        norm_func = lambda w: pl_norm.norm(w, args.pivot_slope)
     else:
-        norm = l2_norm
+        norm_func = l2_norm
 
     with open(args.queries_path, 'r', encoding='utf-8') as sr:
         for line in sr:
             line = line.strip()
             query_weights = get_query_weights(parse_query(line))
-            query_res = query_similarities_sorted(query_similarities(query_weights, cosine_similarity, norm, tfidf_db, inverted_index))
+            query_res = query_similarities_sorted(
+                query_similarities(query_weights, cosine_similarity, norm_func, args.include_all, tfidf_db, inverted_index)
+            )
             print('>> {}'.format(line))
             print('{:<50}{:}'.format('document id', 'score'))
             for doc_id, score in query_res[:args.num_results]:
