@@ -28,7 +28,8 @@ def main():
     for doc_id in wiki_data.get_docs():
         weights = get_doc_tf_idf(doc_id, idfs, wiki_data)
         try:
-            tfidf.insert({'doc_id': doc_id, 'weights': weights})
+            # use a list as mongodb doesn't allow keys containing '.'
+            tfidf.insert({'doc_id': doc_id, 'weights': list(weights.items())})
         except pymongo.errors.DuplicateKeyError:
             pass
 
