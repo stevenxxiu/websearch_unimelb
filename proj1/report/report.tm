@@ -117,7 +117,7 @@
     \<alpha\>\<cdot\>d<around*|(|r,<around*|{|q<rsub|0>|}>|)>+\<beta\>\<cdot\>d<around*|(|r,<around*|{|p<rsub|u>|}>|)>+\<gamma\>\<cdot\>d<around*|(|r,P<rsub|f>|)>
   </equation*>
 
-  If we take <math|d<around*|(|r,P|)>=<frac|1|<around*|\||P|\|>><big|sum><rsub|p\<in\>P>r\<cdot\>p>,
+  If we take the average distance, <math|d<around*|(|r,P|)>=<frac|1|<around*|\||P|\|>><big|sum><rsub|p\<in\>P>r\<cdot\>p>,
   then we get rocchio's. But we can also take the minimum distance to the
   cluster, using <math|d<around*|(|r,P|)>=min<big|sum><rsub|p\<in\>P>r\<cdot\>p>.
 
