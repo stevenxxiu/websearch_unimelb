@@ -2,7 +2,7 @@
 import argparse
 import pymongo
 import pymongo.errors
-from proj1.lib.wiki_data import WikiData
+from proj1.lib.data import TitleTermData
 from proj1.lib.features import get_idfs, get_doc_tf_idf
 
 def get_inverted_index(wiki_data):
@@ -19,7 +19,7 @@ def main():
     arg_parser.add_argument('wikipath', type=str)
     args=arg_parser.parse_args()
     
-    wiki_data = WikiData.load(args.wikipath)
+    wiki_data = TitleTermData.load(args.wikipath)
     idfs = get_idfs(wiki_data)
     client = pymongo.MongoClient()
 
