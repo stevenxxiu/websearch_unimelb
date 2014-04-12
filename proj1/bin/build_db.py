@@ -20,6 +20,14 @@ def store_dataset(name, dataset):
     idfs = get_idfs(dataset)
     client = pymongo.MongoClient()
 
+    freq = client['websearch_proj1'][name]['freq']
+    freq.ensure_index('doc_id', unique=True)
+    for doc_id, doc in dataset.get_docs().items():
+        try:
+            freq.insert({'doc_id': doc_id, 'freqs': list(doc.terms.items())})
+        except pymongo.errors.DuplicateKeyError:
+            pass
+
     tfidf = client['websearch_proj1'][name]['tfidf']
     tfidf.ensure_index('doc_id', unique=True)
     for doc_id in dataset.get_docs():
