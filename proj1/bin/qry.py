@@ -63,7 +63,7 @@ def main():
     arg_parser.add_argument('--include_all', action='store_true', default=False)
     arg_parser.add_argument('--pivot_slope', type=float, default=None)
     arg_parser.add_argument('--apache_postid', type=str, default=None)
-    arg_parser.add_argument('--apache_rocchio', type=lambda s: list(map(float, s.split(','))), default=None)
+    arg_parser.add_argument('--apache_rocchio', type=lambda s: (float(s.split(',')[0]), float(s.split(',')[1]), float(s.split(',')[2]), int(s.split(',')[3])), default=None)
     args=arg_parser.parse_args()
 
     client = pymongo.MongoClient()
@@ -82,8 +82,8 @@ def main():
             query_terms = parse_query(line)
             query_weights = get_query_weights(query_terms)
             if args.apache_rocchio is not None:
-                alpha, beta, gamma = args.apache_rocchio
-                query_weights = rocchio_forum(query_weights, args.apache_postid, norm_func, alpha, beta, gamma, 20)
+                alpha, beta, gamma, k = args.apache_rocchio
+                query_weights = rocchio_forum(query_weights, args.apache_postid, norm_func, alpha, beta, gamma, k)
             if args.include_all:
                 include_terms = query_terms
             else:
