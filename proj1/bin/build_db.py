@@ -1,9 +1,9 @@
 
 import os
-import glob
 import argparse
-import pymongo
-import pymongo.errors
+import pickle
+import numpy as np
+from scipy.sparse import csr_matrix, vstack
 from proj1.lib.data import TitleTermData
 from proj1.lib.features import get_idfs, get_doc_tf_idf
 
@@ -16,71 +16,61 @@ def get_inverted_index(wiki_data):
             res[term].append(doc_id)
     return res
 
-def store_dataset(name, dataset):
-    idfs = get_idfs(dataset)
-    client = pymongo.MongoClient()
 
-    freq = client['websearch_proj1'][name]['freq']
-    freq.ensure_index('doc_id', unique=True)
-    for doc_id, doc in dataset.get_docs().items():
-        try:
-            freq.insert({'doc_id': doc_id, 'freqs': list(doc.terms.items())})
-        except pymongo.errors.DuplicateKeyError:
-            pass
+class DataStore:
+    def __init__(self, dataset):
+        terms = set()
+        for doc_id, doc in dataset.get_docs().items():
+            terms.update(doc.terms.keys())
+        self.terms = sorted(terms)
+        self.term_indexes = dict((term, i) for i, term in enumerate(terms))
+        self.docs = sorted(dataset.get_docs().keys())
+        self.doc_indexes = dict((doc, i) for i, doc in enumerate(self.docs))
+        # csr frequency matrix with documents as rows
+        # we do not use a csc matrix as constructing a csr matrix is easier,
+        # and term spaces are used more often than document spaces
+        freq_rows = []
+        for doc_id, doc in dataset.get_docs().items():
+            # make sure this is deterministic
+            term_freqs = list(doc.terms.items())
+            row = np.zeros(len(term_freqs))
+            col = np.array(list(self.term_indexes[term] for term, freq in term_freqs))
+            data = np.array(list(freq for term, freq in term_freqs))
+            freq_rows.append(csr_matrix((data, (row, col)), shape=(1, len(terms))))
+        self.freq_matrix = vstack(freq_rows)
+        # inverted index
+        self.inverted_index = get_inverted_index(dataset)
 
-    tfidf = client['websearch_proj1'][name]['tfidf']
-    tfidf.ensure_index('doc_id', unique=True)
-    for doc_id in dataset.get_docs():
-        weights = get_doc_tf_idf(doc_id, idfs, dataset)
-        try:
-            # use a list as mongodb doesn't allow keys containing '.'
-            tfidf.insert({'doc_id': doc_id, 'weights': list(weights.items())})
-        except pymongo.errors.DuplicateKeyError:
-            pass
 
-    idf = client['websearch_proj1'][name]['idf']
-    idf.ensure_index('term', unique=True)
-    for term, value in idfs.items():
-        try:
-            idf.insert({'term': term, 'value': value})
-        except pymongo.errors.DuplicateKeyError:
-            pass
+def build_wiki_db(wiki_path, store_path):
+    dataset = TitleTermData.load(wiki_path)
+    with open(store_path, 'wb') as sr:
+        pickle.dump(DataStore(dataset), sr)
 
-    inverted_index = client['websearch_proj1'][name]['inverted_index']
-    inverted_index.ensure_index('term', unique=True)
-    for term, doc_ids in get_inverted_index(dataset).items():
-        try:
-            inverted_index.insert({'term': term, 'doc_ids': doc_ids})
-        except pymongo.errors.DuplicateKeyError:
-            pass
-
-def build_wiki_db(wikipath):
-    wiki_data = TitleTermData.load(wikipath)
-    store_dataset('wiki', wiki_data)
-
-def build_apache_db(apachepath):
-    datasets = []
-    client = pymongo.MongoClient()
-    forum_docs_db = client['websearch_proj1']['apache']['forum_docs']
-    forum_docs_db.ensure_index('name', unique=True)
-    forum_docs_db.ensure_index('doc_ids', unique=True)
-    for forum_name in os.listdir(apachepath):
-        for file_name in os.listdir(os.path.join(apachepath, forum_name)):
-            if file_name.endswith('.txt'):
-                dataset = TitleTermData.load(os.path.join(apachepath, forum_name, file_name))
-                datasets.append(dataset)
-                forum_docs_db.insert({'name': forum_name, 'doc_ids': list(dataset.get_docs().keys())})
-    apache_data = TitleTermData.merge(datasets)
-    store_dataset('apache', apache_data)
+#def build_apache_db(apachepath):
+#    datasets = []
+#    client = pymongo.MongoClient()
+#    forum_docs_db = client['websearch_proj1']['apache']['forum_docs']
+#    forum_docs_db.ensure_index('name', unique=True)
+#    forum_docs_db.ensure_index('doc_ids', unique=True)
+#    for forum_name in os.listdir(apachepath):
+#        for file_name in os.listdir(os.path.join(apachepath, forum_name)):
+#            if file_name.endswith('.txt'):
+#                dataset = TitleTermData.load(os.path.join(apachepath, forum_name, file_name))
+#                datasets.append(dataset)
+#                forum_docs_db.insert({'name': forum_name, 'doc_ids': list(dataset.get_docs().keys())})
+#    apache_data = TitleTermData.merge(datasets)
+#    store_dataset('apache', apache_data)
 
 def main():
     arg_parser=argparse.ArgumentParser(description='Build the wiki tf-idf db.')
-    arg_parser.add_argument('wikipath', type=str)
-    arg_parser.add_argument('apachepath', type=str)
+    arg_parser.add_argument('wiki_path', type=str)
+    arg_parser.add_argument('apache_path', type=str)
+    arg_parser.add_argument('store_path', type=str)
     args=arg_parser.parse_args()
     # we use separate collections for wikipedia and the apache forum, as the document lengths and term occurances likely differ
-    build_wiki_db(args.wikipath)
-    build_apache_db(args.apachepath)
+    build_wiki_db(args.wiki_path, os.path.join(args.store_path, 'wiki.db'))
+    # build_apache_db(args.apachepath)
 
 if __name__ == '__main__':
     main()
