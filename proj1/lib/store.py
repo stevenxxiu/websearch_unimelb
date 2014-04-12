@@ -28,9 +28,9 @@ class DataStore:
         # we do not use a csc matrix as constructing a csr matrix is easier,
         # and term spaces are used more often than document spaces
         freq_rows = []
-        for doc_id, doc in dataset.get_docs().items():
+        for doc_id in self.docs:
             # make sure this is deterministic
-            term_freqs = list(doc.terms.items())
+            term_freqs = list(dataset.get_doc(doc_id).terms.items())
             row = np.zeros(len(term_freqs))
             col = np.array(list(self.term_indexes[term] for term, freq in term_freqs))
             data = np.array(list(freq for term, freq in term_freqs))
