@@ -9,6 +9,12 @@ class WeightDict(Counter):
             res[key] = value*other
         return res
 
+    def __rmul__(self, other):
+        res = WeightDict()
+        for key, value in self.items():
+            res[key] = value*other
+        return res
+
     def __truediv__(self, other):
         return self*(1/other)
 
