@@ -12,31 +12,50 @@ def parse_query(query):
     '''
     return Counter(query.split())
 
-def get_query_weights(query_terms):
-    res = {}
-    for term, count in query_terms.items():
+def get_tf(query_freqs):
+    res = WeightDict()
+    for term, count in query_freqs.items():
         res[term] = math.log(1+count)
     return res
 
-def rocchio_forum(query_weight_dict, post_id, norm_func, alpha, beta, gamma, k):
-    res = WeightDict()
-    client = pymongo.MongoClient()
-    forum_docs_db = client['websearch_proj1']['apache']['forum_docs']
-    sub_forum = forum_docs_db.find_one({'doc_ids': post_id})
-    tfidf_db = client['websearch_proj1']['apache']['tfidf']
-    # post weights
-    res += beta * WeightDict(norm_func(dict(tfidf_db.find_one({'doc_id': post_id})['weights'])))
-    # sub-forum weights
-    sub_forum_weights = WeightDict()
-    for doc in tfidf_db.find({'doc_id': {'$in': sub_forum['doc_ids']}}):
-        sub_forum_weights += WeightDict(norm_func(dict(doc['weights'])))
-    res += gamma*sub_forum_weights/len(sub_forum['doc_ids'])
-    # take top k terms
-    res = WeightDict(dict(sorted(res.items(), key=lambda x: (-x[1], x[0]))[:k]))
-    # query weights
-    res += alpha * WeightDict(query_weight_dict)
-    print(sorted(res.items(), key=lambda x: (-x[1], x[0])))
-    return res
+
+class RocchioForum:
+    def __init__(self):
+        client = pymongo.MongoClient()
+        # forum raw term frequencies
+        sub_forums_freqs = {}
+        freqs_db = client['websearch_proj1']['apache']['freq']
+        for sub_forum in client['websearch_proj1']['apache']['forum_docs'].find():
+            sub_forum_freqs = WeightDict()
+            for doc in freqs_db.find({'doc_id': {'$in': sub_forum['doc_ids']}}):
+                sub_forum_freqs += WeightDict(dict(doc['freqs']))
+            sub_forums_freqs[sub_forum['name']] = sub_forum_freqs
+        self.sub_forums_freqs = sub_forums_freqs
+        # wiki raw term frequencies
+        wiki_freqs = WeightDict()
+        freqs_db = client['websearch_proj1']['wiki']['freq']
+        for doc in freqs_db.find():
+            wiki_freqs += WeightDict(dict(doc['freqs']))
+        self.wiki_freqs = wiki_freqs
+
+    def get_query_weights(self, query_weight_dict, post_id, alpha, beta, gamma, k):
+        res = WeightDict()
+        client = pymongo.MongoClient()
+        forum_docs_db = client['websearch_proj1']['apache']['forum_docs']
+        sub_forum = forum_docs_db.find_one({'doc_ids': post_id})
+        weights_db = client['websearch_proj1']['apache']['freq']
+        # post weights
+        res += beta * get_tf(dict(weights_db.find_one({'doc_id': post_id})['freqs']))
+        # differentiating forum weights
+        res += gamma * \
+            get_tf(self.sub_forums_freqs[sub_forum['name']]/client['websearch_proj1']['apache']['freq'].count()) - \
+            get_tf(self.wiki_freqs/client['websearch_proj1']['wiki']['freq'].count())
+        # take top k terms
+        res = WeightDict(dict(sorted(res.items(), key=lambda x: (-x[1], x[0]))[:k]))
+        # query weights
+        res += alpha * get_tf(query_weight_dict)
+        return res
+
 
 def query_similarities(query_weight_dict, distance_func, norm_func, include_terms, docs_db, inverted_index_db):
     res = {}
@@ -80,15 +99,21 @@ def main():
     else:
         norm_func = l2_norm
 
+    if args.apache_rocchio is not None:
+        rocchio_forum = RocchioForum()
+    else:
+        rocchio_forum = None
+
     with open(args.queries_path, 'r', encoding='utf-8') as sr:
         for line in sr:
             line = line.strip()
             query_weights = parse_query(line)
             query_terms = list(query_weights.keys())
-            query_weights = get_query_weights(query_weights)
             if args.apache_rocchio is not None:
                 alpha, beta, gamma, k = args.apache_rocchio
-                query_weights = rocchio_forum(query_weights, args.apache_postid, norm_func, alpha, beta, gamma, k)
+                query_weights = rocchio_forum.get_query_weights(query_weights, args.apache_postid, alpha, beta, gamma, k)
+            else:
+                query_weights = get_tf(query_weights)
             if args.include_all:
                 include_terms = query_terms
             else:
