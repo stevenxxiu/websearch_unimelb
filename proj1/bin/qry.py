@@ -32,9 +32,10 @@ def rocchio_forum(query_weight_dict, post_id, norm_func, alpha, beta, gamma, k):
         sub_forum_weights += WeightDict(norm_func(dict(doc['weights'])))
     res += gamma*sub_forum_weights/len(sub_forum['doc_ids'])
     # take top k terms
-    res = WeightDict(sorted(res.items(), key=lambda x: (-x[1], x[0]))[:k])
+    res = WeightDict(dict(sorted(res.items(), key=lambda x: (-x[1], x[0]))[:k]))
     # query weights
     res += alpha * WeightDict(query_weight_dict)
+    print(sorted(res.items(), key=lambda x: (-x[1], x[0])))
     return res
 
 def query_similarities(query_weight_dict, distance_func, norm_func, include_terms, docs_db, inverted_index_db):
@@ -46,7 +47,7 @@ def query_similarities(query_weight_dict, distance_func, norm_func, include_term
         doc_ids.update(doc['doc_ids'])
     # make sure all terms in include_terms are included in the set of documents
     if include_terms is not None:
-        docs_include = inverted_index_db.find({'$or': [{'term': query_term} for query_term in query_weight_dict]}, ['doc_ids'])
+        docs_include = inverted_index_db.find({'term': {'$in': include_terms}})
         for doc in docs_include:
             doc_ids.intersection_update(doc['doc_ids'])
     # calculate similarities between the query and all documents
@@ -82,8 +83,9 @@ def main():
     with open(args.queries_path, 'r', encoding='utf-8') as sr:
         for line in sr:
             line = line.strip()
-            query_terms = parse_query(line)
-            query_weights = get_query_weights(query_terms)
+            query_weights = parse_query(line)
+            query_terms = list(query_weights.keys())
+            query_weights = get_query_weights(query_weights)
             if args.apache_rocchio is not None:
                 alpha, beta, gamma, k = args.apache_rocchio
                 query_weights = rocchio_forum(query_weights, args.apache_postid, norm_func, alpha, beta, gamma, k)
