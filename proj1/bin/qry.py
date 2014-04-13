@@ -61,13 +61,15 @@ class RocchioForum:
         res += beta * get_tf(self.apache_to_wiki_freqs(self.apache_data.freq_matrix[self.apache_data.doc_indexes[post_id]])).T
         # differentiating forum weights
         sub_forum_freqs = self.sub_forums_freqs[self.apache_data.doc_to_forum[post_id]]
-        res += gamma * \
-            get_tf(self.apache_to_wiki_freqs(sub_forum_freqs/sub_forum_freqs.shape[1])).T - \
+        res += gamma * (
+            get_tf(self.apache_to_wiki_freqs(sub_forum_freqs/sub_forum_freqs.shape[1])).T -
             get_tf(self.wiki_freqs/self.wiki_data.freq_matrix.shape[1]).T
+        )
         # take top k terms
         if k is not None:
             res_top = csc_matrix((query_vect.shape[0], 1))
             top_indices = np.argsort(-np.array(res.T)[0])[:k]
+            print(list(self.wiki_data.terms[i] for i in top_indices))
             res_top[top_indices,:] = res[top_indices,:]
             res = res_top
         # query weights
