@@ -2,7 +2,7 @@
 import os
 import argparse
 import numpy as np
-from scipy.sparse import csr_matrix, lil_matrix
+from scipy.sparse import csr_matrix, csc_matrix, lil_matrix
 from collections import Counter
 from proj1.lib.store import WikiDataStore, ApacheDataStore
 from proj1.lib.features import get_tf, get_tf_idf
@@ -66,7 +66,7 @@ class RocchioForum:
             get_tf(self.wiki_freqs/self.wiki_data.freq_matrix.shape[1]).T
         # take top k terms
         if k is not None:
-            res_top = lil_matrix((query_vect.shape[0], 1))
+            res_top = csc_matrix((query_vect.shape[0], 1))
             top_indices = np.argsort(-np.array(res.T)[0])[:k]
             res_top[top_indices,:] = res[top_indices,:]
             res = res_top
