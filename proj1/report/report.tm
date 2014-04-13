@@ -81,6 +81,46 @@
   ID>|<cell|Score>>|<row|<cell|Aries>|<cell|0.220485>>|<row|<cell|Apache_ServiceMix>|<cell|0.165268>>|<row|<cell|Apache_Aries>|<cell|0.151362>>|<row|<cell|OSGi_Specification_Implementations>|<cell|0.147210>>|<row|<cell|Apache_Felix>|<cell|0.128895>>|<row|<cell|List_of_rockets_launched_from_Esrange>|<cell|0.099404>>|<row|<cell|Write-ahead_logging>|<cell|0.082353>>|<row|<cell|OSGi>|<cell|0.069220>>|<row|<cell|Link_16>|<cell|0.053584>>>>>|Query
   results for ``apache aries''>
 
+  <section|Disambiguation by Source Context>
+
+  <subsection|Rocchio's>
+
+  We can perform query expansion using the user's current forum post and the
+  subforum he's in. Let <math|q<rsub|0>> be the original query,
+  <math|p<rsub|u>> be the user's current post and <math|P<rsub|f>> be the set
+  of posts in the subforum, then we use the expanded query vector:
+
+  <\equation*>
+    q<rsub|e>=\<alpha\>q<rsub|0>+\<beta\>p<rsub|u>+\<gamma\><frac|1|<around*|\||P<rsub|f>|\|>><big|sum><rsub|p<rsub|f>\<in\>P<rsub|f>>p<rsub|f>
+  </equation*>
+
+  For efficiency we can then take the top <math|k> terms.
+
+  <subsection|Rocchio's with SVD>
+
+  We can use still rocchio's, but first transform the set of wikipedia
+  documents and apache forum documents into a semantic space using SVD. We
+  include the forum documents to extract more relevant topics.
+
+  We can then use Rocchio's, then instead of using term weights, we are using
+  topic weights, which might provide more query expansion. This gives more
+  importance to topics contained in the subforum and in the post.
+
+  <subsection|Cluster Distances>
+
+  We can interpret the search document as clusters, and give a bonus weight
+  to documents closer to the cluster of forum documents that we are looking
+  for. Let <math|d> be a distance function between a document and a set of
+  documents, then we want a document, <math|r> which minimizes:
+
+  <\equation*>
+    \<alpha\>\<cdot\>d<around*|(|r,<around*|{|q<rsub|0>|}>|)>+\<beta\>\<cdot\>d<around*|(|r,<around*|{|p<rsub|u>|}>|)>+\<gamma\>\<cdot\>d<around*|(|r,P<rsub|f>|)>
+  </equation*>
+
+  If we take <math|d<around*|(|r,P|)>=<frac|1|<around*|\||P|\|>><big|sum><rsub|p\<in\>P>r\<cdot\>p>,
+  then we get rocchio's. But we can also take the minimum distance to the
+  cluster, using <math|d<around*|(|r,P|)>=min<big|sum><rsub|p\<in\>P>r\<cdot\>p>.
+
   \;
 </body>
 
@@ -90,24 +130,27 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|4|?>>
-    <associate|auto-11|<tuple|4.1|?>>
-    <associate|auto-12|<tuple|7|?>>
-    <associate|auto-13|<tuple|8|?>>
-    <associate|auto-14|<tuple|9|?>>
-    <associate|auto-15|<tuple|4.2|?>>
-    <associate|auto-16|<tuple|10|?>>
-    <associate|auto-17|<tuple|11|?>>
-    <associate|auto-18|<tuple|12|?>>
-    <associate|auto-19|<tuple|12|?>>
+    <associate|auto-10|<tuple|4|3>>
+    <associate|auto-11|<tuple|4.1|3>>
+    <associate|auto-12|<tuple|7|3>>
+    <associate|auto-13|<tuple|8|3>>
+    <associate|auto-14|<tuple|9|4>>
+    <associate|auto-15|<tuple|4.2|4>>
+    <associate|auto-16|<tuple|10|4>>
+    <associate|auto-17|<tuple|11|4>>
+    <associate|auto-18|<tuple|12|4>>
+    <associate|auto-19|<tuple|5|5>>
     <associate|auto-2|<tuple|2|1>>
+    <associate|auto-20|<tuple|5.1|5>>
+    <associate|auto-21|<tuple|5.2|?>>
+    <associate|auto-22|<tuple|5.3|?>>
     <associate|auto-3|<tuple|1|1>>
-    <associate|auto-4|<tuple|2|?>>
-    <associate|auto-5|<tuple|3|?>>
-    <associate|auto-6|<tuple|3|?>>
-    <associate|auto-7|<tuple|4|?>>
-    <associate|auto-8|<tuple|5|?>>
-    <associate|auto-9|<tuple|6|?>>
+    <associate|auto-4|<tuple|2|1>>
+    <associate|auto-5|<tuple|3|2>>
+    <associate|auto-6|<tuple|3|2>>
+    <associate|auto-7|<tuple|4|2>>
+    <associate|auto-8|<tuple|5|2>>
+    <associate|auto-9|<tuple|6|3>>
   </collection>
 </references>
 
@@ -128,19 +171,17 @@
       <tuple|normal|Query results for ``apache apache
       aries''|<pageref|auto-9>>
 
-      <tuple|normal|Query results for ``apache''|<pageref|auto-12>>
+      <tuple|normal|Query results for ``apache james''|<pageref|auto-12>>
 
-      <tuple|normal|Query results for ``apache aries''|<pageref|auto-13>>
+      <tuple|normal|Query results for ``apache forrest''|<pageref|auto-13>>
 
-      <tuple|normal|Query results for ``apache apache
-      aries''|<pageref|auto-14>>
+      <tuple|normal|Query results for ``apache aries''|<pageref|auto-14>>
 
-      <tuple|normal|Query results for ``apache''|<pageref|auto-16>>
+      <tuple|normal|Query results for ``apache james''|<pageref|auto-16>>
 
-      <tuple|normal|Query results for ``apache aries''|<pageref|auto-17>>
+      <tuple|normal|Query results for ``apache forrest''|<pageref|auto-17>>
 
-      <tuple|normal|Query results for ``apache apache
-      aries''|<pageref|auto-18>>
+      <tuple|normal|Query results for ``apache aries''|<pageref|auto-18>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Database
@@ -166,6 +207,14 @@
       <with|par-left|<quote|1tab>|4.2<space|2spc>Requiring All Terms
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-15>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5<space|2spc>Disambiguation
+      by Source Context> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-19><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|5.1<space|2spc>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-20>>
     </associate>
   </collection>
 </auxiliary>
