@@ -2,6 +2,7 @@
 import os
 import argparse
 import numpy as np
+import logging
 from scipy.sparse import csr_matrix, csc_matrix, lil_matrix
 from collections import Counter
 from proj1.lib.store import WikiDataStore, ApacheDataStore
@@ -69,7 +70,7 @@ class RocchioForum:
         if k is not None:
             res_top = csc_matrix((query_vect.shape[0], 1))
             top_indices = np.argsort(-np.array(res.T)[0])[:k]
-            print(list(self.wiki_data.terms[i] for i in top_indices))
+            # logging.info('top k terms: {}'.format(list(self.wiki_data.terms[i] for i in top_indices)))
             res_top[top_indices,:] = res[top_indices,:]
             res = res_top
         # query weights
