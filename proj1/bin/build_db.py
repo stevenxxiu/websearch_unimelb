@@ -41,6 +41,11 @@ class DataStore:
         # inverted index
         self.inverted_index = get_inverted_index(dataset)
 
+    @staticmethod
+    def load(store_path):
+        with open(store_path, 'rb') as sr:
+            pickle.load(sr)
+
     def dump(self, store_path):
         with open(store_path, 'wb') as sr:
             pickle.dump(self, sr)
