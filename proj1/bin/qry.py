@@ -56,7 +56,7 @@ class RocchioForum:
         return res.tocsr()
 
     def get_query_weights(self, query_vect, post_id, alpha, beta, gamma, k):
-        res = lil_matrix((query_vect.shape[0], 1))
+        res = np.zeros((query_vect.shape[0], 1))
         # post weights
         res += beta * get_tf(self.apache_to_wiki_freqs(self.apache_data.freq_matrix[self.apache_data.doc_indexes[post_id]])).T
         # differentiating forum weights
@@ -65,10 +65,13 @@ class RocchioForum:
             get_tf(self.apache_to_wiki_freqs(sub_forum_freqs/sub_forum_freqs.shape[1])).T - \
             get_tf(self.wiki_freqs/self.wiki_data.freq_matrix.shape[1]).T
         # take top k terms
-        # XXX is this still necessary?
-        # res = WeightDict(dict(sorted(res.items(), key=lambda x: (-x[1], x[0]))[:k]))
+        if k is not None:
+            res_top = lil_matrix((query_vect.shape[0], 1))
+            top_indices = np.argsort(-np.array(res.T)[0])[:k]
+            res_top[top_indices,:] = res[top_indices,:]
+            res = res_top
         # query weights
-        res += alpha * get_tf(query_vect)
+        res = res + alpha * get_tf(query_vect)
         return res
 
 
