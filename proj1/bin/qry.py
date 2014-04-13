@@ -2,7 +2,7 @@
 import os
 import argparse
 import numpy as np
-from scipy.sparse import csr_matrix, diags
+from scipy.sparse import csr_matrix, lil_matrix
 from collections import Counter
 from proj1.lib.store import WikiDataStore, ApacheDataStore
 from proj1.lib.features import get_tf, get_tf_idf
@@ -76,10 +76,13 @@ def query_similarities(query_vect, include_terms, X, dataset):
         for term in include_terms:
             inc_doc_ids.intersection_update(dataset.inverted_index[term])
     inc_doc_indexes = list(dataset.doc_indexes[doc_id] for doc_id in inc_doc_ids)
-    print(len(inc_doc_indexes))
-    #XXX fix the result indices
+    # use the inverted index for faster multiplication
     Y = X[inc_doc_indexes,]
-    return Y*query_vect.T
+    r = Y*query_vect.T
+    # restore zero indexes, return a vector as it's better to be consistent
+    r_sparse = lil_matrix((X.shape[0], 1))
+    r_sparse[inc_doc_indexes,] = r
+    return r_sparse.tocsc()
 
 def main():
     arg_parser=argparse.ArgumentParser(description='Run a query on the wiki.')
@@ -128,13 +131,12 @@ def main():
             else:
                 include_terms = None
             query_res = query_similarities(query_vect, include_terms, X, wiki_store)
-            print(sorted(query_res.data, reverse=True))
-            # XXX
-            # print('>> {}'.format(line))
-            # print('{:<50}{:}'.format('document id', 'score'))
-            # for doc_id, score in query_res[:args.num_results]:
-            #     print('{:<50}{:.6f}'.format(doc_id, score))
-            # print()
+            print('>> {}'.format(line))
+            print('{:<50}{:}'.format('document id', 'score'))
+            for i in query_res.indices[np.argsort(-query_res.data)][:args.num_results]:
+                doc_id = wiki_store.docs[i]
+                print('{:<50}{:.6f}'.format(doc_id, query_res[i].toarray()[0,0]))
+            print()
 
 if __name__ == '__main__':
     main()
