@@ -20,11 +20,19 @@
   The frequency matrix was stored as a sparse row matrix. A sparse column
   matrix was not used as rows were accessed more often than columns.
 
+  The inverted index was stored as a python dictionary, with each term
+  mapping to a list of document id's.
+
   <section|TF-IDF Results>
 
   See results.txt.
 
   <section|Pivoted Length Normalization Results>
+
+  Increasing <math|s> increeases the effect of unit-length normalization,
+  which decreases the gain in weight long documents have. When <math|s=1>,
+  all term vectors (documents) are normalized to the same length, which
+  removes the effect of pivoted length normalization.
 
   See results.txt.
 
