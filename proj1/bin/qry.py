@@ -90,9 +90,9 @@ def query_similarities(query_vect, include_terms, X, dataset):
     Y = X[inc_doc_indexes,]
     r = Y*query_vect
     # restore zero indexes, return a vector as it's better to be consistent
-    r_sparse = lil_matrix((X.shape[0], 1))
+    r_sparse = csc_matrix((X.shape[0], 1))
     r_sparse[inc_doc_indexes,] = r
-    return r_sparse.tocsc()
+    return r_sparse
 
 def main():
     arg_parser=argparse.ArgumentParser(description='Run a query on the wiki.')
