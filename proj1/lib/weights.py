@@ -1,32 +1,16 @@
 
-import math
-from collections import Counter
+import numpy as np
+from scipy.sparse import diags
 
-class WeightDict(Counter):
-    def __mul__(self, other):
-        res = WeightDict()
-        for key, value in self.items():
-            res[key] = value*other
-        return res
+def l2_norm_sparse(X):
+    '''
+    l2 norm for all row vectors (np.linalg.norm doesn't work).
+    '''
+    norms = X.copy()
+    norms.data **= 2
+    norms = np.sqrt(norms.sum(axis=1))
+    return diags(1/norms.A1, 0) * X
 
-    def __rmul__(self, other):
-        res = WeightDict()
-        for key, value in self.items():
-            res[key] = value*other
-        return res
-
-    def __truediv__(self, other):
-        return self*(1/other)
-
-def l2_dist(weights):
-    return math.sqrt(sum(v**2 for v in weights.values()))
-
-def l2_norm(weights):
-    res = {}
-    norm = l2_dist(weights)
-    for key, value in weights.items():
-        res[key] = value/norm
-    return res
 
 class PivotedLengthNorm:
     def __init__(self, distance_func, docs_weights):
@@ -47,13 +31,3 @@ class PivotedLengthNorm:
         for key, value in weights.items():
             res[key] = value/alpha
         return res
-
-def cosine_similarity(weight_dict_1, weight_dict_2):
-    '''
-    assumes that both weight_dict_1 and weight_dict_2 are normalized
-    '''
-    score = 0
-    for term in weight_dict_1:
-        if term in weight_dict_2:
-            score += weight_dict_1[term]*weight_dict_2[term]
-    return score
