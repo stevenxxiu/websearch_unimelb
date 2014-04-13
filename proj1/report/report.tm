@@ -8,20 +8,17 @@
 
   <section|Database Creation and Storage>
 
-  The inverted index was stored using mongodb, as the
+  Data was stored using python's <with|font-shape|italic|pickle>, as the
   <with|font-shape|italic|shelve> module was too slow to be used on windows,
-  which was the primary development platform. Two collections were created,
-  one being the tf-idf database, the other being the inverted index.
+  which was the primary development platform.
 
-  The tf-idf collection was stored using <math|<around*|(|docid,weights|)>>
-  pairs, where <with|font-shape|italic|docid> is the article name of the
-  wikipedia document, and weights being a tuple of
-  <math|<around*|(|term,weight|)>> pairs. The collection was then indexed by
-  <with|font-shape|italic|docid>.
+  Only the frequency matrix was stored instead of the tf-idf matrix for
+  flexibility, as the frequency matrix was needed to be used for later
+  sections. The tf-idf matrix was then calculated upon initialization time
+  when search queries were run.
 
-  The inverted index was stored using <math|<around*|(|term,docids|)>> pairs,
-  where <with|font-shape|italic|docids> consists of the list of docids of
-  documents containing <with|font-shape|italic|term>.
+  The frequency matrix was stored as a sparse row matrix. A sparse column
+  matrix was not used as rows were accessed more often than columns.
 
   <section|TF-IDF Results>
 
