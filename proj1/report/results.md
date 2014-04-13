@@ -164,7 +164,8 @@ Report Results
 
 ### 3.6 Implementing Disambiguation
 
-Parameters used: alpha=1, beta=0.5, gamma=100, k=100
+Parameters used: alpha=1, beta=0.5, gamma=100, k=100.
+Post and sub-forum used: abdera.apache.org_user_200903_0, apache abdera
 
 	>> abdera
 	document id                                       score

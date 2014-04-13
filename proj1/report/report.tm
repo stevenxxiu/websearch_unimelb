@@ -41,14 +41,15 @@
 
   We can perform query expansion using the user's current forum post and the
   subforum he's in. Let <math|q<rsub|0>> be the original query,
-  <math|p<rsub|u>> be the user's current post and <math|P<rsub|f>> be the set
+  <math|p<rsub|u>> be the user's current post and <math|D<rsub|F>> be the set
   of posts in the subforum, then we use the expanded query vector:
 
   <\equation*>
-    q<rsub|e>=\<alpha\>q<rsub|0>+\<beta\>p<rsub|u>+\<gamma\><frac|1|<around*|\||P<rsub|f>|\|>><big|sum><rsub|p<rsub|f>\<in\>P<rsub|f>>p<rsub|f>
+    q<rsub|e>=\<alpha\>q<rsub|0>+\<beta\>p<rsub|u>+\<gamma\><frac|1|<around*|\||D<rsub|F>|\|>><big|sum><rsub|d\<in\>D<rsub|F>>d
   </equation*>
 
-  For efficiency we can then take the top <math|k> terms.
+  For efficiency we then take the top <math|k> terms which are common to the
+  wikipedia articles.
 
   <subsubsection|Forum Weights>
 
@@ -60,8 +61,12 @@
   common terms in the forum but not in wikipedia:
 
   <\equation*>
-    w<rsub|t>=
+    w<rsub|t>=log<around*|(|1+<frac|1|<around*|\||T<rsub|A>|\|>><big|sum><rsub|d\<in\>D<rsub|A>>f<rsub|d,t>|)>-log<around*|(|1+<frac|1|<around*|\||T<rsub|W>|\|>><big|sum><rsub|d\<in\>D<rsub|W>>f<rsub|d,t>|)>
   </equation*>
+
+  Where <math|D<rsub|A>> is the set of apache forum posts and
+  <math|D<rsub|W>> the set of wikipedia documents, and <math|T<rsub|A>>,
+  <math|T<rsub|W>> the set of terms.
 
   <subsection|Rocchio's with SVD>
 
