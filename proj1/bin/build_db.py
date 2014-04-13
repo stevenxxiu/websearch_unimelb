@@ -41,26 +41,31 @@ class DataStore:
         # inverted index
         self.inverted_index = get_inverted_index(dataset)
 
+    def dump(self, store_path):
+        with open(store_path, 'wb') as sr:
+            pickle.dump(self, sr)
 
-def build_wiki_db(wiki_path, store_path):
-    dataset = TitleTermData.load(wiki_path)
-    with open(store_path, 'wb') as sr:
-        pickle.dump(DataStore(dataset), sr)
 
-#def build_apache_db(apachepath):
-#    datasets = []
-#    client = pymongo.MongoClient()
-#    forum_docs_db = client['websearch_proj1']['apache']['forum_docs']
-#    forum_docs_db.ensure_index('name', unique=True)
-#    forum_docs_db.ensure_index('doc_ids', unique=True)
-#    for forum_name in os.listdir(apachepath):
-#        for file_name in os.listdir(os.path.join(apachepath, forum_name)):
-#            if file_name.endswith('.txt'):
-#                dataset = TitleTermData.load(os.path.join(apachepath, forum_name, file_name))
-#                datasets.append(dataset)
-#                forum_docs_db.insert({'name': forum_name, 'doc_ids': list(dataset.get_docs().keys())})
-#    apache_data = TitleTermData.merge(datasets)
-#    store_dataset('apache', apache_data)
+class WikiDataStore(DataStore):
+    def __init__(self, path):
+        super().__init__(TitleTermData.load(path))
+
+
+class ApacheDataStore(DataStore):
+    def __init__(self, path):
+        self.forum_to_docs = {}
+        self.docs_to_forums = {}
+        datasets = []
+        for forum_name in os.listdir(path):
+            for file_name in os.listdir(os.path.join(path, forum_name)):
+                if file_name.endswith('.txt'):
+                    dataset = TitleTermData.load(os.path.join(path, forum_name, file_name))
+                    self.forum_to_docs[forum_name] = sorted(dataset.get_docs().keys())
+                    for doc in dataset.get_docs().keys():
+                        self.docs_to_forums[doc] = forum_name
+                    datasets.append(dataset)
+        super().__init__(TitleTermData.merge(datasets))
+
 
 def main():
     arg_parser=argparse.ArgumentParser(description='Build the wiki tf-idf db.')
@@ -69,8 +74,8 @@ def main():
     arg_parser.add_argument('store_path', type=str)
     args=arg_parser.parse_args()
     # we use separate collections for wikipedia and the apache forum, as the document lengths and term occurances likely differ
-    build_wiki_db(args.wiki_path, os.path.join(args.store_path, 'wiki.db'))
-    # build_apache_db(args.apachepath)
+    WikiDataStore(args.wiki_path).dump(os.path.join(args.store_path, 'wiki.db'))
+    ApacheDataStore(args.apache_path).dump(os.path.join(args.store_path, 'apache.db'))
 
 if __name__ == '__main__':
     main()
