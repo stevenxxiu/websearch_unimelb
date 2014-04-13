@@ -115,13 +115,14 @@ def main():
         for line in sr:
             line = line.strip()
             query_terms = parse_query(line)
-            query_vect = get_tf(get_query_vect(query_terms, wiki_store))
+            query_vect = get_query_vect(query_terms, wiki_store)
             # XXX
-            # if args.apache_rocchio is not None:
-            #     alpha, beta, gamma, k = args.apache_rocchio
-            #     query_vect = rocchio_forum.get_query_weights(query_vect, args.apache_postid, alpha, beta, gamma, k)
-            # else:
-            #     query_vect = get_tf(query_vect)
+            if args.apache_rocchio is not None:
+                # alpha, beta, gamma, k = args.apache_rocchio
+                # query_vect = rocchio_forum.get_query_weights(query_vect, args.apache_postid, alpha, beta, gamma, k)
+                pass
+            else:
+                query_vect = get_tf(query_vect)
             if args.include_all:
                 include_terms = query_terms
             else:
