@@ -53,7 +53,7 @@ def build_wiki_db(wikipath):
 def build_apache_db(apachepath):
     datasets = []
     client = pymongo.MongoClient()
-    forum_docs_db = client['websearch_proj1']['apache']['form_docs']
+    forum_docs_db = client['websearch_proj1']['apache']['forum_docs']
     forum_docs_db.ensure_index('name', unique=True)
     forum_docs_db.ensure_index('doc_ids', unique=True)
     for forum_name in os.listdir(apachepath):
