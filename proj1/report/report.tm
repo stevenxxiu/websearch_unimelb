@@ -96,6 +96,10 @@
 
   For efficiency we can then take the top <math|k> terms.
 
+  Tf-idf weights for forum posts perform poorly, as they can down-weight
+  terms like ``apache'', which are common in the forums but not the
+  encyclopedia, so we use raw term weights.
+
   <subsection|Rocchio's with SVD>
 
   We can use still rocchio's, but first transform the set of wikipedia
