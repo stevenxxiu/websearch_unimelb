@@ -4,7 +4,7 @@ from scipy.sparse import diags
 
 def get_tf(X):
     X = X.copy()
-    X.data = np.log(1 + X.data)
+    X.data = np.log(1 + np.array(X.data))
     return X
 
 def get_dfs(X):

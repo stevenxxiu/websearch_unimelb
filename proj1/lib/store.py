@@ -35,7 +35,7 @@ class DataStore:
             col = np.array(list(self.term_indexes[term] for term, freq in term_freqs))
             data = np.array(list(freq for term, freq in term_freqs))
             freq_rows.append(csr_matrix((data, (row, col)), shape=(1, len(terms))))
-        self.freq_matrix = vstack(freq_rows)
+        self.freq_matrix = vstack(freq_rows).tocsr()
         # inverted index
         self.inverted_index = get_inverted_index(dataset)
 
@@ -57,7 +57,7 @@ class WikiDataStore(DataStore):
 class ApacheDataStore(DataStore):
     def __init__(self, path):
         self.forum_to_docs = {}
-        self.docs_to_forums = {}
+        self.doc_to_forum = {}
         datasets = []
         for forum_name in os.listdir(path):
             for file_name in os.listdir(os.path.join(path, forum_name)):
@@ -65,6 +65,6 @@ class ApacheDataStore(DataStore):
                     dataset = TitleTermData.load(os.path.join(path, forum_name, file_name))
                     self.forum_to_docs[forum_name] = sorted(dataset.get_docs().keys())
                     for doc in dataset.get_docs().keys():
-                        self.docs_to_forums[doc] = forum_name
+                        self.doc_to_forum[doc] = forum_name
                     datasets.append(dataset)
         super().__init__(TitleTermData.merge(datasets))
