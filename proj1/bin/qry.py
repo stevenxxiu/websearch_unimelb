@@ -6,7 +6,7 @@ from scipy.sparse import csr_matrix, lil_matrix
 from collections import Counter
 from proj1.lib.store import WikiDataStore, ApacheDataStore
 from proj1.lib.features import get_tf, get_tf_idf
-from proj1.lib.weights import l2_norm_sparse, PivotedLengthNorm
+from proj1.lib.weights import l2_norm_sparse, pivoted_length_norm
 
 def parse_query(query):
     '''
@@ -101,10 +101,7 @@ def main():
     X = get_tf_idf(wiki_store.freq_matrix)
 
     if args.pivot_slope is not None:
-        # XXX
-        # pl_norm = PivotedLengthNorm(l2_dist, (dict(doc['weights']) for doc in tfidf_db.find()))
-        # norm_func = lambda w: pl_norm.norm(w, args.pivot_slope)
-        pass
+        X = pivoted_length_norm(X, args.pivot_slope, wiki_store)
     else:
         X = l2_norm_sparse(X)
 
