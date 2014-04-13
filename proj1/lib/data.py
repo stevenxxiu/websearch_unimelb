@@ -15,7 +15,13 @@ class TitleTermData:
         docs = {}
         with open(path, 'r', encoding='utf-8') as sr:
             for i, line in enumerate(sr):
-                title, terms = line.split(maxsplit=1)
+                if not line:
+                    continue
+                # include empty documents
+                try:
+                    title, terms = line.split(maxsplit=1)
+                except ValueError:
+                    title, terms = line, ''
                 terms = terms.split()
                 docs[title] = TitleTermDoc(title, terms)
         return cls(docs)
@@ -28,3 +34,10 @@ class TitleTermData:
 
     def get_num_docs(self):
         return len(self.docs)
+
+    @classmethod
+    def merge(cls, datasets):
+        res_docs = {}
+        for dataset in datasets:
+            res_docs.update(dataset.docs)
+        return cls(res_docs)
