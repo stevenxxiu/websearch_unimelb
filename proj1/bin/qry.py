@@ -23,14 +23,17 @@ def rocchio_forum(query_weight_dict, post_id, norm_func, alpha, beta, gamma, k):
     client = pymongo.MongoClient()
     forum_docs_db = client['websearch_proj1']['apache']['forum_docs']
     sub_forum = forum_docs_db.find_one({'doc_ids': post_id})
-    # get the average of all documents in the subforum
     tfidf_db = client['websearch_proj1']['apache']['tfidf']
-    res += alpha * WeightDict(query_weight_dict)
+    # post weights
     res += beta * WeightDict(norm_func(dict(tfidf_db.find_one({'doc_id': post_id})['weights'])))
+    # sub-forum weights
+    sub_forum_weights = WeightDict()
     for doc in tfidf_db.find({'doc_id': {'$in': sub_forum['doc_ids']}}):
-        res += gamma * WeightDict(norm_func(dict(doc['weights'])))
+        sub_forum_weights += WeightDict(norm_func(dict(doc['weights'])))
+    res += gamma*sub_forum_weights/len(sub_forum['doc_ids'])
     # take top k terms
     res = WeightDict(sorted(res.items(), key=lambda x: (-x[1], x[0]))[:k])
+    # query weights
     res += alpha * WeightDict(query_weight_dict)
     return res
 
