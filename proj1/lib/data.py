@@ -1,12 +1,12 @@
 
 from collections import Counter
 
-class WikiDoc:
+class TitleTermDoc:
     def __init__(self, doc_id, terms):
         self.doc_id = doc_id
         self.terms = Counter(terms)
 
-class WikiData:
+class TitleTermData:
     def __init__(self, docs):
         self.docs = docs
 
@@ -17,7 +17,7 @@ class WikiData:
             for i, line in enumerate(sr):
                 title, terms = line.split(maxsplit=1)
                 terms = terms.split()
-                docs[title] = WikiDoc(title, terms)
+                docs[title] = TitleTermDoc(title, terms)
         return cls(docs)
 
     def get_docs(self):
