@@ -8,7 +8,6 @@ def lyrl_to_docs(coll_fname):
     the documents are lists of terms.  We return (docids, docs), 
     where docids gives the ids of the documents."""
     curr_doc = None
-    curr_docid = None
     docs = []
     docids = []
     for line in open(coll_fname):
@@ -28,7 +27,7 @@ def lyrl_to_docs(coll_fname):
             curr_doc.extend(terms)
     if curr_doc is not None:
         docs.append(curr_doc)
-    return (docids, docs)
+    return docids, docs
 
 def save_docids(docids, fname):
     """Save docids to file."""
@@ -40,16 +39,16 @@ def save_docids(docids, fname):
     fp.close()
 
 def get_docinfo_fname(tag):
-    return "%s.docinfo.db" % (tag)
+    return "%s.docinfo.db" % tag
 
 def get_dict_fname(tag):
-    return "%s.dict.db" % (tag)
+    return "%s.dict.db" % tag
 
 def get_corpus_fname(tag):
-    return "%s.corp.db" % (tag)
+    return "%s.corp.db" % tag
 
 def get_tfidf_fname(tag):
-    return "%s.corp.tfidf.db" % (tag)
+    return "%s.corp.tfidf.db" % tag
 
 def make_index(coll_fname, index_tag):
     """Create a GenSim index of an LYRL collection.
@@ -71,8 +70,6 @@ def make_index(coll_fname, index_tag):
     dict_.save(dict_fname)
 
     corpus = [ dict_.doc2bow(doc) for doc in docs ]
-    tfidf = models.TfidfModel(corpus)
-    corpus_tfidf = tfidf[corpus]
     corpora.MmCorpus.serialize(corpus_fname, corpus)
     tfidf = models.TfidfModel(corpus)
     corpus_tfidf = tfidf[corpus]
