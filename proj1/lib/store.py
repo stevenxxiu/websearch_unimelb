@@ -42,10 +42,12 @@ class DataStore:
     @staticmethod
     def load(store_path):
         with open(store_path, 'rb') as sr:
+            # noinspection PyArgumentList
             return pickle.load(sr)
 
     def dump(self, store_path):
         with open(store_path, 'wb') as sr:
+            # noinspection PyArgumentList
             pickle.dump(self, sr)
 
 

@@ -2,7 +2,6 @@
 import os
 import argparse
 import numpy as np
-import logging
 from scipy.sparse import csr_matrix, csc_matrix, lil_matrix
 from collections import Counter
 from proj1.lib.store import WikiDataStore, ApacheDataStore
@@ -114,7 +113,7 @@ def main():
     X = get_tf_idf(wiki_store.freq_matrix)
 
     if args.pivot_slope is not None:
-        X = pivoted_length_norm(X, args.pivot_slope, wiki_store)
+        X = pivoted_length_norm(X, args.pivot_slope)
     else:
         X = l2_norm_sparse(X)
 
