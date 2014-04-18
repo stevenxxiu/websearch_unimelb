@@ -1,3 +1,6 @@
 
+(26152, 26159): 0.807130500583
+(26152, 26413): 0.010531363836
+
 the first pair is more similar, as they are both about athletics
 the cosine similarity results match this observation

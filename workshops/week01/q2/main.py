@@ -1,13 +1,15 @@
 
-from workshops.lib import coll
+import numpy as np
+import pickle
 from workshops.lib.features import get_dfs
 
 def main():
-	coll_data = coll.parse_lyrl_coll('../../../../data/lyrl_tokens_30k.dat')
-	dfs_sorted = sorted(get_dfs(coll_data).items(), key=lambda t: (-t[1], t[0]))
-	print('{:<50}{:}'.format('TERM', 'DOC_FREQ'))
-	for term, freqs in dfs_sorted:
-		print('{:<50}{:}'.format(term, freqs))
+    with open('../../../../data/pickle/lyrl.db', 'rb') as sr:
+        dataset = pickle.load(sr)
+        dfs = np.array(get_dfs(dataset.freq_matrix))[0]
+        print('{:<50}{:}'.format('TERM', 'DOC_FREQ'))
+        for i in np.argsort(-dfs):
+            print('{:<50}{:}'.format(dataset.terms[i], dfs[i]))
 
 if __name__ == '__main__':
-	main()
+    main()
