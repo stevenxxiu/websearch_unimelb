@@ -1,31 +1,12 @@
 
-import math
-from collections import Counter
+import numpy as np
+from scipy.sparse import diags
 
-class WeightDict(Counter):
-    def __mul__(self, other):
-        res = WeightDict()
-        for key, value in self.items():
-            res[key] = value*other
-        return res
-
-    def __truediv__(self, other):
-        return self*(1/other)
-
-def normalize_weights(weights):
-    res = {}
-    # l2 norm
-    norm = math.sqrt(sum(v**2 for v in weights.values()))
-    for key, value in weights.items():
-        res[key] = value/norm
-    return res
-
-def cosine_similarity(weight_dict_1, weight_dict_2):
+def l2_norm_sparse(X):
     '''
-    assumes that both weight_dict_1 and weight_dict_2 are normalized
+    l2 norm for all row vectors (np.linalg.norm doesn't work).
     '''
-    score = 0
-    for term in weight_dict_1:
-        if term in weight_dict_2:
-            score += weight_dict_1[term]*weight_dict_2[term]
-    return score
+    norms = X.copy()
+    norms.data **= 2
+    norms = np.sqrt(norms.sum(axis=1))
+    return diags(1/norms.A1, 0) * X
