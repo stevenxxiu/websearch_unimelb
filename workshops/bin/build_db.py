@@ -1,7 +1,7 @@
 
 import os
 import argparse
-from workshops.lib.store import CollDataStore
+from workshops.lib.store.store import CollDataStore
 
 def main():
     arg_parser=argparse.ArgumentParser(description='Build the lyrl tf-idf db.')

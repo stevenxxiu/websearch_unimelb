@@ -1,61 +1,39 @@
 
-import math
+import pickle
 import time
-import pymongo
-from collections import Counter
-from workshops.lib.weights import cosine_similarity
+import numpy as np
+from workshops.lib.weights import l2_norm_sparse
+from workshops.lib.features import get_tf_idf
 
-def parse_query(query):
-	'''
-	stemming is not done
-	'''
-	return Counter(query.split())
-
-def get_query_tf_idf(query, idfs_db):
-	res = {}
-	for term, term_count in query.items():
-		tf = math.log(1 + term_count)
-		idf_entry = idfs_db.find_one({'term': term})
-		if idf_entry is None:
-			continue
-		res[term] = tf*idf_entry['value']
-	return res
-
-def get_term_vector(term, docs_db):
-	res = {}
-	for doc_entry in docs_db.find({'term': term}):
-		res[doc_entry['doc_id']] = doc_entry['value']
-	return res
-
-def term_similarities(term, docs_db, distance_func, inverted_index_db):
-	res = {}
-	term_weights = get_term_vector(term, docs_db)
-	#get all terms which co-occur with term
-	cooccur_terms = set()
-	doc_ids = inverted_index_db.find_one({'term': term})['doc_ids']
-	for doc_id in doc_ids:
-		cooccur_terms.update(weight_entry['term'] for weight_entry in docs_db.find({'doc_id': doc_id}))
-	cooccur_terms.remove(term)
-	for cooccur_term in cooccur_terms:
-		res[cooccur_term] = distance_func(term_weights, get_term_vector(cooccur_term, docs_db))
-	return res
-
-def term_similarities_sorted(term, docs_db, distance_func, inverted_index_db):
-	return sorted(term_similarities(term, docs_db, distance_func, inverted_index_db).items(), key=lambda t: (-t[1], t[0]))
+def term_similarities(term, X, dataset):
+    term_vect = X[:,dataset.term_indexes[term]]
+    # find the rows we include in the matrix
+    # we do not care filter terms, as this is hard to do if a matrix wasn't used
+    inc_doc_indexes = list(dataset.doc_indexes[doc] for doc in dataset.inverted_index[term])
+    # use the inverted index for faster multiplication
+    Y = X[inc_doc_indexes,]
+    r = Y.T * term_vect[inc_doc_indexes,]
+    return r
 
 def main():
-	client = pymongo.MongoClient()
-	tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
-	inverted_index_db = client['websearch_workshops']['lyrl']['inverted_index']
-	for term in ['socc', 'jaguar', 'najibullah']:
-		start=time.clock()
-		query_res = term_similarities_sorted(term, tfidf_db, cosine_similarity, inverted_index_db)
-		print('similar terms to {}'.format(term))
-		print('{:<50}{:}'.format('term', 'score'))
-		for doc_id, score in query_res[:15]:
-			print('{:<50}{:}'.format(doc_id, score))
-		print('Took {:.6f} seconds'.format(time.clock()-start))
-		print()
+    with open('../../../../data/pickle/lyrl.db', 'rb') as sr:
+        # noinspection PyArgumentList
+        dataset = pickle.load(sr)
+        tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
+        for term in ['socc', 'jaguar', 'najibullah']:
+            start = time.clock()
+            term_res = term_similarities(term, tf_idfs, dataset)
+            # term_res = tf_idfs.T * term_vect
+            scores = term_res.T.toarray()[0]
+            print('similar terms to {}'.format(term))
+            print()
+            print('{:<50}{:}'.format('term', 'score'))
+            # noinspection PyTypeChecker
+            for i in np.argsort(-scores):
+                if dataset.terms[i] != term and scores[i] != 0:
+                    print('{:<50}{:}'.format(dataset.terms[i], scores[i]))
+            print('Took {:.6f} seconds'.format(time.clock()-start))
+            print()
 
 if __name__ == '__main__':
-	main()
+    main()

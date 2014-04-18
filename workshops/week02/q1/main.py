@@ -1,20 +1,18 @@
 
-import time
-import pymongo
-from workshops.lib.weights import cosine_similarity
+import pickle
+from workshops.lib.weights import l2_norm_sparse
+from workshops.lib.features import get_tf_idf
 
-def doc_similarity(doc_id_1, doc_id_2, docs_db, distance_func):
-	return distance_func(
-		docs_db.find_one({'doc_id': doc_id_1})['weights'],
-		docs_db.find_one({'doc_id': doc_id_2})['weights']
-	)
+def doc_similarity(doc_id_1, doc_id_2, tf_idfs, dataset):
+    return (tf_idfs[dataset.doc_indexes[doc_id_1]] * tf_idfs[dataset.doc_indexes[doc_id_2]].T).data[0]
 
 def main():
-	start=time.clock()
-	client = pymongo.MongoClient()
-	collection = client['websearch_workshops']['lyrl']['tfidf']
-	print(doc_similarity('26151', '26152', collection, cosine_similarity))
-	print('Took {:.6f} seconds'.format(time.clock()-start))
+    with open('../../../../data/pickle/lyrl.db', 'rb') as sr:
+        # noinspection PyArgumentList
+        dataset = pickle.load(sr)
+        tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
+        print(doc_similarity('26152', '26159', tf_idfs, dataset))
+        print(doc_similarity('26152', '26413', tf_idfs, dataset))
 
 if __name__ == '__main__':
-	main()
+    main()

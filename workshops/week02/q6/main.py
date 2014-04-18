@@ -1,73 +1,38 @@
 
-import math
+import pickle
 import time
-import pymongo
-from collections import Counter
-from workshops.lib.weights import cosine_similarity, normalize_weights, WeightDict
+import numpy as np
+from workshops.lib.weights import l2_norm_sparse
+from workshops.lib.features import get_tf_idf
+from workshops.lib.query import parse_query, get_query_vect, query_similarities
 
-def parse_query(query):
-	'''
-	stemming is not done
-	'''
-	return Counter(query.split())
+def doc_similarity(doc_id_1, doc_id_2, tf_idfs, dataset):
+    return (tf_idfs[dataset.doc_indexes[doc_id_1]] * tf_idfs[dataset.doc_indexes[doc_id_2]].T).data[0]
 
-def get_query_tf_idf(query, idfs_db):
-	res = {}
-	for term, term_count in query.items():
-		tf = math.log(1 + term_count)
-		idf_entry = idfs_db.find_one({'term': term})
-		if idf_entry is None:
-			continue
-		res[term] = tf*idf_entry['value']
-	return res
-
-def query_similarities(query_weight_dict, docs_db, distance_func, inverted_index_db):
-	res = {}
-	doc_ids = set()
-	for doc_ids_entry in inverted_index_db.find({'$or': [{'term': query_term} for query_term in query_weight_dict]}, ['doc_ids']):
-		doc_ids.update(doc_ids_entry['doc_ids'])
-	for doc_id in doc_ids:
-		doc = docs_db.find_one({'doc_id': doc_id})
-		weights = doc['weights']
-		res[doc_id] = distance_func(query_weight_dict, weights)
-	return res
-
-def query_similarities_sorted(query_weight_dict, docs_db, distance_func, inverted_index_db):
-	return sorted(query_similarities(query_weight_dict, docs_db, distance_func, inverted_index_db).items(), key=lambda t: (-t[1], t[0]))
-
-def rocchio_prf(query_weight_dict, alpha, beta, result_doc_ids, docs_db):
-	result_weight_dict = WeightDict()
-	for doc_id in result_doc_ids:
-		doc = docs_db.find_one({'doc_id': doc_id})
-		result_weight_dict += doc['weights']
-
-	return WeightDict(query_weight_dict)*alpha + result_weight_dict*(beta/len(result_doc_ids))
+def rocchio_prf(query_vect, query_res, X, alpha, beta, k):
+    # normalize query_vect to unit length so it has the same magnitude as document vectors
+    query_vect = l2_norm_sparse(query_vect.T).T
+    res_cutoff = np.argsort(-query_res.T.toarray()[0])[:k]
+    # don't use k when averaging as there might be fewer results than k
+    return alpha*query_vect + beta*(X[res_cutoff,].sum(axis=0)/res_cutoff.shape[0]).T
 
 def main():
-	start=time.clock()
-	client = pymongo.MongoClient()
-	tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
-	idfs_db = client['websearch_workshops']['lyrl']['idf']
-	inverted_index = client['websearch_workshops']['lyrl']['inverted_index']
-
-	#search using query
-	query_weights = normalize_weights(parse_query('jaguar car race'))
-	query_res = query_similarities_sorted(query_weights, tfidf_db, cosine_similarity, inverted_index)
-
-	#get rocchio prf
-	rocchio_cutoff = 5
-	rocchio_doc_ids = list(doc[0] for doc in query_res[:rocchio_cutoff])
-	query_weights_rocchio = rocchio_prf(query_weights, 0.5, 0.5, rocchio_doc_ids, tfidf_db)
-
-	#search using expanded query vector
-	query_res = query_similarities_sorted(query_weights_rocchio, tfidf_db, cosine_similarity, inverted_index)
-
-	#print rocchio query results
-	print('{:<50}{:}'.format('document id', 'score'))
-	for doc_id, score in query_res:
-		print('{:<50}{:}'.format(doc_id, score))
-
-	print('Took {:.6f} seconds'.format(time.clock()-start))
+    with open('../../../../data/pickle/lyrl.db', 'rb') as sr:
+        # noinspection PyArgumentList
+        dataset = pickle.load(sr)
+        tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
+        query_vect = get_query_vect(parse_query('jaguar car race'), dataset)
+        start = time.clock()
+        query_res = query_similarities(query_vect, None, tf_idfs, dataset)
+        query_vect = rocchio_prf(query_vect, query_res, tf_idfs, 0.5, 0.5, 5)
+        query_res = query_similarities(query_vect, None, tf_idfs, dataset)
+        scores = query_res.T.toarray()[0]
+        print('{:<50}{:}'.format('document id', 'score'))
+        # noinspection PyTypeChecker
+        for i in np.argsort(-scores):
+            if scores[i] != 0:
+                print('{:<50}{:}'.format(dataset.docs[i], scores[i]))
+        print('Took {:.6f} seconds'.format(time.clock()-start))
 
 if __name__ == '__main__':
-	main()
+    main()
