@@ -10,10 +10,12 @@ def doc_similarities(doc_id, tf_idfs, dataset):
 def main():
     doc_id = '26413'
     with open('../../../../data/pickle/lyrl.db', 'rb') as sr:
+        # noinspection PyArgumentList
         dataset = pickle.load(sr)
         tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
         scores = doc_similarities(doc_id, tf_idfs, dataset).T.toarray()[0]
         print('{:<50}{:}'.format('document id', 'score'))
+        # noinspection PyTypeChecker
         for i in np.argsort(-scores):
             if dataset.docs[i] != doc_id and scores[i] != 0:
                 print('{:<50}{:}'.format(dataset.docs[i], scores[i]))
