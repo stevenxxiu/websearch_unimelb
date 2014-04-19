@@ -1,0 +1,77 @@
+
+top 1 clusters:
+ 7998 ( 4000): monday percent iraq tuesday rate bank trad market million shar
+
+top 2 clusters:
+  113 (    1): stronach bagpip nois ghet kinross huff unsympath pollut scotland pract
+ 7997 ( 3999): monday percent iraq tuesday rate bank trad market million shar
+
+top 4 clusters:
+  113 (    1): stronach bagpip nois ghet kinross huff unsympath pollut scotland pract
+ 2625 (    1): transcisc trin sharehold transact valu merg joint industr receiv approv
+ 2664 (    1): recoton calibron jens mold blockbust audio pot mary union unfair
+ 7995 ( 3997): monday percent iraq tuesday rate bank trad market million shar
+
+top 8 clusters:
+  113 (    1): stronach bagpip nois ghet kinross huff unsympath pollut scotland pract
+  187 (    1): voodoo sucr hait spirit mamb haitian lenb rhythm creol danc
+ 2225 (    1): holmboe symphon compos folk ascet vagn bartok quartet bela melod
+ 2625 (    1): transcisc trin sharehold transact valu merg joint industr receiv approv
+ 2664 (    1): recoton calibron jens mold blockbust audio pot mary union unfair
+ 3315 (    1): marijuan herb cure medeiro cruzet potion liamb spind toothach wheez
+ 4829 (    2): implant ventak defibrill cardiovert guid av rhythm arrhythm atrial impl
+ 7991 ( 3992): monday percent iraq tuesday rate bank trad market million shar
+
+top 16 clusters:
+  113 (    1): stronach bagpip nois ghet kinross huff unsympath pollut scotland pract
+  187 (    1): voodoo sucr hait spirit mamb haitian lenb rhythm creol danc
+  740 (    1): casket melros embalm bruc scotland abbey heart bury doreen bannockburn
+ 1230 (    1): epileps ilae epilept stigm brain reynold diseas treat seizur devot
+ 1399 (    1): oki kgf1633 kgf1631 rf kgf1658 amplif volt gigahertz gaa moni
+ 1650 (    1): rocksl yosemit trail park thompson tourist debr granit emilian kendel
+ 2225 (    1): holmboe symphon compos folk ascet vagn bartok quartet bela melod
+ 2527 (    1): tuqu ston sawlog fbm forestier vallier mill produit la consolid
+ 2625 (    1): transcisc trin sharehold transact valu merg joint industr receiv approv
+ 2664 (    1): recoton calibron jens mold blockbust audio pot mary union unfair
+ 3315 (    1): marijuan herb cure medeiro cruzet potion liamb spind toothach wheez
+ 3530 (    1): kirb cart bainbridg gravesid gubernator senat charl hometown governor damn
+ 4080 (    2): animat mtv nickelodeon viacom nicktoon encompass episod studio film cabl
+ 4829 (    2): implant ventak defibrill cardiovert guid av rhythm arrhythm atrial impl
+ 7957 (    2): betterley cray diamet mathemat colby mcfad gid discov euclid research
+ 7983 ( 3982): monday percent iraq tuesday rate bank trad market million shar
+
+top 32 clusters:
+  113 (    1): stronach bagpip nois ghet kinross huff unsympath pollut scotland pract
+  137 (    1): badminton bt antonius nimpel minart zelin susant rosalin susi timur
+  187 (    1): voodoo sucr hait spirit mamb haitian lenb rhythm creol danc
+  462 (    1): ibsen kleveland norway goeth fjord shakespear norweg fame skien unpleasant
+  626 (    1): maleian mozamb meticai mocamb maput restrict amount adrian travel proof
+  740 (    1): casket melros embalm bruc scotland abbey heart bury doreen bannockburn
+  807 (    1): everit evhold transpar group absorb flexibl johannesburg simpl hold structur
+  979 (    1): pinochet merin allend admir chilean coup lymphat seguel toribio eulog
+  983 (    1): astiz esma navy nun blons mayo plaz mother bonafin villaflor
+ 1007 (    1): amalgam konsort kpb basin perkapal pacif bhd bulk bermud remit
+ 1230 (    1): epileps ilae epilept stigm brain reynold diseas treat seizur devot
+ 1250 (    1): malraux pantheon rebur cultur blazy humain curie espoir doust voltair
+ 1385 (    1): quebec langu quebecoi engl dumont beaudoin richl balthazar vezin scow
+ 1399 (    1): oki kgf1633 kgf1631 rf kgf1658 amplif volt gigahertz gaa moni
+ 1650 (    1): rocksl yosemit trail park thompson tourist debr granit emilian kendel
+ 1843 (    1): geest gow menzy hanson dowdal mezny exec chairm amalgam appoint
+ 2225 (    1): holmboe symphon compos folk ascet vagn bartok quartet bela melod
+ 2473 (    1): zieleniewsk mac wprost zet myst grog episod consc incohes slawomir
+ 2527 (    1): tuqu ston sawlog fbm forestier vallier mill produit la consolid
+ 2625 (    1): transcisc trin sharehold transact valu merg joint industr receiv approv
+ 2664 (    1): recoton calibron jens mold blockbust audio pot mary union unfair
+ 2820 (    1): velvel navar music yetnikoff rom interact cd walt distribut form
+ 2873 (    1): brunswig slob bergen barn verdict pharmaceut milton drug barbar lent
+ 3220 (    1): museum sattamin niteroi art silveir niemey contempor rio corcovad guanabar
+ 3315 (    1): marijuan herb cure medeiro cruzet potion liamb spind toothach wheez
+ 3530 (    1): kirb cart bainbridg gravesid gubernator senat charl hometown governor damn
+ 4080 (    2): animat mtv nickelodeon viacom nicktoon encompass episod studio film cabl
+ 4829 (    2): implant ventak defibrill cardiovert guid av rhythm arrhythm atrial impl
+ 5655 (    2): aideed somal mogadishu father farah fras moham baidoa clan disarm
+ 7217 (    2): sandinist chamor nicaragu somoz nicaragua memoir fiallo alem cuadr anastasio
+ 7957 (    2): betterley cray diamet mathemat colby mcfad gid discov euclid research
+ 7967 ( 3964): monday percent iraq tuesday rate bank trad market million shar
+
+Took 71.115886 seconds
