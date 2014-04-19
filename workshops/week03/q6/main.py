@@ -1,29 +1,33 @@
 
 import sys
+import pickle
 import time
-import pymongo
-from collections import Counter
+import numpy as np
+from workshops.lib.weights import l2_norm_sparse
+from workshops.lib.features import get_tf_idf
 from workshops.lib.cluster import cluster_aggl_mst_prim
-from workshops.lib.weights import cosine_similarity
+from workshops.lib.sparse import RowDictMatrix
 
-def cluster_average(cluster, weights_db):
-    res = Counter()
-    for leaf in cluster.descendants():
-        res += weights_db.find_one({'doc_id': leaf.value})['weights']
-    return res
+def get_cluster_average(cluster, X):
+    leaf_values = list(leaf.value for leaf in cluster.descendants())
+    return X[leaf_values].sum(axis=0)
 
 def main():
     sys.setrecursionlimit(6500)
-    client = pymongo.MongoClient()
-    tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
-    docs = list(tfidf_db.find().sort('doc_id', 1)[:4000])
-    start = time.clock()
-    cluster = cluster_aggl_mst_prim(docs, cosine_similarity)
-    for depth in range(1+5):
-        print('depth {}'.format(depth))
-        for descendant_cluster in cluster.descendants(depth):
-            print(cluster_average(descendant_cluster, tfidf_db).most_common(10))
-    print('Took {:.6f} seconds'.format(time.clock()-start))
+    with open('../../../../data/pickle/lyrl.db', 'rb') as sr:
+        # noinspection PyArgumentList
+        dataset = pickle.load(sr)
+        tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
+        tf_idfs_rd = RowDictMatrix.from_csr(tf_idfs)
+        start = time.clock()
+        cluster = cluster_aggl_mst_prim(4000, lambda i, j: RowDictMatrix.vect_dot(tf_idfs_rd[i], tf_idfs_rd[j]))
+        for depth in range(1+5):
+            print('depth {}'.format(depth))
+            for descendant_cluster in cluster.descendants(depth):
+                # noinspection PyUnresolvedReferences
+                max_term_indexes = np.argsort(-get_cluster_average(descendant_cluster, tf_idfs)).A1
+                print(list(dataset.terms[i] for i in max_term_indexes[:10]))
+        print('Took {:.6f} seconds'.format(time.clock()-start))
 
 if __name__ == '__main__':
     main()
