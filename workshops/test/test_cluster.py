@@ -12,6 +12,6 @@ class TestCluster(unittest.TestCase):
             dataset = pickle.load(sr)
             tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
             self.assertEqual(
-                cluster_aggl_mst_prim(10, lambda i, j: (tf_idfs[i] * tf_idfs[j].T).data[0]),
-                cluster_aggl_mst_kruskal(10, lambda i, j: (tf_idfs[i] * tf_idfs[j].T).data[0])
+                cluster_aggl_mst_prim(10, lambda i, j: -(tf_idfs[i] * tf_idfs[j].T).data[0]),
+                cluster_aggl_mst_kruskal(10, lambda i, j: -(tf_idfs[i] * tf_idfs[j].T).data[0])
             )

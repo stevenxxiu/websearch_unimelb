@@ -37,25 +37,6 @@ class DisjointSetTree:
         return super().__hash__()
 
 
-class TreeNode:
-    def __init__(self, value, children=None, parent=None):
-        self.value = value
-        self.children = children if children is not None else []
-        self.parent = parent
-
-    def __eq__(self, other):
-        if not isinstance(other, TreeNode):
-            return False
-        return self.value == other.value and self.children == other.children
-
-    def descendants(self, depth=float('inf')):
-        if depth<=0 or not self.children:
-            yield self
-        else:
-            for child in self.children:
-                yield from child.descendants(depth-1)
-
-
 def mst_prim(n, get_weight):
     # calculate the MST using Prim's algorithm
     mst_edges = []
@@ -99,34 +80,38 @@ def mst_kruskal(n, get_weight):
     return mst_edges
 
 def cluster_aggl_mst(n, mst_edges):
-    # convert mst_edges into a cluster
+    '''
+    converts mst_edges into a cluster, by joining the next smallest edge
+    returns a tuple representation in scipy.cluster.hierarchy format
+    '''
+    res = []
     mst_edges.sort()
     # use an extra partition list so we can quickly find and update the current largest cluster a document belongs to
     doc_to_partition = list(DisjointSetTree() for _ in range(n))
-    partition_to_cluster = dict((doc_to_partition[i], TreeNode(i)) for i in range(n))
-    cluster = None
-    for weight, edge in mst_edges:
+    partition_to_cluster = dict((doc_to_partition[i], i) for i in range(n))
+    for i, (weight, edge) in enumerate(mst_edges):
         u, v = edge
         part_u, part_v = doc_to_partition[u], doc_to_partition[v]
         # update clusters
         child_u, child_v = partition_to_cluster.pop(part_u.find()), partition_to_cluster.pop(part_v.find())
-        cluster = TreeNode(None, [child_u, child_v])
-        child_u.parent = child_v.parent = cluster
+        num_docs_u = 1 if child_u<n else res[child_u-n][3]
+        num_docs_v = 1 if child_v<n else res[child_v-n][3]
+        res.append((child_u, child_v, weight, num_docs_u+num_docs_v))
         # update partitions
         part_union = DisjointSetTree.union(part_u, part_v)
-        partition_to_cluster[part_union] = cluster
-    return cluster
+        partition_to_cluster[part_union] = n + i
+    return res
 
-def cluster_aggl_mst_kruskal(n, similarity_metric):
+def cluster_aggl_mst_kruskal(n, dist_metric):
     '''
     args:
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
-    return cluster_aggl_mst(n, mst_kruskal(n, lambda i, j: -similarity_metric(i, j)))
+    return cluster_aggl_mst(n, mst_kruskal(n, dist_metric))
 
-def cluster_aggl_mst_prim(n, similarity_metric):
+def cluster_aggl_mst_prim(n, dist_metric):
     '''
     args:
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
-    return cluster_aggl_mst(n, mst_prim(n, lambda i, j: -similarity_metric(i, j)))
+    return cluster_aggl_mst(n, mst_prim(n, dist_metric))
