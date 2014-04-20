@@ -1,2 +1,3 @@
 
-Classified incorrectly 51.56% labels
+Classified incorrectly 53.69% labels
+Took 8.771624 seconds

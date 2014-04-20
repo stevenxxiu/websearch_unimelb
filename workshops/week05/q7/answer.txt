@@ -1,9 +1,9 @@
 
 2000 training documents, 500 test documents:
-	linear kernel:
-		TP: 496, FP: 22, TN: 1364, FN: 118
-		Accuracy: 0.93
-		F1 Score: 0.8763250883392226
-		Took 3.981449 seconds
+    linear kernel:
+        TP: 137, FP: 7, TN: 335, FN: 21
+        Accuracy: 0.944
+        F1 Score: 0.9072847682119205
+        Took 2.097621 seconds
 
 SVM is more accurate than kNN
