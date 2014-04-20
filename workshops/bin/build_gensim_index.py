@@ -1,16 +1,13 @@
 
-import sys
+import argparse
 from workshops.lib.store.gensim_index import make_index
 
 def main():
-    if len(sys.argv) != 3:
-        sys.stderr.write("USAGE: %s <lyrl-fname> <index-tag>\n" % (sys.argv[0]))
-        sys.exit(1)
-
-    lyrl_fname = sys.argv[1]
-    index_tag = sys.argv[2]
-    make_index(lyrl_fname, index_tag)
-
+    arg_parser=argparse.ArgumentParser(description='Build the lyrl gensim db.')
+    arg_parser.add_argument('lyrl_fname', type=str)
+    arg_parser.add_argument('index_tag', type=str)
+    args = arg_parser.parse_args()
+    make_index(args.lyrl_fname, args.gsindex_tag)
 
 if __name__ == '__main__':
     main()
