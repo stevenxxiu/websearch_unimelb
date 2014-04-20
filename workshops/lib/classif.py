@@ -1,5 +1,21 @@
 
 import numpy as np
+import scipy as sp
+
+def mode(a, axis=0, dtype=None):
+    scores = np.unique(np.ravel(a))
+    testshape = list(a.shape)
+    testshape[axis] = 1
+    oldmostfreq = np.zeros(testshape, dtype=dtype)
+    oldcounts = np.zeros(testshape, dtype=dtype)
+    for score in scores:
+        template = (a == score)
+        counts = np.expand_dims(np.sum(template, axis),axis)
+        mostfrequent = np.where(counts > oldcounts, score, oldmostfreq)
+        oldcounts = np.maximum(counts, oldcounts)
+        oldmostfreq = mostfrequent
+    return mostfrequent, oldcounts
+
 
 def get_train_test(n, ntrain, ntest, reproducible=True):
     '''
@@ -48,8 +64,7 @@ class KNN:
         self.y = y
 
     def predict(self, X, k):
-        closest = []
         # find the nearest k training documents
-        dists = self.distance_func(self.X, X).argmin(axis=1)[:k]
-        # XXX
+        closest_docs = self.distance_func(X, self.X).todense().argsort(axis=1)[:,:k]
+        return mode(self.y[closest_docs], axis=1, dtype=int)[0].T[0]
 
