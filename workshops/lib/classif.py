@@ -1,6 +1,5 @@
 
 import numpy as np
-import scipy as sp
 
 def mode(a, axis=0, dtype=None):
     scores = np.unique(np.ravel(a))
