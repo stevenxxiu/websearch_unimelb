@@ -1,10 +1,11 @@
 
 import time
-import pymongo
-from workshops.lib.weights import cosine_similarity
-from workshops.lib.classif import Rocchio
+import pickle
+import numpy as np
+from workshops.lib.classif import get_train_test, Rocchio
 from workshops.lib.classif_eval import ConfusionMatrix
-from workshops.lib.classif_data import parse_lyrl_topics
+from workshops.lib.weights import l2_norm_sparse
+from workshops.lib.features import get_tf_idf
 
 def to_binary_classes(docs, doc_class):
     return list((doc_id, [doc_class]) if doc_class in doc_classes else (doc_id, ['not-{}'.format(doc_class)]) for doc_id, doc_classes in docs)
@@ -16,24 +17,27 @@ def classif_binary(test_docs, classifier, tfidf_db):
 
 def main():
     start = time.clock()
-    # get data
-    client = pymongo.MongoClient()
-    tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
-    classif_data = parse_lyrl_topics('../../../../data/lyrl30k_tpcs.txt')
-    train_docs, test_docs = classif_data.get_train_test(15000, 15000)
-    train_docs = to_binary_classes(train_docs, 'GCAT')
-    test_docs = to_binary_classes(test_docs, 'GCAT')
-    test_docs_bin = ((doc_id, doc_classes[0]) for doc_id, doc_classes in test_docs)
-    # classify
-    classifier = Rocchio(lambda w1, w2: 1-cosine_similarity(w1, w2))
-    classifier.fit(train_docs, tfidf_db)
-    classif_docs_bin = classif_binary(test_docs, classifier, tfidf_db)
-    # results
-    cf = ConfusionMatrix.generate(list(x[1] for x in classif_docs_bin), list(x[1] for x in test_docs_bin), 'GCAT', 'not-GCAT')
-    print('TP: {}, FP: {}, TN: {}, FN: {}'.format(cf.tp, cf.fp, cf.tn, cf.fn))
-    print('Accuracy: {}'.format(cf.accuracy()))
-    print('F1 Score: {}'.format(cf.f1()))
-    print('Took {:.6f} seconds'.format(time.clock()-start))
+    with open('../../../../data/pickle/lyrl.db', 'rb') as docs_sr, open('../../../../data/pickle/lyrl_classif.db', 'rb') as classif_sr:
+        # noinspection PyArgumentList
+        docs_data = pickle.load(docs_sr)
+        # noinspection PyArgumentList
+        classif_data = pickle.load(classif_sr)
+        tf_idfs = l2_norm_sparse(get_tf_idf(docs_data.freq_matrix))
+        train_indexes, test_indexes = get_train_test(len(docs_data.docs), 15000, 15000)
+        train_X, train_Y = tf_idfs[train_indexes], classif_data.labels_matrix[train_indexes]
+        test_X, test_Y = tf_idfs[test_indexes], classif_data.labels_matrix[test_indexes]
+        train_y = train_Y[:,classif_data.label_indexes['GCAT']].T.toarray()[0]
+        test_y = test_Y[:,classif_data.label_indexes['GCAT']].T.toarray()[0]
+        # classify
+        classifier = Rocchio(lambda X, Y: 1-X*Y.T)
+        classifier.fit(train_X, train_y)
+        predict_y = classifier.predict(test_X)
+        # results
+        cf = ConfusionMatrix.generate(test_y, predict_y)
+        print('TP: {}, FP: {}, TN: {}, FN: {}'.format(cf.tp, cf.fp, cf.tn, cf.fn))
+        print('Accuracy: {}'.format(cf.accuracy()))
+        print('F1 Score: {}'.format(cf.f1()))
+        print('Took {:.6f} seconds'.format(time.clock()-start))
 
 if __name__ == '__main__':
     main()
