@@ -12,7 +12,7 @@ def main():
         # noinspection PyArgumentList
         dataset = pickle.load(sr)
         tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
-        tf_idfs_rd = RowDictMatrix.from_csr(tf_idfs)
+        tf_idfs_rd = RowDictMatrix.from_csr(tf_idfs, float)
         ns = [100, 200, 300, 400, 500, 600, 700, 800, 1600, 3200, 6400]
         deltas = []
         for n in ns:

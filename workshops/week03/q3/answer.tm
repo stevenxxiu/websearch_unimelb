@@ -6,7 +6,7 @@
   <section|Clustering>
 
   <block*|<tformat|<cwith|2|-1|1|-1|cell-halign|r>|<table|<row|<cell|<math|n>>|<cell|Time
-  (seconds)>>|<row|<cell|100>|<cell|0.053191>>|<row|<cell|200>|<cell|0.211834>>|<row|<cell|300>|<cell|0.467874>>|<row|<cell|400>|<cell|0.825553>>|<row|<cell|500>|<cell|1.319697>>|<row|<cell|600>|<cell|1.922410>>|<row|<cell|700>|<cell|2.673449>>|<row|<cell|800>|<cell|3.503176>>|<row|<cell|1600>|<cell|13.512957>>|<row|<cell|3200>|<cell|54.814860>>|<row|<cell|6400>|<cell|218.445622>>>>>
+  (seconds)>>|<row|<cell|100>|<cell|0.035930>>|<row|<cell|200>|<cell|0.163445>>|<row|<cell|300>|<cell|0.382387>>|<row|<cell|400>|<cell|0.707640>>|<row|<cell|500>|<cell|1.130757>>|<row|<cell|600>|<cell|1.649800>>|<row|<cell|700>|<cell|2.149883>>|<row|<cell|800>|<cell|2.772224>>|<row|<cell|1600>|<cell|11.243845>>|<row|<cell|3200>|<cell|41.930022>>|<row|<cell|6400>|<cell|169.788240>>>>>
 
   This does show quadratic behavior.
 
