@@ -27,6 +27,7 @@ def query_similarities(query_vect, include_terms, X, dataset):
     inc_doc_ids = set()
     query_non_zero = query_vect.nonzero()[0]
     if isinstance(query_non_zero, np.matrix):
+        # noinspection PyUnresolvedReferences
         query_non_zero = query_non_zero.A1
     for i in query_non_zero:
         inc_doc_ids.update(dataset.inverted_index[dataset.terms[i]])

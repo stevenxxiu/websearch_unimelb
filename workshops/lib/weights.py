@@ -9,4 +9,5 @@ def l2_norm_sparse(X):
     norms = X.copy()
     norms.data **= 2
     norms = np.sqrt(norms.sum(axis=1))
+    # noinspection PyUnresolvedReferences
     return diags(1/norms.A1, 0) * X
