@@ -33,7 +33,7 @@ def main():
         predict_y = classifier.predict(test_X)
         # get accuracy
         num_incorrect = 0
-        for test_label_row, predict_label in zip(predict_y, test_Y):
+        for test_label_row, predict_label in zip(test_Y, predict_y):
             if not test_label_row[:,predict_label].data:
                 num_incorrect += 1
         print('Classified incorrectly {:.2f}% labels'.format(num_incorrect/test_X.shape[0]*100))

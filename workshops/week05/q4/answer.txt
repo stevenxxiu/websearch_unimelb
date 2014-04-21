@@ -1,12 +1,12 @@
 
 2000 training documents, 500 test documents:
-	TP: 572, FP: 146, TN: 1240, FN: 42
-	Accuracy: 0.906
-	F1 Score: 0.8588588588588588
-	Took 0.926500 seconds
+    TP: 145, FP: 33, TN: 309, FN: 13
+    Accuracy: 0.908
+    F1 Score: 0.8630952380952381
+    Took 0.458137 seconds
 
 15000 test documents, 15000 training documents:
-	TP: 4486, FP: 972, TN: 9201, FN: 341
-	Accuracy: 0.9124666666666666
-	F1 Score: 0.8723383568303354
-	Took 35.128274 seconds
+    TP: 4438, FP: 1012, TN: 9241, FN: 309
+    Accuracy: 0.9119333333333334
+    F1 Score: 0.8704520937530646
+    Took 0.611297 seconds

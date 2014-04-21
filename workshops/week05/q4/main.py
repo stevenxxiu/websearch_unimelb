@@ -24,7 +24,7 @@ def main():
         classifier.fit(train_X, train_y)
         predict_y = classifier.predict(test_X)
         # results
-        cf = ConfusionMatrix.generate(test_y, predict_y)
+        cf = ConfusionMatrix.generate(predict_y, test_y)
         print('TP: {}, FP: {}, TN: {}, FN: {}'.format(cf.tp, cf.fp, cf.tn, cf.fn))
         print('Accuracy: {}'.format(cf.accuracy()))
         print('F1 Score: {}'.format(cf.f1()))
