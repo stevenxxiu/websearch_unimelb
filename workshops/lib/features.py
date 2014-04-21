@@ -10,7 +10,7 @@ def get_tf(X):
 
 def get_dfs(X):
     # noinspection PyUnresolvedReferences
-    return (X != 0).sum(0)
+    return (X != 0).sum(axis=0)
 
 def get_idfs(X):
     num_docs = X.shape[0]
