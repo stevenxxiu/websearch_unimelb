@@ -9,11 +9,14 @@ def l2_norm_sparse(X):
     norms = X.copy()
     norms.data **= 2
     norms = np.sqrt(norms.sum(axis=1))
+    # noinspection PyUnresolvedReferences
     return diags(1/norms.A1, 0) * X
 
-def pivoted_length_norm(X, s, dataset):
+def pivoted_length_norm(X, s):
     F = X.copy()
     F.data **= 2
     doc_lengths = np.sqrt(F.sum(axis=1))
+    # noinspection PyTypeChecker
     norms = (1-s)*doc_lengths.sum(axis=0)/X.shape[0] + s*doc_lengths
+    # noinspection PyUnresolvedReferences
     return diags(1/norms.A1, 0) * X
