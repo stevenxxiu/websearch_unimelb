@@ -7,16 +7,16 @@ class ConfusionMatrix:
         self.fn = fn
 
     @classmethod
-    def generate(cls, classif_classes, test_classes, pos_class, neg_class):
+    def generate(cls, predict_y, test_y):
         tp = fp = tn = fn = 0
-        for classif_class, test_class in zip(classif_classes, test_classes):
-            if classif_class == pos_class and test_class == pos_class:
+        for predict_class, test_class in zip(predict_y, test_y):
+            if predict_class == 1 and test_class == 1:
                 tp += 1
-            elif classif_class == pos_class and test_class == neg_class:
+            elif predict_class == 1 and test_class == 0:
                 fp += 1
-            elif classif_class == neg_class and test_class == pos_class:
+            elif predict_class == 0 and test_class == 1:
                 fn += 1
-            elif classif_class == neg_class and test_class == neg_class:
+            elif predict_class == 0 and test_class == 0:
                 tn += 1
         return cls(tp, fp, tn, fn)
 
