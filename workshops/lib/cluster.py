@@ -98,13 +98,12 @@ def mst_kruskal(n, get_weight):
         mst_edges.append((w, (u, v)))
     return mst_edges
 
-def cluster_aggl_mst(weight_docs, mst_edges):
-    n = len(weight_docs)
+def cluster_aggl_mst(n, mst_edges):
     # convert mst_edges into a cluster
     mst_edges.sort()
     # use an extra partition list so we can quickly find and update the current largest cluster a document belongs to
     doc_to_partition = list(DisjointSetTree() for _ in range(n))
-    partition_to_cluster = dict((doc_to_partition[i], TreeNode(weight_docs[i]['doc_id'])) for i in range(n))
+    partition_to_cluster = dict((doc_to_partition[i], TreeNode(i)) for i in range(n))
     cluster = None
     for weight, edge in mst_edges:
         u, v = edge
@@ -118,18 +117,16 @@ def cluster_aggl_mst(weight_docs, mst_edges):
         partition_to_cluster[part_union] = cluster
     return cluster
 
-def cluster_aggl_mst_kruskal(weight_docs, similarity_metric):
+def cluster_aggl_mst_kruskal(n, similarity_metric):
     '''
     args:
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
-    n = len(weight_docs)
-    return cluster_aggl_mst(weight_docs, mst_kruskal(n, lambda i, j: -similarity_metric(weight_docs[i]['weights'], weight_docs[j]['weights'])))
+    return cluster_aggl_mst(n, mst_kruskal(n, lambda i, j: -similarity_metric(i, j)))
 
-def cluster_aggl_mst_prim(weight_docs, similarity_metric):
+def cluster_aggl_mst_prim(n, similarity_metric):
     '''
     args:
         weight_docs: a pre-fetched list for speed, assumes that this is small
     '''
-    n = len(weight_docs)
-    return cluster_aggl_mst(weight_docs, mst_prim(n, lambda i, j: -similarity_metric(weight_docs[i]['weights'], weight_docs[j]['weights'])))
+    return cluster_aggl_mst(n, mst_prim(n, lambda i, j: -similarity_metric(i, j)))

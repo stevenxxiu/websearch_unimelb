@@ -1,14 +1,17 @@
 
 import unittest
-import pymongo
-from workshops.lib.weights import cosine_similarity
+import pickle
+from workshops.lib.weights import l2_norm_sparse
+from workshops.lib.features import get_tf_idf
 from workshops.lib.cluster import cluster_aggl_mst_prim, cluster_aggl_mst_kruskal
 
 class TestCluster(unittest.TestCase):
     def test_cluster(self):
-        client = pymongo.MongoClient()
-        tfidf_db = client['websearch_workshops']['lyrl']['tfidf']
-        self.assertEqual(
-            cluster_aggl_mst_prim(list(tfidf_db.find()[:10]), cosine_similarity),
-            cluster_aggl_mst_kruskal(list(tfidf_db.find()[:10]), cosine_similarity)
-        )
+        with open('data/pickle/lyrl.db', 'rb') as sr:
+            # noinspection PyArgumentList
+            dataset = pickle.load(sr)
+            tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
+            self.assertEqual(
+                cluster_aggl_mst_prim(10, lambda i, j: (tf_idfs[i] * tf_idfs[j].T).data[0]),
+                cluster_aggl_mst_kruskal(10, lambda i, j: (tf_idfs[i] * tf_idfs[j].T).data[0])
+            )
