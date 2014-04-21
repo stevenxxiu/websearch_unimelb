@@ -1,7 +1,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from workshops.lib import coll
+from workshops.lib.store import coll
 
 def get_docinfo(coll_data):
 	num_terms_cum=[]

@@ -2,7 +2,7 @@
 import os
 import gensim
 from gensim import corpora
-from workshops.lib import gensim_index
+from workshops.lib.store import gensim_index
 
 def main():
     data_path = '../../../../data/'

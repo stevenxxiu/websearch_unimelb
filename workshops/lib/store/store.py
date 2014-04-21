@@ -2,7 +2,7 @@
 import pickle
 import numpy as np
 from scipy.sparse import csr_matrix, vstack
-from workshops.lib import coll
+from workshops.lib.store import coll
 
 def get_inverted_index(dataset):
     res = {}

@@ -1,6 +1,6 @@
 
 import sys
-from workshops.lib.gensim_index import make_index
+from workshops.lib.store.gensim_index import make_index
 
 def main():
     if len(sys.argv) != 3:
