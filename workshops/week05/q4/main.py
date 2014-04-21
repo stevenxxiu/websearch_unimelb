@@ -6,14 +6,6 @@ from workshops.lib.classif_eval import ConfusionMatrix
 from workshops.lib.weights import l2_norm_sparse
 from workshops.lib.features import get_tf_idf
 
-def to_binary_classes(docs, doc_class):
-    return list((doc_id, [doc_class]) if doc_class in doc_classes else (doc_id, ['not-{}'.format(doc_class)]) for doc_id, doc_classes in docs)
-
-def classif_binary(test_docs, classifier, tfidf_db):
-    for doc_id, doc_classes in test_docs:
-        classif_class, classif_dist = classifier.predict(tfidf_db.find_one({'doc_id': doc_id})['weights'])[0]
-        yield doc_id, classif_class
-
 def main():
     start = time.clock()
     with open('../../../../data/pickle/lyrl.db', 'rb') as docs_sr, open('../../../../data/pickle/lyrl_classif.db', 'rb') as classif_sr:
