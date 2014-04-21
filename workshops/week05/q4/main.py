@@ -1,7 +1,6 @@
 
 import time
 import pickle
-import numpy as np
 from workshops.lib.classif import get_train_test, Rocchio
 from workshops.lib.classif_eval import ConfusionMatrix
 from workshops.lib.weights import l2_norm_sparse
