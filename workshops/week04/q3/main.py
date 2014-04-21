@@ -3,9 +3,11 @@ import numpy as np
 import scipy.linalg as la
 
 def trim_small(X):
+    # noinspection PyUnresolvedReferences
     X[np.absolute(X) < 0.000001] = 0.0
 
 def main():
+    # noinspection PyCallingNonCallable
     X = np.matrix([
         [1, 0, 1, 0, 0, 0],
         [0, 1, 0, 0, 0, 0],
