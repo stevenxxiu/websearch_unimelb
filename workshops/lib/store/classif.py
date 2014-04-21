@@ -17,7 +17,7 @@ class ClassifDataStore:
             doc_labels = sorted(classif_data.doc_to_labels.get(doc_id, []))
             row = np.zeros(len(doc_labels))
             col = np.array(list(self.label_indexes[label] for label in doc_labels))
-            data = np.ones(len(doc_labels))
+            data = np.ones(len(doc_labels), dtype=np.int)
             labels_rows.append(csr_matrix((data, (row, col)), shape=(1, len(self.labels))))
         self.labels_matrix = vstack(labels_rows).tocsr()
 
