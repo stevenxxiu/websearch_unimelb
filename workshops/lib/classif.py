@@ -11,8 +11,10 @@ def mode(a, axis=0, dtype=None):
         template = (a == score)
         counts = np.expand_dims(np.sum(template, axis),axis)
         mostfrequent = np.where(counts > oldcounts, score, oldmostfreq)
+        # noinspection PyUnresolvedReferences
         oldcounts = np.maximum(counts, oldcounts)
         oldmostfreq = mostfrequent
+    # noinspection PyUnboundLocalVariable
     return mostfrequent, oldcounts
 
 
@@ -24,7 +26,9 @@ def get_train_test(n, ntrain, ntest, reproducible=True):
         (train_indexes, test_indexes)
     '''
     if reproducible:
+        # noinspection PyUnresolvedReferences
         np.random.seed(1)
+    # noinspection PyUnresolvedReferences
     perm = np.random.permutation(n)
     return perm[:ntrain], perm[ntrain:ntrain+ntest]
 
