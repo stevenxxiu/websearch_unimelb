@@ -8,6 +8,7 @@ def doc_similarity(doc_id_1, doc_id_2, tf_idfs, dataset):
 
 def main():
     with open('../../../../data/pickle/lyrl.db', 'rb') as sr:
+        # noinspection PyArgumentList
         dataset = pickle.load(sr)
         tf_idfs = l2_norm_sparse(get_tf_idf(dataset.freq_matrix))
         print(doc_similarity('26152', '26159', tf_idfs, dataset))
