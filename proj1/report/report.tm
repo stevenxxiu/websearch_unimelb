@@ -46,11 +46,11 @@
 
   We can perform query expansion using the user's current forum post and the
   subforum he's in. Let <math|q<rsub|0>> be the original query,
-  <math|p<rsub|u>> be the user's current post and <math|D<rsub|F>> be the set
+  <math|d<rsub|u>> be the user's current post and <math|D<rsub|F>> be the set
   of posts in the subforum, then we use the expanded query vector:
 
   <\equation*>
-    q<rsub|e>=\<alpha\>q<rsub|0>+\<beta\>p<rsub|u>+\<gamma\><frac|1|<around*|\||D<rsub|F>|\|>><big|sum><rsub|d\<in\>D<rsub|F>>d
+    q<rsub|e>=\<alpha\>q<rsub|0>+\<beta\>d<rsub|u>+\<gamma\><frac|1|<around*|\||D<rsub|F>|\|>><big|sum><rsub|d\<in\>D<rsub|F>>d
   </equation*>
 
   For efficiency we then take the top <math|k> terms which are common to the
@@ -85,18 +85,19 @@
 
   <subsection|Cluster Distances>
 
-  We can interpret the search document as clusters, and give a bonus weight
-  to documents closer to the cluster of forum documents that we are looking
-  for. Let <math|d> be a distance function between a document and a set of
-  documents, then we want a document, <math|r> which minimizes:
+  We can interpret the forum documents as a hierarchical cluster, and give a
+  bonus weight to wikipedia documents closer to the clusters of forum
+  documents that we are looking for. Let <math|d> be a distance function
+  between a document and a set of documents, then we want a document,
+  <math|r> which minimizes:
 
   <\equation*>
-    \<alpha\>\<cdot\>d<around*|(|r,<around*|{|q<rsub|0>|}>|)>+\<beta\>\<cdot\>d<around*|(|r,<around*|{|p<rsub|u>|}>|)>+\<gamma\>\<cdot\>d<around*|(|r,P<rsub|f>|)>
+    \<alpha\>\<cdot\>d<around*|(|r,<around*|{|q<rsub|0>|}>|)>+\<beta\>\<cdot\>d<around*|(|r,<around*|{|d<rsub|u>|}>|)>+\<gamma\>\<cdot\>d<around*|(|r,D<rsub|f>|)>
   </equation*>
 
-  If we take the average distance, <math|d<around*|(|r,P|)>=<frac|1|<around*|\||P|\|>><big|sum><rsub|p\<in\>P>r\<cdot\>p>,
-  then we get rocchio's. But we can also take the minimum distance to the
-  cluster, using <math|d<around*|(|r,P|)>=min<big|sum><rsub|p\<in\>P>r\<cdot\>p>.
+  If we take the average distance, <math|d<around*|(|r,D|)>=<frac|1|<around*|\||D|\|>><big|sum><rsub|d\<in\>D>r\<cdot\>d>,
+  then we get rocchio's query expansion. But we can also take the minimum
+  distance to the cluster, using <math|d<around*|(|r,D|)>=min<big|sum><rsub|d\<in\>D>r\<cdot\>d>.
 
   <section|Disambiguation Implementation>
 
@@ -135,33 +136,6 @@
 
 <\auxiliary>
   <\collection>
-    <\associate|table>
-      <tuple|normal|Query results for ``apache''|<pageref|auto-3>>
-
-      <tuple|normal|Query results for ``apache aries''|<pageref|auto-4>>
-
-      <tuple|normal|Query results for ``apache apache
-      aries''|<pageref|auto-5>>
-
-      <tuple|normal|Query results for ``apache''|<pageref|auto-7>>
-
-      <tuple|normal|Query results for ``apache aries''|<pageref|auto-8>>
-
-      <tuple|normal|Query results for ``apache apache
-      aries''|<pageref|auto-9>>
-
-      <tuple|normal|Query results for ``apache james''|<pageref|auto-12>>
-
-      <tuple|normal|Query results for ``apache forrest''|<pageref|auto-13>>
-
-      <tuple|normal|Query results for ``apache aries''|<pageref|auto-14>>
-
-      <tuple|normal|Query results for ``apache james''|<pageref|auto-16>>
-
-      <tuple|normal|Query results for ``apache forrest''|<pageref|auto-17>>
-
-      <tuple|normal|Query results for ``apache aries''|<pageref|auto-18>>
-    </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Database
       Creation and Storage> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
@@ -173,27 +147,35 @@
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Pivoted
       Length Normalization Results> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6><vspace|0.5fn>
+      <no-break><pageref|auto-3><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4<space|2spc>Requiring
       All Query Terms> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10><vspace|0.5fn>
-
-      <with|par-left|<quote|1tab>|4.1<space|2spc>Without Requiring All Terms
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
-
-      <with|par-left|<quote|1tab>|4.2<space|2spc>Requiring All Terms
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15>>
+      <no-break><pageref|auto-4><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5<space|2spc>Disambiguation
       by Source Context> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-19><vspace|0.5fn>
+      <no-break><pageref|auto-5><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|5.1<space|2spc>
+      <with|par-left|<quote|1tab>|5.1<space|2spc>Rocchio's
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-20>>
+      <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|2tab>|5.1.1<space|2spc>Forum Weights
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|1tab>|5.2<space|2spc>Rocchio's with SVD
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|5.3<space|2spc>Cluster Distances
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|6<space|2spc>Disambiguation
+      Implementation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
