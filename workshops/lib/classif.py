@@ -1,5 +1,6 @@
 
 import numpy as np
+from scipy.misc import logsumexp
 
 # noinspection PyUnresolvedReferences
 def mode(a, axis=0, dtype=None):
@@ -102,5 +103,5 @@ class MultinomialNB:
         return self.score(X).argmax(axis=1)
 
     def predict_proba(self, X):
-        probs = np.exp(self.score(X))
-        return probs/probs.sum(axis=1)
+        score = self.score(X)
+        return np.exp(score.T - logsumexp(score, axis=1)).T
