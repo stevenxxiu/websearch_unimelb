@@ -91,11 +91,12 @@ class MultinomialNB:
             # use laplace smoothing, the matrix includes non-zero weights
             self.term_weights[class_] = np.log(term_freqs + 1) - np.log(term_freqs.sum() + n_features)
         # calculate weights of class-priors
+        self.class_weights = np.empty((n_classes, 1), dtype=np.float64)
         for class_ in classes:
             self.class_weights[class_] = np.log(X[y==class_].shape[0]) - np.log(n_samples)
 
     def score(self, X):
-        return X * self.term_weights.T
+        return self.class_weights.T + X * self.term_weights.T
 
     def predict(self, X):
         return self.score(X).argmax(axis=1)
