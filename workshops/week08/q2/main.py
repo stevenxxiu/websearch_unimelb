@@ -2,7 +2,6 @@
 import time
 import pickle
 from workshops.lib.classif import get_train_test, MultinomialNB
-from workshops.lib.classif_eval import ConfusionMatrix
 
 def main():
     start = time.clock()
@@ -25,6 +24,7 @@ def main():
         for i, doc_probs in enumerate(proba_y):
             neg_prob, pos_prob = doc_probs
             print('{}: {:.5f} {}'.format(docs_data.docs[i], pos_prob, test_y[i]))
+        print('Took {:.6f} seconds'.format(time.clock()-start))
 
 if __name__ == '__main__':
     main()
