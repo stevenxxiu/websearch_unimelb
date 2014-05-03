@@ -1,23 +1,24 @@
 
 import numpy as np
 
+# noinspection PyUnresolvedReferences
 def mode(a, axis=0, dtype=None):
     scores = np.unique(np.ravel(a))
     testshape = list(a.shape)
     testshape[axis] = 1
     oldmostfreq = np.zeros(testshape, dtype=dtype)
     oldcounts = np.zeros(testshape, dtype=dtype)
+    mostfrequent = np.array([])
     for score in scores:
         template = (a == score)
         counts = np.expand_dims(np.sum(template, axis),axis)
         mostfrequent = np.where(counts > oldcounts, score, oldmostfreq)
-        # noinspection PyUnresolvedReferences
         oldcounts = np.maximum(counts, oldcounts)
         oldmostfreq = mostfrequent
-    # noinspection PyUnboundLocalVariable
     return mostfrequent, oldcounts
 
 
+# noinspection PyUnresolvedReferences
 def get_train_test(n, ntrain, ntest, reproducible=True):
     '''
     Assumes all documents are labelled.
@@ -26,9 +27,7 @@ def get_train_test(n, ntrain, ntest, reproducible=True):
         (train_indexes, test_indexes)
     '''
     if reproducible:
-        # noinspection PyUnresolvedReferences
         np.random.seed(1)
-    # noinspection PyUnresolvedReferences
     perm = np.random.permutation(n)
     return perm[:ntrain], perm[ntrain:ntrain+ntest]
 
@@ -43,6 +42,7 @@ class Rocchio:
         self.centroids = None
         self.classes = None
 
+    # noinspection PyNoneFunctionAssignment
     def fit(self, X, y):
         n_samples, n_features = X.shape
         classes = np.unique(y)
@@ -71,3 +71,35 @@ class KNN:
         closest_docs = self.distance_func(X, self.X).todense().argsort(axis=1)[:,:k]
         return mode(self.y[closest_docs], axis=1, dtype=int)[0].T[0]
 
+
+class MultinomialNB:
+    def __init__(self):
+        self.classes = None
+        self.class_weights = None
+        self.term_weights = None
+
+    # noinspection PyNoneFunctionAssignment,PyUnresolvedReferences
+    def fit(self, X, y):
+        # calculate the class-dependent term term_weights
+        n_samples, n_features = X.shape
+        classes = np.unique(y)
+        self.classes = classes
+        n_classes = classes.size
+        self.term_weights = np.empty((n_classes, n_features), dtype=np.float64)
+        for class_ in classes:
+            term_freqs = X[y==class_].sum(axis=0)
+            # use laplace smoothing, the matrix includes non-zero weights
+            self.term_weights[class_] = np.log(term_freqs + 1) - np.log(term_freqs.sum() + n_features)
+        # calculate weights of class-priors
+        for class_ in classes:
+            self.class_weights[class_] = np.log(X[y==class_].shape[0]) - np.log(n_samples)
+
+    def score(self, X):
+        return X * self.term_weights.T
+
+    def predict(self, X):
+        return self.score(X).argmax(axis=1)
+
+    def predict_proba(self, X):
+        probs = np.exp(self.score(X))
+        return probs/probs.sum(axis=1)
