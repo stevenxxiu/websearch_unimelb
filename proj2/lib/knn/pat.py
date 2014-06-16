@@ -63,6 +63,9 @@ class PrincipalAxisTree:
     def search(self, q, k):
         nearest = sortedlist([(np.inf, None)] * k)
         self._search(nearest, self.root, q, q, 0)
+        nearest = list(nearest)
+        for i, (d, n) in enumerate(nearest):
+            nearest[i] = (np.sqrt(d), n)
         return nearest
 
     def _search(self, nearest, node, q, b, d_lb_sq):
@@ -76,7 +79,7 @@ class PrincipalAxisTree:
         if not node.children:
             # partial distance search
             for p in node.points:
-                # XXX use sparse vectors for the partial distance search
+                # XXX use sparse vectors & partial distance search
                 if dist_sq_lt(q.toarray()[0], X[p].toarray()[0], d_k_sq):
                     d_k_sq = np.sum(np.power((q - X[p]).data, 2))
                     nearest.add((d_k_sq, p))
