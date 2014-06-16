@@ -1,6 +1,5 @@
 
 import numpy as np
-import bisect
 from collections import namedtuple
 from blist import sortedlist
 from sklearn.decomposition import TruncatedSVD
@@ -70,18 +69,19 @@ class PrincipalAxisTree:
         args:
             b: boundary point of the current convex hull being searched
         '''
-        d_min_sq = nearest[0]
+        d_min_sq = nearest[0][0]
         X = self.X
         # check if node is a leaf node
         if not node.children:
             # partial distance search
             for p in node.points:
-                if dist_sq_lt(q, X[p], d_min_sq):
+                if dist_sq_lt(q.toarray()[0], X[p].toarray()[0], d_min_sq):
                     d_min_sq = np.sum(np.power(q - X[p], 2))
                     nearest.add((d_min_sq, p))
                     nearest.pop(0)
+            return
         # project the boundary point onto the principal axis
-        sigma = np.dot(b, node.p)
+        sigma = (b*node.p)[0]
         # initialize stopping criteria vaiables
         # at least one is initialized to true, as there are at least 2 child nodes
         lower_done = False
@@ -91,7 +91,7 @@ class PrincipalAxisTree:
         # perform a binary search
         # the boundary conditions don't matter here, as we will search both above and below until the
         # bounds are reached
-        i = bisect.bisect_left(sigma, node.gmaxes)
+        i = np.searchsorted(node.gmaxes, sigma)
         il = i - 1
         iu = i + 1
         if i == 0:
