@@ -80,10 +80,10 @@ class PrincipalAxisTree:
             # partial distance search
             for p in node.points:
                 # XXX use sparse vectors & partial distance search
-                if dist_sq_lt(q.toarray()[0], X[p].toarray()[0], d_k_sq):
-                    d_k_sq = np.sum(np.power((q - X[p]).data, 2))
-                    nearest.add((d_k_sq, p))
-                    nearest.pop()
+                d_sq = np.sum(np.power((q - X[p]).data, 2))
+                if d_sq < d_k_sq:
+                    nearest.add((d_sq, p))
+                    d_k_sq, _ = nearest.pop()
             return
         # project the boundary point onto the principal axis
         sigma = (b*node.p)[0]
