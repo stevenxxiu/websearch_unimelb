@@ -3,8 +3,8 @@ import numpy as np
 
 def power_iter(X, max_iter=100, tol=1.0e-8):
     '''
-    gets the first principal axis using power iteration
-    doesn't converge if the maximum eigenvalue has multiplicity > 1, but still can be used as an approximation tool
+    Find the eigenvector corresponding the the largest eigenvalue using power iteration.
+    Doesn't converge if the largest eigenvalue has multiplicity > 1, but still can be used as an approximation tool.
     '''
     b = np.random.random_sample((X.shape[0], 1))
     for i in range(max_iter):
