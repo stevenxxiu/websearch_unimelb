@@ -61,24 +61,26 @@ class PrincipalAxisTree:
         return TreeNode(None, p, gmins, gmaxes, children)
 
     def search(self, q, k):
-        nearest = sortedlist([(0, None)] * k)
-        return self._search(nearest, self.root, q, q, 0)
+        nearest = sortedlist([(np.inf, None)] * k)
+        self._search(nearest, self.root, q, q, 0)
+        return nearest
 
     def _search(self, nearest, node, q, b, d_lb_sq):
         '''
         args:
             b: boundary point of the current convex hull being searched
         '''
-        d_min_sq = nearest[0][0]
+        d_k_sq = nearest[-1][0]
         X = self.X
         # check if node is a leaf node
         if not node.children:
             # partial distance search
             for p in node.points:
-                if dist_sq_lt(q.toarray()[0], X[p].toarray()[0], d_min_sq):
-                    d_min_sq = np.sum(np.power(q - X[p], 2))
-                    nearest.add((d_min_sq, p))
-                    nearest.pop(0)
+                # XXX use sparse vectors for the partial distance search
+                if dist_sq_lt(q.toarray()[0], X[p].toarray()[0], d_k_sq):
+                    d_k_sq = np.sum(np.power((q - X[p]).data, 2))
+                    nearest.add((d_k_sq, p))
+                    nearest.pop()
             return
         # project the boundary point onto the principal axis
         sigma = (b*node.p)[0]
@@ -127,6 +129,6 @@ class PrincipalAxisTree:
                     bu = du*node.p - b
                 else:
                     bu = 0
-                self._search(nearest, node.children[il], q, bu, cur_d_lb_sq)
+                self._search(nearest, node.children[iu], q, bu, cur_d_lb_sq)
                 iu += 1
 
