@@ -32,5 +32,9 @@ def main():
         print('Search took {} ms'.format(time.clock() - start))
         print(list(zip(res[0][0], res[1][0])))
 
+        start = time.clock()
+        res = train_X*test_X[0].T
+        print('Search took {} ms'.format(time.clock() - start))
+
 if __name__ == '__main__':
     main()
