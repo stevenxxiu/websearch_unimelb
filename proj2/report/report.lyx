@@ -181,12 +181,12 @@ Principal Axis Trees
 
 \begin_layout Standard
 Not very good for text classification.
- Very few nodes in the tree are pruned.
- The main problem is probably the same as kd-trees: since the boundaries
- for tree nodes are hyperplanes, for large dimensions, a small variation
- in the dimension of the query point is likely to result in a bigger change
- between the distance between the projected point and a point on the boundary.
- But the paper says that large dimensions are alright?
+ None of the nodes in the tree were pruned from the document set.
+ The main problem is that the document vectors are usually far away from
+ the boundary point (XXX have a table to support this).
+ A possible explanation for this is that documents usually contain only
+ very few words for a given topic relative to the length of the document
+ vector, with the topic here being the principal axis vector.
 \end_layout
 
 \begin_layout Standard
