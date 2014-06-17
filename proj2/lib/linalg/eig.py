@@ -30,7 +30,7 @@ def first_sparse_pca(X, max_iter=100, tol=1.0e-8):
     for i in range(max_iter):
         b_prev = b
         # calculate b = (X - X.mean(axis=0)).T * (X - X.mean(axis=0)) * b while preserving sparsity
-        b = X.T*(X*b) - np.sum(X, axis=0).T*(X.mean(axis=0)*b)
+        b = X.T*(X*b) - X.sum(axis=0).T*(X.mean(axis=0)*b)
         # normalize b
         b *= 1/np.sqrt(np.sum(np.power(b, 2)))
         # l1 norm
