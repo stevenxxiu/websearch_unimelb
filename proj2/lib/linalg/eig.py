@@ -41,6 +41,5 @@ def first_sparse_pca(X, max_iter=100, tol=1.0e-8):
         if abs(err) < tol:
             break
     else:
-        # print('power iteration failed to converge in {} iterations, error: {}'.format(max_iter, abs(err)))
-        pass
+        print('power iteration failed to converge in {} iterations, error: {}'.format(max_iter, abs(err)))
     return np.asarray(b).T[0]

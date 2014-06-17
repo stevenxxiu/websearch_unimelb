@@ -29,7 +29,7 @@ class PrincipalAxisTree:
             # construct leaf node
             return TreeNode(points, None, None, None, ())
         # calculate the largest principal axis
-        p = first_sparse_pca(Y, 100)
+        p = first_sparse_pca(Y, 1000)
         # project vectors in Y onto the principal axis (unit vector)
         g = Y*p
         # divide vectors in G into regions with similar numbers of points
