@@ -1,6 +1,7 @@
 
 import numpy as np
 
+# noinspection PyTypeChecker,PyUnresolvedReferences
 def first_eigenvector(X, max_iter=100, tol=1.0e-8):
     '''
     Find the eigenvector corresponding the the largest eigenvalue using power iteration.
@@ -20,6 +21,8 @@ def first_eigenvector(X, max_iter=100, tol=1.0e-8):
         raise ValueError('power iteration failed to converge in {} iterations'.format(max_iter))
     return b
 
+
+# noinspection PyTypeChecker,PyUnresolvedReferences
 def first_sparse_pca(X, max_iter=100, tol=1.0e-8):
     '''
     Sklearn's implementation does not normalize to mean 0 first.
