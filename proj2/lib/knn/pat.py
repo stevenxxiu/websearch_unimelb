@@ -15,6 +15,7 @@ class PrincipalAxisTree:
         self.nc = nc
         self.X = None
         self.root = None
+        self.n_traversed = 0
 
     def fit(self, X):
         self.X = X
@@ -74,13 +75,14 @@ class PrincipalAxisTree:
         X = self.X
         # check if node is a leaf node
         if not node.children:
-            # XXX use sparse vectors & partial distance search
             d_k_sq = nearest[-1][0]
             for p in node.points:
+                # XXX use sparse vectors & partial distance search
                 d_sq = np.sum(np.power((q - X[p]).data, 2))
                 if d_sq < d_k_sq:
                     nearest.add((d_sq, p))
                     d_k_sq, _ = nearest.pop()
+            self.n_traversed += node.points.size
             return
         # project the boundary point onto the principal axis
         sigma = (b*node.p)[0]
