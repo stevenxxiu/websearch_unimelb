@@ -111,7 +111,7 @@ class PrincipalAxisTree:
         if not lower_done:
             dl = sigma - node.gmaxes[il]
         if not upper_done:
-            du = node.gmaxes[iu] - sigma
+            du = node.gmins[iu] - sigma
         while not upper_done or not lower_done:
             if (upper_done or dl<du) and not lower_done:
                 cur_d_lb_sq = d_lb_sq + dl**2
@@ -142,5 +142,5 @@ class PrincipalAxisTree:
                 if iu > nc-1:
                     upper_done = True
                     continue
-                du = node.gmaxes[iu] - sigma
+                du = node.gmins[iu] - sigma
 
