@@ -68,6 +68,7 @@ class PrincipalAxisTree:
             nearest[i] = (np.sqrt(d), n)
         return nearest
 
+    # noinspection PyTypeChecker,PyUnresolvedReferences
     def _search(self, nearest, node, q, b, d_lb_sq):
         '''
         args:
@@ -95,7 +96,7 @@ class PrincipalAxisTree:
         # perform a binary search
         # the boundary conditions don't matter here, as we will search both above and below until the
         # bounds are reached
-        i = np.searchsorted(node.gmins, sigma) - 1
+        i = np.searchsorted(node.gmaxes, sigma) - 1
         il = i - 1
         iu = i + 1
         if il < 0:
@@ -103,7 +104,7 @@ class PrincipalAxisTree:
         elif iu > nc-1:
             upper_done = True
         # search the region b is in
-        if i >= 0:
+        if 0 <= i <= nc-1:
             self._search(nearest, node.children[i], q, b, d_lb_sq)
         # initialize distances
         dl = du = 0
