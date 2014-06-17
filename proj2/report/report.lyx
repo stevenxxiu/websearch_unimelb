@@ -180,9 +180,10 @@ Principal Axis Trees
 \end_layout
 
 \begin_layout Standard
-Not very good for text classification, as a small amount of points per leaf
- is required to achieve good performance, but this has a very memory usage
- since the principal axis are not sparse.
+Not very good for text classification.
+ Very few nodes in the tree are pruned.
+ A small amount of points per leaf is required to prune more nodes, but
+ this has a very memory usage since the principal axis are not sparse.
  A possible mitigation is the use of sparse principal component analysis.
 \end_layout
 

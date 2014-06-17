@@ -91,9 +91,8 @@ class PrincipalAxisTree:
         # at least one is initialized to true, as there are at least 2 child nodes
         lower_done = False
         upper_done = False
-        # find the closest group of points using sigma (projecting q instead of b may be more accurate here)
         nc = len(node.children)
-        # perform a binary search
+        # perform a binary search using sigma
         # the boundary conditions don't matter here, as we will search both above and below until the
         # bounds are reached
         i = np.searchsorted(node.gmaxes, sigma) - 1
