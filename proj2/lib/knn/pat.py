@@ -80,6 +80,7 @@ class PrincipalAxisTree:
             # XXX use sparse vectors & partial distance search
             d_k_sq = nearest[-1][0]
             for p in node.points:
+                print('test')
                 d_sq = np.sum(np.power((q - X[p]).data, 2))
                 if d_sq < d_k_sq:
                     nearest.add((d_sq, p))
@@ -100,7 +101,7 @@ class PrincipalAxisTree:
         iu = i + 1
         if il < 0:
             lower_done = True
-        elif iu > nc-1:
+        if iu > nc-1:
             upper_done = True
         # search the region b is in
         if 0 <= i <= nc-1:
