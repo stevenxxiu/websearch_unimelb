@@ -12,7 +12,7 @@ class KNeighborsBrute:
         self.X_l2_sq = np.power(l2_sparse(X), 2)
 
     def kneighbors(self, y, k=None):
-        dists = np.sqrt(self.X_l2_sq + np.power(l2_sparse(y), 2).T - 2*self.X*y.T)
+        dists = np.asarray(np.sqrt(self.X_l2_sq + np.power(l2_sparse(y), 2).T - 2*self.X*y.T).T)[0]
         if k is None:
             k = self.X.shape[0]
         indexes = np.argsort(dists)
