@@ -49,8 +49,8 @@ class PrincipalAxisTree:
         gmins = []
         gmaxes = []
         for i_part in i_parts:
-            gmins.append(np.min(g[i_part]))
-            gmaxes.append(np.max(g[i_part]))
+            gmins.append(g[i_part[0]])
+            gmaxes.append(g[i_part[-1]])
         # construct children
         children = []
         for i_part in i_parts:
