@@ -27,10 +27,12 @@ def first_sparse_pca(X, max_iter=100, tol=1.0e-8):
     Sklearn's implementation does not normalize to mean 0 first.
     '''
     b = np.random.random_sample((X.shape[1], 1))
+    x_s = X.sum(axis=0)
+    x_mu = X.mean(axis=0)
     for i in range(max_iter):
         b_prev = b
         # calculate b = (X - X.mean(axis=0)).T * (X - X.mean(axis=0)) * b while preserving sparsity
-        b = X.T*(X*b) - X.sum(axis=0).T*(X.mean(axis=0)*b)
+        b = X.T*(X*b) - x_s.T*(x_mu*b)
         # normalize b
         b *= 1/np.sqrt(np.sum(np.power(b, 2)))
         # l1 norm
@@ -38,5 +40,6 @@ def first_sparse_pca(X, max_iter=100, tol=1.0e-8):
         if abs(err) < tol:
             break
     else:
-        raise ValueError('power iteration failed to converge in {} iterations'.format(max_iter))
-    return b
+        # print('power iteration failed to converge in {} iterations'.format(max_iter))
+        pass
+    return np.asarray(b).T[0]
