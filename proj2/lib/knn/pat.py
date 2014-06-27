@@ -3,7 +3,6 @@ import numpy as np
 from collections import namedtuple
 from blist import sortedlist
 from proj2.lib.linalg.eig import first_sparse_pca
-from proj2.lib.linalg.dist import dist_sq_lt
 
 TreeNode = namedtuple('TreeNode', ('points', 'p', 'gmins', 'gmaxes', 'children'))
 
@@ -94,7 +93,7 @@ class PrincipalAxisTree:
         # perform a binary search using sigma
         # the boundary conditions don't matter here, as we will search both above and below until the
         # bounds are reached
-        i = np.searchsorted(node.gmaxes, sigma) - 1
+        i = np.searchsorted(node.gmaxes, sigma)
         il = i - 1
         iu = i + 1
         if il < 0:
