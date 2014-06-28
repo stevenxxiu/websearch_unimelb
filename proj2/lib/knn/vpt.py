@@ -75,7 +75,7 @@ class VPTree:
         self._search(nearest, self.root, q)
         nearest = list(nearest)
         for i, (d, n) in enumerate(nearest):
-            nearest[i] = (np.sqrt(-d), n)
+            nearest[i] = (-d, n)
         return sorted(nearest)
 
     def _search(self, nearest, node, q):
