@@ -1,7 +1,7 @@
 
+import heapq
 import numpy as np
 from collections import namedtuple
-from blist import sortedlist
 from proj2.lib.linalg.eig import first_sparse_pca
 
 TreeNode = namedtuple('TreeNode', ('points', 'p', 'gmins', 'gmaxes', 'children'))
@@ -58,12 +58,13 @@ class PrincipalAxisTree:
         return TreeNode(None, p, gmins, gmaxes, children)
 
     def search(self, q, k):
-        nearest = sortedlist([(np.inf, None)] * k)
+        # max heap
+        nearest = [(-np.inf, None)] * k
         self._search(nearest, self.root, q, q, 0)
         nearest = list(nearest)
         for i, (d, n) in enumerate(nearest):
-            nearest[i] = (np.sqrt(d), n)
-        return nearest
+            nearest[i] = (np.sqrt(-d), n)
+        return sorted(nearest)
 
     # noinspection PyTypeChecker,PyUnresolvedReferences
     def _search(self, nearest, node, q, b, d_lb_sq):
@@ -74,13 +75,12 @@ class PrincipalAxisTree:
         X = self.X
         # check if node is a leaf node
         if not node.children:
-            d_k_sq = nearest[-1][0]
+            d_k_sq = -nearest[0][0]
             for p in node.points:
-                # XXX use sparse vectors & partial distance search
                 d_sq = np.sum(np.power((q - X[p]).data, 2))
                 if d_sq < d_k_sq:
-                    nearest.add((d_sq, p))
-                    d_k_sq, _ = nearest.pop()
+                    heapq.heapreplace(nearest, (-d_sq, p))
+                    d_k_sq = -nearest[0][0]
             self.n_traversed += node.points.size
             return
         # project the boundary point onto the principal axis
@@ -113,7 +113,7 @@ class PrincipalAxisTree:
         while not upper_done or not lower_done:
             if (upper_done or dl<du) and not lower_done:
                 cur_d_lb_sq = d_lb_sq + dl**2
-                if nearest[-1][0] <= cur_d_lb_sq:
+                if -nearest[0][0] <= cur_d_lb_sq:
                     # lower bound is exceeded for the child
                     lower_done = True
                     continue
@@ -128,7 +128,7 @@ class PrincipalAxisTree:
                 dl = sigma - node.gmaxes[il]
             else:
                 cur_d_lb_sq = d_lb_sq + du**2
-                if nearest[-1][0] <= cur_d_lb_sq:
+                if -nearest[0][0] <= cur_d_lb_sq:
                     # lower bound is exceeded for the child
                     upper_done = True
                     continue
