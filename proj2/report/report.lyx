@@ -75,7 +75,7 @@
 \begin_body
 
 \begin_layout Title
-k-Nearest-Neighbor Algorithms for Text Classification
+Nearest Neighbor Algorithms for Text Classification
 \end_layout
 
 \begin_layout Author
@@ -114,7 +114,27 @@ We give a review of some algorithms with faster average time, and compare
 \end_layout
 
 \begin_layout Section
-Text Modeling
+Algorithms
+\end_layout
+
+\begin_layout Subsection
+K-D Tree
+\end_layout
+
+\begin_layout Subsection
+Principal Axis Tree
+\end_layout
+
+\begin_layout Subsection
+Vantage Point Tree
+\end_layout
+
+\begin_layout Subsection
+Inverted Index
+\end_layout
+
+\begin_layout Section
+Experimental Setup
 \end_layout
 
 \begin_layout Standard
@@ -172,11 +192,21 @@ Euclidean distance was used as the distance function.
 \end_layout
 
 \begin_layout Section
-Algorithms
+Experimental Results
+\end_layout
+
+\begin_layout Standard
+# of dimensions vs.
+ average nodes visited
+\end_layout
+
+\begin_layout Standard
+# of documents vs.
+ average nodes visited
 \end_layout
 
 \begin_layout Subsection
-Principal Axis Trees
+Principal Axis Tree
 \end_layout
 
 \begin_layout Standard
@@ -192,10 +222,6 @@ Not very good for text classification.
 \begin_layout Standard
 Has a very memory usage since the principal axis are not sparse.
  A possible mitigation is the use of sparse principal component analysis.
-\end_layout
-
-\begin_layout Section
-Inverted Index
 \end_layout
 
 \end_body
