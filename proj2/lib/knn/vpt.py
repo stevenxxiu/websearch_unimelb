@@ -1,9 +1,8 @@
 
-import random
 import heapq
+import random
 import statistics
 import numpy as np
-from operator import itemgetter
 from collections import namedtuple
 
 TreeNode = namedtuple('TreeNode', ('p', 'left', 'right', 'lower_bnd', 'upper_bnd'))
@@ -59,4 +58,16 @@ class VPTree:
     def _select_vp(self, items):
         # pick a random item
         return random.choice(len(items))
+
+    def search(self, q, k):
+        # max heap
+        nearest = [(-np.inf, None)] * k
+        self._search(nearest, self.root, q)
+        nearest = list(nearest)
+        for i, (d, n) in enumerate(nearest):
+            nearest[i] = (np.sqrt(-d), n)
+        return sorted(nearest)
+
+    def _search(self, nearest, node, q):
+        pass
 
