@@ -2,7 +2,7 @@
 import numpy as np
 from collections import namedtuple
 
-TreeNode = namedtuple('Node', ('pivot', 'left', 'right'))
+TreeNode = namedtuple('Node', ('pivot', 'left', 'right', 'left_lower_bnd', 'right_lower_bnd'))
 
 class KDTree:
     def __init__(self, distance):
@@ -23,12 +23,17 @@ class KDTree:
         # sort points based on the current axis
         points.sort(key=lambda i: self.X[i,axis])
         # choose the median as the pivot
-        i = len(points)//2
-        # Create node and construct subtrees
+        i_mu = len(points)//2
+        mu = self.X[points[i_mu],axis]
+        left_lower_bnd = mu - self.X[points[i_mu-1],axis] if i_mu-1>=0 else None
+        right_lower_bnd = self.X[points[i_mu+1],axis] - mu if i_mu-1>=0 else None
+        # create node and construct subtrees
         return TreeNode(
-            pivot = points[i],
-            left = self._build_tree(points[:i], depth + 1),
-            right_child = self._build_tree(points[i + 1:], depth + 1)
+            pivot = points[i_mu],
+            left = self._build_tree(points[:i_mu], depth+1),
+            right_child = self._build_tree(points[i_mu+1:], depth+1),
+            left_lower_bnd = left_lower_bnd,
+            right_lower_bnd = right_lower_bnd
         )
 
     def search(self, q, k):
