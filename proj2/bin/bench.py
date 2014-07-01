@@ -44,7 +44,7 @@ def main():
         print(res)
 
         start = time.clock()
-        tree = KDTree(lambda x, y: np.sqrt(np.sum(np.power((x - y).data, 2))))
+        tree = KDTree()
         tree.fit(train_X)
         print('Tree construction took {} s'.format(time.clock() - start))
         start = time.clock()
