@@ -42,10 +42,3 @@ class KDTree:
 
     def _search(self, nearest, node, q):
         pass
-
-
-def main():
-    """Example usage"""
-    point_list = [(2,3), (5,4), (9,6), (4,7), (8,1), (7,2)]
-    tree = kdtree(point_list)
-    print(tree)
