@@ -219,13 +219,21 @@ Let
 \begin_inset Formula $q$
 \end_inset
 
- and the root node's pivot is computed, and stored as the current best distance
- 
+ and the root node's pivot is computed, and update this as the current best
+ distance 
 \begin_inset Formula $d$
 \end_inset
 
 .
- We check whether the nodes in each child can be closer than 
+\end_layout
+
+\begin_layout Standard
+For each child node, we check whether the points in it can be closer to
+ 
+\begin_inset Formula $q$
+\end_inset
+
+ than 
 \begin_inset Formula $d$
 \end_inset
 
@@ -233,14 +241,22 @@ Let
 \begin_inset Formula $S(q,d)$
 \end_inset
 
- with the separating hyperplane of each child.
- We can check for intersections by projecting the query point on the axis
- and adding the minimum distance to check if this is smaller than 
+ with the separating hyperplane.
+ The distance between 
+\begin_inset Formula $q$
+\end_inset
+
+ and the hyperplane can be calculated by projecting the query point on the
+ axis, and adding or subtracting the minimum distance.
+ We have no intersections if this is greater than 
 \begin_inset Formula $d$
 \end_inset
 
-.
- We can then ignore a node if there are no intersections.
+, therefore the node can be pruned.
+\end_layout
+
+\begin_layout Standard
+We repeat the process for each child node that isn't pruned.
 \end_layout
 
 \begin_layout Subsection
