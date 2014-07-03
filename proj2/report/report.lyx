@@ -3,6 +3,9 @@
 \begin_document
 \begin_header
 \textclass article
+\begin_preamble
+\usepackage{pgfplots}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -619,13 +622,160 @@ Experimental Results
 \end_layout
 
 \begin_layout Standard
-# of dimensions vs.
- average nodes visited
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+	width=210pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend pos=north west,
+\end_layout
+
+\begin_layout Plain Layout
+
+	xlabel={Number of Documents},
+\end_layout
+
+\begin_layout Plain Layout
+
+	ylabel={Average Nodes Visited},
+\end_layout
+
+\begin_layout Plain Layout
+
+	xmode=log,
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend cell align=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=*] table [x={ndocs}, y={naive}] {doc_nodes.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=x] table [x={ndocs}, y={kdt}] {doc_nodes.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=square*] table [x={ndocs}, y={pat}] {doc_nodes.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=triangle*] table [x={ndocs}, y={vpt}] {doc_nodes.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+legend{naive,kdt,pat ($n_c=30$),vpt}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Number of documents vs.
+ average nodes visited for 50 random test documents.
+ KDT is no better than naive, with VPT having slightly lower performance
+ compared to PAT.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-# of documents vs.
- average nodes visited
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Number of dimensions vs.
+ average nodes visited for 50 random test documents.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
