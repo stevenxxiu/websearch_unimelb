@@ -609,6 +609,11 @@ We implemented all of the above algorithms in python.
  time spent.
 \end_layout
 
+\begin_layout Standard
+Partial distance search were not used due to it's negligble impact on performanc
+e.
+\end_layout
+
 \begin_layout Section
 Experimental Results
 \end_layout
@@ -640,6 +645,10 @@ Not very good for text classification.
 \begin_layout Standard
 Has a very memory usage since the principal axis are not sparse.
  A possible mitigation is the use of sparse principal component analysis.
+\end_layout
+
+\begin_layout Section
+Conclusion
 \end_layout
 
 \begin_layout Section
