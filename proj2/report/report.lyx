@@ -266,7 +266,7 @@ For each child node
 \end_layout
 
 \begin_layout Standard
-We repeat the process for each child node that isn't pruned.
+This is repeated until we have searched or eliminated all nodes.
 \end_layout
 
 \begin_layout Subsection
@@ -293,8 +293,8 @@ PCA is first performed on the dataset to compute the principal axis.
 \end_layout
 
 \begin_layout Standard
-Each point in the dataset is then projected onto the axis, and split evenly
- into 
+Each point in the dataset is then projected onto the first principal axis,
+ and split evenly into 
 \begin_inset Formula $n_{c}$
 \end_inset
 
@@ -323,7 +323,10 @@ The depth-first search begins by projecting the query point onto the first
  where we compute the distance and store it as the current best.
  The algorithm then moves onto the parent node, where the elimination criterion
  is applied to the siblings of the terminal node.
- This continues until we have searched or eliminated all nodes.
+\end_layout
+
+\begin_layout Standard
+This continues until we have searched or eliminated all nodes.
 \end_layout
 
 \begin_layout Standard
@@ -526,6 +529,18 @@ Each node stores
 
 \begin_layout Subsubsection
 Tree Search
+\end_layout
+
+\begin_layout Standard
+The distance between the root node's pivot and the query is stored as the
+ current best.
+ The node visiting criterion then prefers to visit the left node if this
+ is closer to the left child, or right node otherwise.
+ A node is visited if the distance is within it's bounds.
+\end_layout
+
+\begin_layout Standard
+This is repeated until we have searched or eliminated all nodes.
 \end_layout
 
 \begin_layout Section
