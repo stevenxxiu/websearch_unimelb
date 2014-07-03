@@ -1,0 +1,511 @@
+KD tree construction took 0.26449773271238775 s
+PA tree construction took 3.140943465850667 s
+VP tree construction took 3.350631617176253 s
+Searching point 0
+Naive search took 0.0019077595347862797 s
+KD tree search took 0.48381161020447205 s
+KD tree traversed 500 nodes
+PA tree search took 0.4229602068781446 s
+PA tree traversed 500 nodes
+VP tree search took 0.4404547118597604 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0019208863205761872 s
+([(1.3194864900279062, 210)], [(1.3194864900279064, 210)], [(1.3194864900279064, 210)], [(1.3194864900279064, 210)], [(1.3194864900279064, 210)])
+Searching point 1
+Naive search took 0.0018357080661175473 s
+KD tree search took 0.45855859140837296 s
+KD tree traversed 500 nodes
+PA tree search took 0.4123843931268141 s
+PA tree traversed 500 nodes
+VP tree search took 0.4069157741667766 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018710045345748938 s
+([(1.1747364769652955, 389)], [(1.1747364769652955, 389)], [(1.1747364769652955, 389)], [(1.1747364769652955, 389)], [(1.1747364769652955, 389)])
+Searching point 2
+Naive search took 0.0018622533440488809 s
+KD tree search took 0.4670784587986656 s
+KD tree traversed 500 nodes
+PA tree search took 0.4376181593037547 s
+PA tree traversed 500 nodes
+VP tree search took 0.39789854744822684 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0019013419950670851 s
+([(1.2147125327232045, 290)], [(1.2147125327232047, 290)], [(1.2147125327232047, 290)], [(1.2147125327232047, 290)], [(1.2147125327232047, 290)])
+Searching point 3
+Naive search took 0.0017648234228531123 s
+KD tree search took 0.4832594100822458 s
+KD tree traversed 500 nodes
+PA tree search took 0.42287882080624684 s
+PA tree traversed 500 nodes
+VP tree search took 0.39103323848015137 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018745050107860095 s
+([(1.3473420396298661, 262)], [(1.3473420396298665, 262)], [(1.3473420396298665, 262)], [(1.3473420396298665, 262)], [(1.3473420396298661, 262)])
+Searching point 4
+Naive search took 0.001725734771834908 s
+KD tree search took 0.4847549885432336 s
+KD tree traversed 500 nodes
+PA tree search took 0.4159796739014716 s
+PA tree traversed 500 nodes
+VP tree search took 0.419999970829366 s
+VP tree traversed 500 nodes
+Ball tree search took 0.001929345804752458 s
+([(1.3453011717563557, 245)], [(1.3453011717563557, 245)], [(1.3453011717563557, 245)], [(1.3453011717563557, 245)], [(1.3453011717563557, 245)])
+Searching point 5
+Naive search took 0.0017884516372745907 s
+KD tree search took 0.4768716244105704 s
+KD tree traversed 500 nodes
+PA tree search took 0.42976163215537433 s
+PA tree traversed 500 nodes
+VP tree search took 0.39774977720927573 s
+VP tree traversed 500 nodes
+Ball tree search took 0.002057113186440418 s
+([(1.3312545272558152, 484)], [(1.3312545272558154, 484)], [(1.3312545272558154, 484)], [(1.3312545272558154, 484)], [(1.3312545272558152, 484)])
+Searching point 6
+Naive search took 0.0018395002486801815 s
+KD tree search took 0.47659946238519524 s
+KD tree traversed 500 nodes
+PA tree search took 0.45866360569469045 s
+PA tree traversed 500 nodes
+VP tree search took 0.39586652100796194 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018561275106812047 s
+([(1.3484112642638388, 39)], [(1.3484112642638388, 39)], [(1.3484112642638388, 39)], [(1.3484112642638388, 39)], [(1.3484112642638388, 39)])
+Searching point 7
+Naive search took 0.0017321523115541027 s
+KD tree search took 0.48752357351948206 s
+KD tree traversed 500 nodes
+PA tree search took 0.4793805907345323 s
+PA tree traversed 500 nodes
+VP tree search took 0.4000335462303539 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018435841375925577 s
+([(1.3304002142101132, 61)], [(1.3304002142101137, 61)], [(1.3304002142101137, 61)], [(1.3304002142101137, 61)], [(1.3304002142101135, 61)])
+Searching point 8
+Naive search took 0.004059093872562869 s
+KD tree search took 0.46272824198791795 s
+KD tree traversed 500 nodes
+PA tree search took 0.4169236356529318 s
+PA tree traversed 500 nodes
+VP tree search took 0.4116737964560606 s
+VP tree traversed 497 nodes
+Ball tree search took 0.0018371665978733631 s
+([(0.24692247918945062, 79)], [(0.24692247918945362, 79)], [(0.24692247918945362, 79)], [(0.24692247918945362, 79)], [(0.24692247918945109, 79)])
+Searching point 9
+Naive search took 0.0017621980656947756 s
+KD tree search took 0.4639741198125513 s
+KD tree traversed 500 nodes
+PA tree search took 0.4588978458944517 s
+PA tree traversed 500 nodes
+VP tree search took 0.3902549659359913 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018459177883975997 s
+([(1.2630856166100397, 433)], [(1.2630856166100399, 433)], [(1.2630856166100399, 433)], [(1.2630856166100399, 433)], [(1.2630856166100397, 433)])
+Searching point 10
+Naive search took 0.0017992447722576799 s
+KD tree search took 0.4781770103307821 s
+KD tree traversed 500 nodes
+PA tree search took 0.4158294451307647 s
+PA tree traversed 500 nodes
+VP tree search took 0.39157318693564136 s
+VP tree traversed 500 nodes
+Ball tree search took 0.003878235935012242 s
+([(1.2040563967809934, 482)], [(1.2040563967809932, 482)], [(1.2040563967809932, 482)], [(1.2040563967809932, 482)], [(1.2040563967809934, 482)])
+Searching point 11
+Naive search took 0.0017907852880831854 s
+KD tree search took 0.4642713685841038 s
+KD tree traversed 500 nodes
+PA tree search took 0.4169213020021232 s
+PA tree traversed 500 nodes
+VP tree search took 0.4011528234986983 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018823810822610199 s
+([(1.3309226038102315, 90)], [(1.3309226038102315, 90)], [(1.3309226038102315, 90)], [(1.3309226038102315, 90)], [(1.3309226038102315, 90)])
+Searching point 12
+Naive search took 0.0018835479076635409 s
+KD tree search took 0.6496527965158592 s
+KD tree traversed 500 nodes
+PA tree search took 0.4148064309582118 s
+PA tree traversed 500 nodes
+VP tree search took 0.3958084714441341 s
+VP tree traversed 500 nodes
+Ball tree search took 0.001963183741455765 s
+([(1.3332701999708214, 253)], [(1.3332701999708212, 253)], [(1.3332701999708212, 253)], [(1.3332701999708212, 253)], [(1.3332701999708214, 253)])
+Searching point 13
+Naive search took 0.0018056623119768744 s
+KD tree search took 0.4663223559371694 s
+KD tree traversed 500 nodes
+PA tree search took 0.41401649016001585 s
+PA tree traversed 500 nodes
+VP tree search took 0.388193185447939 s
+VP tree traversed 500 nodes
+Ball tree search took 0.001869546002819078 s
+([(1.3281446776832029, 323)], [(1.3281446776832029, 323)], [(1.3281446776832029, 323)], [(1.3281446776832029, 323)], [(1.3281446776832031, 323)])
+Searching point 14
+Naive search took 0.0017761999705392384 s
+KD tree search took 0.4615920457512246 s
+KD tree traversed 500 nodes
+PA tree search took 0.4107817584350535 s
+PA tree traversed 500 nodes
+VP tree search took 0.3865733400814726 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018838396140168356 s
+([(1.3011229795840966, 393)], [(1.3011229795840968, 393)], [(1.3011229795840968, 393)], [(1.3011229795840968, 393)], [(1.3011229795840966, 393)])
+Searching point 15
+Naive search took 0.0018173305660127426 s
+KD tree search took 0.4623738187715958 s
+KD tree traversed 500 nodes
+PA tree search took 0.4094189063637188 s
+PA tree traversed 500 nodes
+VP tree search took 0.39235525166235874 s
+VP tree traversed 500 nodes
+Ball tree search took 0.001940430646083513 s
+([(1.2257447092211384, 341)], [(1.2257447092211391, 341)], [(1.2257447092211391, 341)], [(1.2257447092211391, 341)], [(1.2257447092211384, 341)])
+Searching point 16
+Naive search took 0.0018322075899064316 s
+KD tree search took 0.44802332483981644 s
+KD tree traversed 500 nodes
+PA tree search took 0.4061631717814933 s
+PA tree traversed 500 nodes
+VP tree search took 0.3819086638244755 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0019520989001229339 s
+([(0.9324014609390443, 128)], [(0.93240146093904452, 128)], [(0.93240146093904452, 128)], [(0.93240146093904452, 128)], [(0.93240146093904441, 128)])
+Searching point 17
+Naive search took 0.0018710045345748938 s
+KD tree search took 0.4523980449840366 s
+KD tree traversed 500 nodes
+PA tree search took 0.4380312154966113 s
+PA tree traversed 500 nodes
+VP tree search took 0.38265251501923103 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0019488901302615602 s
+([(1.2023260662420485, 351)], [(1.2023260662420492, 351)], [(1.2023260662420492, 351)], [(1.2023260662420492, 351)], [(1.2023260662420485, 351)])
+Searching point 18
+Naive search took 0.0019838948923691646 s
+KD tree search took 0.4517977133139155 s
+KD tree traversed 500 nodes
+PA tree search took 0.40240803592655183 s
+PA tree traversed 500 nodes
+VP tree search took 0.5263088499331232 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0020051894559784955 s
+([(1.261827467255795, 13)], [(1.2618274672557954, 13)], [(1.2618274672557954, 13)], [(1.2618274672557954, 13)], [(1.2618274672557952, 13)])
+Searching point 19
+Naive search took 0.0019354716381201342 s
+KD tree search took 0.932488357270266 s
+KD tree traversed 500 nodes
+PA tree search took 0.8042574541911591 s
+PA tree traversed 500 nodes
+VP tree search took 0.7830270659737693 s
+VP tree traversed 500 nodes
+Ball tree search took 0.002025025487839116 s
+([(1.3118999717117883, 186)], [(1.3118999717117883, 186)], [(1.3118999717117883, 186)], [(1.3118999717117883, 186)], [(1.3118999717117883, 186)])
+Searching point 20
+Naive search took 0.035077688693895936 s
+KD tree search took 0.9250230083384281 s
+KD tree traversed 500 nodes
+PA tree search took 0.838084889465172 s
+PA tree traversed 500 nodes
+VP tree search took 0.7822435427152925 s
+VP tree traversed 500 nodes
+Ball tree search took 0.002103786202582114 s
+([(1.2796460845147091, 13)], [(1.2796460845147091, 13)], [(1.2796460845147091, 13)], [(1.2796460845147091, 13)], [(1.2796460845147091, 13)])
+Searching point 21
+Naive search took 0.0019541408445817865 s
+KD tree search took 0.7115254637766384 s
+KD tree traversed 500 nodes
+PA tree search took 0.35250524706798814 s
+PA tree traversed 500 nodes
+VP tree search took 0.3392095633010115 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0020868672342260197 s
+([(1.2088399752404466, 448)], [(1.2088399752404471, 448)], [(1.2088399752404471, 448)], [(1.2088399752404471, 448)], [(1.2088399752404466, 448)])
+Searching point 22
+Naive search took 0.00206032195629291 s
+KD tree search took 0.39803798308395244 s
+KD tree traversed 500 nodes
+PA tree search took 0.35578752692814675 s
+PA tree traversed 500 nodes
+VP tree search took 0.3455107121864671 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0024182456488404114 s
+([(1.2242369842054481, 13)], [(1.2242369842054486, 13)], [(1.2242369842054486, 13)], [(1.2242369842054486, 13)], [(1.2242369842054481, 13)])
+Searching point 23
+Naive search took 0.0021942151713574276 s
+KD tree search took 0.3889530804919872 s
+KD tree traversed 500 nodes
+PA tree search took 0.3537604594958381 s
+PA tree traversed 500 nodes
+VP tree search took 0.3424078317321104 s
+VP tree traversed 500 nodes
+Ball tree search took 0.002036985448228279 s
+([(1.1301688000365262, 454)], [(1.1301688000365264, 454)], [(1.1301688000365264, 454)], [(1.1301688000365264, 454)], [(1.1301688000365264, 454)])
+Searching point 24
+Naive search took 0.0019941046146527697 s
+KD tree search took 0.3913089009817341 s
+KD tree traversed 500 nodes
+PA tree search took 0.35914331678871747 s
+PA tree traversed 500 nodes
+VP tree search took 0.3569814810223164 s
+VP tree traversed 500 nodes
+Ball tree search took 0.002403368624939617 s
+([(1.2839116431459749, 477)], [(1.2839116431459749, 477)], [(1.2839116431459749, 477)], [(1.2839116431459749, 477)], [(1.2839116431459752, 477)])
+Searching point 25
+Naive search took 0.001966392511313586 s
+KD tree search took 0.40290656208021147 s
+KD tree traversed 500 nodes
+PA tree search took 0.3602602604062639 s
+PA tree traversed 500 nodes
+VP tree search took 0.3588101881360046 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0016440569935909366 s
+([(1.2659297215247773, 37)], [(1.2659297215247773, 37)], [(1.2659297215247773, 37)], [(1.2659297215247773, 37)], [(1.2659297215247773, 37)])
+Searching point 26
+Naive search took 0.0019573496144360547 s
+KD tree search took 0.3913789105059493 s
+KD tree traversed 500 nodes
+PA tree search took 0.3429416543542274 s
+PA tree traversed 500 nodes
+VP tree search took 0.3451023232952366 s
+VP tree traversed 500 nodes
+Ball tree search took 0.002039319099033321 s
+([(1.3297596010781083, 297)], [(1.3297596010781085, 297)], [(1.3297596010781085, 297)], [(1.3297596010781085, 297)], [(1.3297596010781083, 297)])
+Searching point 27
+Naive search took 0.0021104954486546035 s
+KD tree search took 0.3940550245689707 s
+KD tree traversed 500 nodes
+PA tree search took 0.36200641462265537 s
+PA tree traversed 500 nodes
+VP tree search took 0.34635520207228154 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0021583352901970443 s
+([(1.3269029702361854, 101)], [(1.3269029702361852, 101)], [(1.3269029702361852, 101)], [(1.3269029702361852, 101)], [(1.3269029702361854, 101)])
+Searching point 28
+Naive search took 0.0018520436217741576 s
+KD tree search took 0.38201688688065616 s
+KD tree traversed 500 nodes
+PA tree search took 0.3558578281587046 s
+PA tree traversed 500 nodes
+VP tree search took 0.3401266880681888 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0017339025496596605 s
+([(1.2741493073876171, 266)], [(1.2741493073876173, 266)], [(1.2741493073876173, 266)], [(1.2741493073876173, 266)], [(1.2741493073876171, 266)])
+Searching point 29
+Naive search took 0.002120413464581361 s
+KD tree search took 0.38420760157580247 s
+KD tree traversed 500 nodes
+PA tree search took 0.3716578109480295 s
+PA tree traversed 500 nodes
+VP tree search took 0.3437514311842804 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0015483773104918441 s
+([(1.2578983989677772, 315)], [(1.2578983989677774, 315)], [(1.2578983989677774, 315)], [(1.2578983989677774, 315)], [(1.2578983989677774, 315)])
+Searching point 30
+Naive search took 0.0013567262379652334 s
+KD tree search took 0.3664030127431914 s
+KD tree traversed 500 nodes
+PA tree search took 0.37372571726945836 s
+PA tree traversed 500 nodes
+VP tree search took 0.3176842599628671 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0022373877112897844 s
+([(1.3490215656319307, 75)], [(1.3490215656319304, 75)], [(1.3490215656319304, 75)], [(1.3490215656319304, 75)], [(1.3490215656319309, 75)])
+Searching point 31
+Naive search took 0.002272392473393836 s
+KD tree search took 0.37782973392005204 s
+KD tree traversed 500 nodes
+PA tree search took 0.38868179358566834 s
+PA tree traversed 500 nodes
+VP tree search took 0.3396354545732976 s
+VP tree traversed 500 nodes
+Ball tree search took 0.002259849100305189 s
+([(1.3127478493857867, 384)], [(1.3127478493857865, 384)], [(1.3127478493857865, 384)], [(1.3127478493857865, 384)], [(1.3127478493857867, 384)])
+Searching point 32
+Naive search took 0.0022169682667296797 s
+KD tree search took 0.3960785915250611 s
+KD tree traversed 500 nodes
+PA tree search took 0.35911735492349095 s
+PA tree traversed 500 nodes
+VP tree search took 0.3411389091057586 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0014220684605632528 s
+([(1.2000997681369545, 482)], [(1.200099768136955, 482)], [(1.200099768136955, 482)], [(1.200099768136955, 482)], [(1.2000997681369547, 482)])
+Searching point 33
+Naive search took 0.0013850217540039012 s
+KD tree search took 0.3913109429261965 s
+KD tree traversed 500 nodes
+PA tree search took 0.3548044765256577 s
+PA tree traversed 500 nodes
+VP tree search took 0.3322619931419837 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0022490559653221 s
+([(0.58187519359890261, 92)], [(0.58187519359890305, 92)], [(0.58187519359890305, 92)], [(0.58187519359890305, 92)], [(0.58187519359890272, 92)])
+Searching point 34
+Naive search took 0.0021043696152815983 s
+KD tree search took 0.42065105940454117 s
+KD tree traversed 500 nodes
+PA tree search took 0.34369454844586045 s
+PA tree traversed 500 nodes
+VP tree search took 0.32692755910334625 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0020722819166820727 s
+([(1.3196730342009781, 469)], [(1.3196730342009781, 469)], [(1.3196730342009781, 469)], [(1.3196730342009781, 469)], [(1.3196730342009781, 469)])
+Searching point 35
+Naive search took 0.002085116996120462 s
+KD tree search took 0.4049345046315693 s
+KD tree traversed 500 nodes
+PA tree search took 0.3554036413703727 s
+PA tree traversed 500 nodes
+VP tree search took 0.35504659279689577 s
+VP tree traversed 500 nodes
+Ball tree search took 0.001541084651726976 s
+([(1.2857027552761189, 397)], [(1.2857027552761189, 397)], [(1.2857027552761189, 397)], [(1.2857027552761189, 397)], [(1.2857027552761191, 397)])
+Searching point 36
+Naive search took 0.0015629626280357911 s
+KD tree search took 0.3916933699522005 s
+KD tree traversed 500 nodes
+PA tree search took 0.30161124002911066 s
+PA tree traversed 500 nodes
+VP tree search took 0.3015569826478455 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018925908045375195 s
+([(1.2283767294005239, 496)], [(1.2283767294005243, 496)], [(1.2283767294005243, 496)], [(1.2283767294005243, 496)], [(1.2283767294005241, 496)])
+Searching point 37
+Naive search took 0.00188033913780572 s
+KD tree search took 0.38517402471628515 s
+KD tree traversed 500 nodes
+PA tree search took 0.3347490814896261 s
+PA tree traversed 500 nodes
+VP tree search took 0.3169710379349553 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0014468635003908048 s
+([(1.2965677479452955, 160)], [(1.2965677479452955, 160)], [(1.2965677479452955, 160)], [(1.2965677479452955, 160)], [(1.2965677479452955, 160)])
+Searching point 38
+Naive search took 0.0012601714358240201 s
+KD tree search took 0.34261786030474184 s
+KD tree traversed 500 nodes
+PA tree search took 0.33638088681647815 s
+PA tree traversed 500 nodes
+VP tree search took 0.2986124987420169 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0014471552067405469 s
+([(1.2933812845493549, 476)], [(1.2933812845493549, 476)], [(1.2933812845493549, 476)], [(1.2933812845493549, 476)], [(1.2933812845493551, 476)])
+Searching point 39
+Naive search took 0.0013135536980328766 s
+KD tree search took 0.3676392642582442 s
+KD tree traversed 500 nodes
+PA tree search took 0.32358897991748137 s
+PA tree traversed 500 nodes
+VP tree search took 0.324452430716093 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018780054869935725 s
+([(1.3127954080261335, 139)], [(1.3127954080261333, 139)], [(1.3127954080261333, 139)], [(1.3127954080261333, 139)], [(1.3127954080261335, 139)])
+Searching point 40
+Naive search took 0.0013651857221361752 s
+KD tree search took 0.3620834250992928 s
+KD tree traversed 500 nodes
+PA tree search took 0.3395960742159332 s
+PA tree traversed 500 nodes
+VP tree search took 0.279556197957767 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0013637271903874648 s
+([(1.334797478042375, 231)], [(1.3347974780423748, 231)], [(1.3347974780423748, 231)], [(1.3347974780423748, 231)], [(1.3347974780423753, 231)])
+Searching point 41
+Naive search took 0.0012245832610133789 s
+KD tree search took 0.33509562863448394 s
+KD tree traversed 500 nodes
+PA tree search took 0.3012188949871728 s
+PA tree traversed 500 nodes
+VP tree search took 0.2811296620144361 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0013815212777927854 s
+([(1.3732130910336779, 306)], [(1.3732130910336779, 306)], [(1.3732130910336779, 306)], [(1.3732130910336779, 306)], [(1.3732130910336779, 306)])
+Searching point 42
+Naive search took 0.0013762705634761119 s
+KD tree search took 0.3555751647047032 s
+KD tree traversed 500 nodes
+PA tree search took 0.32217187046487794 s
+PA tree traversed 500 nodes
+VP tree search took 0.29049226905243586 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0013733534999644803 s
+([(0.83276823181129778, 145)], [(0.83276823181129822, 145)], [(0.83276823181129822, 145)], [(0.83276823181129822, 145)], [(0.832768231811298, 145)])
+Searching point 43
+Naive search took 0.001178493657576496 s
+KD tree search took 0.3472752439029705 s
+KD tree traversed 500 nodes
+PA tree search took 0.357268811777935 s
+PA tree traversed 500 nodes
+VP tree search took 0.29769099837956503 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0020947433057045828 s
+([(1.2109265845290667, 369)], [(1.2109265845290667, 369)], [(1.2109265845290667, 369)], [(1.2109265845290667, 369)], [(1.2109265845290667, 369)])
+Searching point 44
+Naive search took 0.001562670921686049 s
+KD tree search took 0.35997322135698795 s
+KD tree traversed 500 nodes
+PA tree search took 0.33695496491501586 s
+PA tree traversed 500 nodes
+VP tree search took 0.31903631889922224 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0021732123140978388 s
+([(1.2929523767366757, 492)], [(1.2929523767366762, 492)], [(1.2929523767366762, 492)], [(1.2929523767366762, 492)], [(1.2929523767366757, 492)])
+Searching point 45
+Naive search took 0.0019891456066787327 s
+KD tree search took 0.3592480393686941 s
+KD tree traversed 500 nodes
+PA tree search took 0.3162904870183354 s
+PA tree traversed 500 nodes
+VP tree search took 0.29455077951229214 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0021603772346594496 s
+([(1.3625879522880313, 453)], [(1.3625879522880315, 453)], [(1.3625879522880315, 453)], [(1.3625879522880315, 453)], [(1.3625879522880315, 453)])
+Searching point 46
+Naive search took 0.002083366758014904 s
+KD tree search took 0.3751156980314079 s
+KD tree traversed 500 nodes
+PA tree search took 0.32787852180723576 s
+PA tree traversed 500 nodes
+VP tree search took 0.2852363040221917 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0018596279868887677 s
+([(1.2797144375665901, 195)], [(1.2797144375665899, 195)], [(1.2797144375665899, 195)], [(1.2797144375665899, 195)], [(1.2797144375665901, 195)])
+Searching point 47
+Naive search took 0.001932262868265866 s
+KD tree search took 0.3626607119676777 s
+KD tree traversed 500 nodes
+PA tree search took 0.3088178454277255 s
+PA tree traversed 500 nodes
+VP tree search took 0.29480135526770823 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0020778243373484884 s
+([(1.2923084639656659, 287)], [(1.2923084639656663, 287)], [(1.2923084639656663, 287)], [(1.2923084639656663, 287)], [(1.2923084639656659, 287)])
+Searching point 48
+Naive search took 0.001974851995484528 s
+KD tree search took 0.3451653318670225 s
+KD tree traversed 500 nodes
+PA tree search took 0.3266478127128494 s
+PA tree traversed 500 nodes
+VP tree search took 0.3382661849622508 s
+VP tree traversed 500 nodes
+Ball tree search took 0.0014325698892037053 s
+([(1.2984360957277299, 9)], [(1.2984360957277301, 9)], [(1.2984360957277301, 9)], [(1.2984360957277301, 9)], [(1.2984360957277301, 9)])
+Searching point 49
+Naive search took 0.0013088863964156872 s
+KD tree search took 0.3619964966067215 s
+KD tree traversed 500 nodes
+PA tree search took 0.2177401217290651 s
+PA tree traversed 331 nodes
+VP tree search took 0.2728218651412391 s
+VP tree traversed 494 nodes
+Ball tree search took 0.0013330980235508605 s
+([(0.12310532067072805, 289)], [(0.12310532067072712, 289)], [(0.12310532067072712, 289)], [(0.12310532067072712, 289)], [(0.1231053206707285, 289)])
+Naive search took an average of 0.0025098706136478556 s
+KD tree search took an average of 0.44380383331315704 s
+PA tree search took an average of 0.3913286261651842 s
+VP tree search took an average of 0.3717960564218425 s
+Ball tree search took an average of 0.0019231091229706366 s
+KD tree traversed an average of 500.0 nodes
+PA tree traversed an average of 496.62 nodes
+VP tree traversed an average of 499.82 nodes
