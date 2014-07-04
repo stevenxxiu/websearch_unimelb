@@ -628,6 +628,7 @@ Experimental Results
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status collapsed
@@ -767,6 +768,7 @@ Number of documents vs.
 
 
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status collapsed
@@ -891,9 +893,10 @@ Tree construction time.
 
 
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -932,7 +935,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	ylabel={Time Taken (s)},
+	ylabel={Memory Use (bytes)},
 \end_layout
 
 \begin_layout Plain Layout
