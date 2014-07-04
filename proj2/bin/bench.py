@@ -34,7 +34,7 @@ def main():
         print(res)
 
         start = time.clock()
-        tree = VPTree(lambda x, y: np.sum(np.power((x - y).data, 2)))
+        tree = VPTree(lambda x, y: np.sqrt(np.sum(np.power((x - y).data, 2))))
         tree.fit(train_X)
         print('Tree construction took {} s'.format(time.clock() - start))
         start = time.clock()
