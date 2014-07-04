@@ -8,6 +8,7 @@ from workshops.lib.features import get_tf_idf
 from sklearn.neighbors import KNeighborsClassifier
 from proj2.lib.knn.brute import KNeighborsBrute
 from proj2.lib.knn.pat import PrincipalAxisTree
+from proj2.lib.knn.vpt import VPTree
 
 def main():
     with open('data/pickle/lyrl.db', 'rb') as docs_sr, open('data/pickle/lyrl_classif.db', 'rb') as classif_sr:
@@ -19,11 +20,21 @@ def main():
         train_X = tf_idfs[train_indexes]
         test_X = tf_idfs[test_indexes]
 
-        k = 40
+        k = 1
         leaf_size = 30
 
         start = time.clock()
         tree = PrincipalAxisTree(leaf_size)
+        tree.fit(train_X)
+        print('Tree construction took {} s'.format(time.clock() - start))
+        start = time.clock()
+        res = tree.search(test_X[0], k)
+        print('Search took {} s'.format(time.clock() - start))
+        print('Traversed {} nodes'.format(tree.n_traversed))
+        print(res)
+
+        start = time.clock()
+        tree = VPTree(lambda x, y: np.sum(np.power((x - y).data, 2)))
         tree.fit(train_X)
         print('Tree construction took {} s'.format(time.clock() - start))
         start = time.clock()
