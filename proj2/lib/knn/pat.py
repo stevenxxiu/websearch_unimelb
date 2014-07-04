@@ -55,6 +55,10 @@ class PrincipalAxisTree:
             children.append(self.build_tree(part))
         return TreeNode(points, p, gmins, gmaxes, children)
 
+    def search(self, q, k):
+        nearest = sortedlist([(0, None)] * k)
+        return self._search(nearest, self.root, q, q, 0)
+
     def _search(self, nearest, node, q, b, d_lb_sq):
         '''
         args:
