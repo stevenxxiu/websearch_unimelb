@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass article
@@ -15,13 +15,13 @@
 \font_roman lmodern
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family rmdefault
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -41,15 +41,24 @@
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Index
 \shortcut idx
@@ -103,16 +112,19 @@ The
 \end_layout
 
 \begin_layout Standard
-It can in particular be used for text classification, achieves good effectivenes
-s comparable but less than that of support vector machines.
- It can also handle multiple classes directly, but a naive implementation
- has high computational time and memory requirements, which are linear to
- the number of training examples.
+\begin_inset Formula $k$
+\end_inset
+
+-nearest-neighbors can in particular be used for text classification, where
+ it can handle multiple classes directly, and achieves good effectiveness
+ comparable but less than that of support vector machines.
 \end_layout
 
 \begin_layout Standard
-We give a review of some algorithms with faster average time, and compare
- them for their effectiveness on text classification.
+A linear search has high computational time and memory requirements when
+ there are a large number of documents to search through.
+ We give a review of some more efficient algorithms, and compare them for
+ their effectiveness on text classification.
 \end_layout
 
 \begin_layout Section
@@ -121,23 +133,23 @@ Algorithms
 
 \begin_layout Standard
 A common approach to search for exact nearest neighbors is by organizing
- points in the database into a tree structure, then using branch and bound
- to prune portions of the tree which are known to be non-optimal.
- Algorithms include the K-D tree 
+ points in the database into a space partitioning tree, then using branch
+ and bound to prune portions of the tree which are known to be non-optimal.
+ Algorithms include the k-dimensional (kd) tree 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sproull_refinements_1991"
 
 \end_inset
 
-, the principal axis tree 
+, the principal axis (pa) tree 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mcnames_fast_2001"
 
 \end_inset
 
-, and the vantage point tree 
+, and the vantage point (vp) tree 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "yianilos_data_1993"
@@ -148,11 +160,11 @@ key "yianilos_data_1993"
 \end_layout
 
 \begin_layout Standard
-Faster-than-naive algorithms on high-dimensional datasets often depend on
- a low intrinsic dimension 
+However algorithms depend on a low intrinsic dimension of the dataset, as
+ for sufficiently high dimensions none are better than linear search 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "mcnames_fast_2001"
+key "weber_quantitative_1998"
 
 \end_inset
 
@@ -160,17 +172,18 @@ key "mcnames_fast_2001"
 \end_layout
 
 \begin_layout Standard
-We only give algorithms to find the single nearest point, but it is easy
- to find multiple nearest points by using a max-heap to store the best distances
-, then using the maximum distance in the heap for comparison during search.
+We describe these algorithms for finding the single nearest point.
+ It is easy to find multiple nearest points by using a max-heap to store
+ the best distances, then using the maximum distance in the heap for comparison
+ during search.
 \end_layout
 
 \begin_layout Subsection
-K-D Tree
+KD Tree
 \end_layout
 
 \begin_layout Standard
-A k-d tree is a space partitioning binary tree, with an axis selected at
+A kd tree is a space partitioning binary tree, with an axis selected at
  each node to partition it's set of points.
  There are many ways to choose the axis, the simplest way is to cycle it
  amongst the dimensions of the dataset, described below.
@@ -277,8 +290,8 @@ Principal Axis Tree
 \end_layout
 
 \begin_layout Standard
-A principal axis tree is similar to that of a k-d tree, where the axis are
- selected to be the principal components of the dataset.
+A pa tree is similar to that of a kd tree, where the axis are selected to
+ be the principal components of the dataset.
  This splits the data amongst the axis of most variance into a predefined
  
 \begin_inset Formula $n_{c}$
@@ -340,7 +353,7 @@ Regions closer to the one the query point is in are therefore visited first,
 \begin_layout Standard
 The elimination criterion for the root regions compares it's closest separating
  hyperplane's distance to the query point, and the current best distance,
- same as a k-d tree.
+ same as a kd tree.
  For a child region 
 \begin_inset Formula $r_{n}$
 \end_inset
@@ -424,7 +437,7 @@ Vantage Point Tree
 \end_layout
 
 \begin_layout Standard
-Both the k-d tree and the principal axis tree require Euclidean distances.
+Both the kd tree and the pa tree require Euclidean distances.
  The vantage point tree is a binary tree which can work with any metric.
  Cosine distance in particular can be turned into a metric.
 \end_layout
@@ -607,14 +620,14 @@ Euclidean distance was used as the distance function, which is rank-equivalent
 
 \begin_layout Standard
 To compute the principal axes, power iteration was used with a maximum of
- 1000 iterations.
+ 1,000 iterations.
 \end_layout
 
 \begin_layout Standard
 We implemented all of the above algorithms in python.
- Due to python's performance limits compared to the naive algorithm's C
- implementation, we evaluated query performance based on the number of distances
- computed instead of the total time spent.
+ Due to python's performance limits compared to the linear search's C implementa
+tion, we evaluated query performance based on the number of distances computed
+ instead of the total time spent.
 \end_layout
 
 \begin_layout Standard
@@ -624,6 +637,10 @@ e.
 
 \begin_layout Section
 Experimental Results
+\end_layout
+
+\begin_layout Subsection
+Query Performance
 \end_layout
 
 \begin_layout Standard
@@ -692,7 +709,7 @@ tiny},
 
 
 \backslash
-addplot[mark=o] table [x={ndocs}, y={naive}] {ndocs_nodes.dat};
+addplot[mark=o] table [x={ndocs}, y={brute}] {ndocs_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
@@ -727,7 +744,7 @@ addplot[mark=diamond] table [x={ndocs}, y={vpt}] {ndocs_nodes.dat};
 
 
 \backslash
-legend{naive,kdt,pat ($n_c=10$),pat ($n_c=30$),vpt}
+legend{linear search,kdt,pat ($n_c=10$),pat ($n_c=30$),vpt}
 \end_layout
 
 \begin_layout Plain Layout
@@ -750,13 +767,12 @@ end{tikzpicture}
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Number of documents vs.
  average nodes visited for 50 random test documents.
- KDT is no better than naive, with VPT having slightly lower performance
- compared to PAT.
+ kd trees were no better than a linear search.
 \end_layout
 
 \end_inset
@@ -767,6 +783,327 @@ Number of documents vs.
 \end_inset
 
 
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="1.6cm">
+<column alignment="center" valignment="top" width="1.6cm">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N docs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+KDT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PAT (
+\begin_inset Formula $n_{c}=10$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PAT (
+\begin_inset Formula $n_{c}=30$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VPT
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+22.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+70
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average nodes visited for identical documents.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+None of the algorithms appear to exhibit logarithmic query time, but both
+ vp trees and pa trees performed better than the naive algorithm.
+ Both also performed quite well for identical documents.
+\end_layout
+
+\begin_layout Subsubsection
+KD Tree
+\end_layout
+
+\begin_layout Standard
+The kd tree was expected to perform poorly due to the high dimensionality
+ of the data.
+ This is since it reduces the effectiveness of the bound 
+\begin_inset Formula $lb_{i}$
+\end_inset
+
+, which only involves a single dimension.
+\end_layout
+
+\begin_layout Standard
+But it did not perform better at all compared to linear search.
+ This can possibly be explained by the large number of dimensions involving
+ rare words, which leads to the two partitions being highly unbalanced,
+ therefore a highly unbalanced search tree.
+ Since rare words also have low weights, this decreases 
+\begin_inset Formula $lb_{i}$
+\end_inset
+
+ further.
+\end_layout
+
+\begin_layout Subsubsection
+Principal Axis Tree
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+	width=220pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend style={legend pos=north west,font=
+\backslash
+tiny},
+\end_layout
+
+\begin_layout Plain Layout
+
+	xlabel={Minimum Distance},
+\end_layout
+
+\begin_layout Plain Layout
+
+	ylabel={Nodes Traversed},
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend cell align=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[only marks,mark=x] table [x={dist}, y={pat_10}] {nodes_dist_pat_10.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+legend{pat ($n_c=10$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nodes traversed vs minimum distance for all test points.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Better choice of axes compared to the kd-tree leads to better efficiency.
+ A smaller 
+\begin_inset Formula $n_{c}$
+\end_inset
+
+ also appears to be better.
+\end_layout
+
+\begin_layout Standard
+Despite the lowest average query times, pa trees showed greater variance.
+ In particular, there were 42% of test documents where all leaf nodes were
+ visited for 
+\begin_inset Formula $n_{c}=10$
+\end_inset
+
+, and 64% for 
+\begin_inset Formula $n_{c}=30$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Vantage Point Tree
+\end_layout
+
+\begin_layout Standard
+ZPS is not true, but is true for most points 
+\end_layout
+
+\begin_layout Subsection
+Tree Construction
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement h
 wide false
@@ -810,7 +1147,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	ylabel={Time Taken (s)},
+	ylabel={Time Spent (s)},
 \end_layout
 
 \begin_layout Plain Layout
@@ -878,10 +1215,10 @@ end{tikzpicture}
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Tree construction time.
+Tree construction CPU time.
 \end_layout
 
 \end_inset
@@ -935,7 +1272,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	ylabel={Memory Use (bytes)},
+	ylabel={Memory Used (bytes)},
 \end_layout
 
 \begin_layout Plain Layout
@@ -1003,10 +1340,10 @@ end{tikzpicture}
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Tree construction process memory usage.
+Tree process memory usage.
 \end_layout
 
 \end_inset
@@ -1019,22 +1356,8 @@ Tree construction process memory usage.
 
 \end_layout
 
-\begin_layout Subsection
-Principal Axis Tree
-\end_layout
-
 \begin_layout Standard
-Not very good for text classification.
- None of the nodes in the tree were pruned from the document set.
- The main problem is that the document vectors are usually far away from
- the boundary point (XXX have a table to support this).
- A possible explanation for this is that documents usually contain only
- very few words for a given topic relative to the length of the document
- vector, with the topic here being the principal axis vector.
-\end_layout
-
-\begin_layout Standard
-Has a very memory usage since the principal axis are not sparse.
+The pa tree had a very memory usage since the principal axes was not sparse.
  A possible mitigation is the use of sparse principal component analysis.
 \end_layout
 

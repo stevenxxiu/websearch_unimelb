@@ -1,4 +1,4 @@
-ndocs   naive   kdt     pat_10      pat_30      vpt
+ndocs   brute   kdt     pat_10      pat_30      vpt
 100     100     100     100         100         99.8
 200     200     200     200         200         200
 500     500     500     494.4       496.52      498.74
