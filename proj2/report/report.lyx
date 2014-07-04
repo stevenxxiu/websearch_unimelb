@@ -811,7 +811,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	ylabel={Time taken},
+	ylabel={Time taken (s)},
 \end_layout
 
 \begin_layout Plain Layout
