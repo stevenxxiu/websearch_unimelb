@@ -12,12 +12,12 @@ def main():
         # noinspection PyArgumentList
         docs_data = pickle.load(docs_sr)
         # noinspection PyArgumentList
-        classif_data = pickle.load(classif_sr)
         tf_idfs = l2_norm_sparse(get_tf_idf(docs_data.freq_matrix))
         train_indexes, test_indexes = get_train_test(len(docs_data.docs), 2000, 500)
         train_X = tf_idfs[train_indexes]
         test_X = tf_idfs[test_indexes]
-        tree = PrincipalAxisTree(train_X.T, 5)
+        tree = PrincipalAxisTree(6)
+        tree.fit(train_X)
         tree.search(test_X[0], 40)
 
 if __name__ == '__main__':

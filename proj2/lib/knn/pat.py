@@ -3,56 +3,61 @@ import numpy as np
 import bisect
 from collections import namedtuple
 from blist import sortedlist
-from proj2.lib.linalg.eig import power_iter
+from sklearn.decomposition import TruncatedSVD
 from proj2.lib.linalg.dist import dist_sq_lt
 
 TreeNode = namedtuple('TreeNode', ('points', 'p', 'gmins', 'gmaxes', 'children'))
 
 class PrincipalAxisTree:
-    def __init__(self, X, nc):
+    def __init__(self, nc):
         '''
-        Construct a principal axis tree for a list of column vectors.
+        Construct a principal axis tree for a list of row vectors.
         '''
-        self.X = X
         self.nc = nc
-        self.root = self.build_tree(tuple(range(X.shape[1])))
+        self.X = None
+        self.root = None
+        self.pca = TruncatedSVD(1)
 
-    def build_tree(self, points):
+    def fit(self, X):
+        self.X = X
+        self.root = self._build_tree(np.array(range(X.shape[0])))
+
+    def _build_tree(self, points):
         nc = self.nc
-        ny = points.size[0]
+        ny = points.size
+        pca = self.pca
         Y = self.X[points]
-        if ny < nc:
+        if ny <= nc:
             # construct leaf node
             return TreeNode(points, None, None, None, ())
-        # convert Y to a matrix with mean 0
-        Y -= np.mean(Y, axis=1)
         # calculate the largest principal axis
-        p = power_iter(Y.T*Y)
+        pca.fit(Y)
+        p = pca.components_[0]
         # project vectors in Y onto the principal axis (unit vector)
         g = Y*p
         # divide vectors in G into regions with similar numbers of points
-        points_sorted = points[np.argsort(g)]
-        parts = []
+        i_sorted = np.argsort(g)
+        i_parts = []
         offset = 0
-        for i in range(ny//nc):
-            next_offset = offset + nc
-            parts.append(points_sorted[offset:next_offset])
+        for i in range(nc-ny%nc):
+            next_offset = offset + ny//nc
+            i_parts.append(i_sorted[offset:next_offset])
             offset = next_offset
         for i in range(ny%nc):
-            next_offset = offset + nc + 1
-            parts.append(points_sorted[offset:next_offset])
+            next_offset = offset + ny//nc + 1
+            i_parts.append(i_sorted[offset:next_offset])
             offset = next_offset
         # calculate gmins & gmaxes, these two values form the bounds of the hyperplanes
         # each partition of points is in
         gmins = []
         gmaxes = []
-        for part in parts:
-            gmins.append(np.min(g[part]))
-            gmaxes.append(np.max(g[part]))
+        for i_part in i_parts:
+            gmins.append(np.min(g[i_part]))
+            gmaxes.append(np.max(g[i_part]))
         # construct children
         children = []
-        for part in parts:
-            children.append(self.build_tree(part))
+        for i_part in i_parts:
+            children.append(self._build_tree(points[i_part]))
         return TreeNode(points, p, gmins, gmaxes, children)
 
     def search(self, q, k):
