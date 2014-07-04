@@ -783,190 +783,11 @@ Number of documents vs.
 \end_inset
 
 
-\begin_inset Float table
-placement h
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="5">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top" width="1.6cm">
-<column alignment="center" valignment="top" width="1.6cm">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-N docs
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-KDT
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-PAT (
-\begin_inset Formula $n_{c}=10$
-\end_inset
-
-)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-PAT (
-\begin_inset Formula $n_{c}=30$
-\end_inset
-
-)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-VPT
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-20000
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-20000
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-22.5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-70
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Average nodes visited for identical documents.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-None of the algorithms appear to exhibit logarithmic query time, but both
- vp trees and pa trees performed better than the naive algorithm.
- Both also performed quite well for identical documents.
-\end_layout
-
-\begin_layout Subsubsection
-KD Tree
-\end_layout
-
-\begin_layout Standard
-The kd tree was expected to perform poorly due to the high dimensionality
- of the data.
- This is since it reduces the effectiveness of the bound 
-\begin_inset Formula $lb_{i}$
-\end_inset
-
-, which only involves a single dimension.
-\end_layout
-
-\begin_layout Standard
-But it did not perform better at all compared to linear search.
- This can possibly be explained by the large number of dimensions involving
- rare words, which leads to the two partitions being highly unbalanced,
- therefore a highly unbalanced search tree.
- Since rare words also have low weights, this decreases 
-\begin_inset Formula $lb_{i}$
-\end_inset
-
- further.
-\end_layout
-
-\begin_layout Subsubsection
-Principal Axis Tree
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1066,6 +887,42 @@ Nodes traversed vs minimum distance for all test points.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+None of the algorithms appear to exhibit logarithmic query time, but both
+ vp trees and pa trees performed better than the naive algorithm.
+ The performance benefit increases the smaller the minimum distance is.
+\end_layout
+
+\begin_layout Subsubsection
+KD Tree
+\end_layout
+
+\begin_layout Standard
+The kd tree was expected to perform poorly due to the high dimensionality
+ of the data.
+ This is since it reduces the effectiveness of the bound 
+\begin_inset Formula $lb_{i}$
+\end_inset
+
+, which only involves a single dimension.
+\end_layout
+
+\begin_layout Standard
+But it did not perform better at all compared to linear search.
+ This can possibly be explained by the large number of dimensions involving
+ rare words, which leads to the two partitions being highly unbalanced,
+ therefore a highly unbalanced search tree.
+ Since rare words also have low weights, this decreases 
+\begin_inset Formula $lb_{i}$
+\end_inset
+
+ further.
+\end_layout
+
+\begin_layout Subsubsection
+Principal Axis Tree
 \end_layout
 
 \begin_layout Standard
