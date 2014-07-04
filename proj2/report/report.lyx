@@ -606,10 +606,15 @@ Euclidean distance was used as the distance function, which is rank-equivalent
 \end_layout
 
 \begin_layout Standard
+To compute the principal axes, power iteration was used with a maximum of
+ 1000 iterations.
+\end_layout
+
+\begin_layout Standard
 We implemented all of the above algorithms in python.
- Due to python's performance limits compared to other languages, we evaluated
- performance based on the number of distances computed instead of the total
- time spent.
+ Due to python's performance limits compared to the naive algorithm's C
+ implementation, we evaluated query performance based on the number of distances
+ computed instead of the total time spent.
 \end_layout
 
 \begin_layout Standard
@@ -647,7 +652,7 @@ begin{axis}[
 
 \begin_layout Plain Layout
 
-	width=210pt,
+	width=220pt,
 \end_layout
 
 \begin_layout Plain Layout
@@ -684,35 +689,35 @@ begin{axis}[
 
 
 \backslash
-addplot[mark=o] table [x={ndocs}, y={naive}] {doc_nodes.dat};
+addplot[mark=o] table [x={ndocs}, y={naive}] {ndocs_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-addplot[mark=x] table [x={ndocs}, y={kdt}] {doc_nodes.dat};
+addplot[mark=x] table [x={ndocs}, y={kdt}] {ndocs_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-addplot[mark=square] table [x={ndocs}, y={pat_10}] {doc_nodes.dat};
+addplot[mark=square] table [x={ndocs}, y={pat_10}] {ndocs_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-addplot[mark=triangle] table [x={ndocs}, y={pat_30}] {doc_nodes.dat};
+addplot[mark=triangle] table [x={ndocs}, y={pat_30}] {ndocs_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-addplot[mark=diamond] table [x={ndocs}, y={vpt}] {doc_nodes.dat};
+addplot[mark=diamond] table [x={ndocs}, y={vpt}] {ndocs_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
@@ -749,6 +754,131 @@ Number of documents vs.
  average nodes visited for 50 random test documents.
  KDT is no better than naive, with VPT having slightly lower performance
  compared to PAT.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+	width=220pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend pos=north west,
+\end_layout
+
+\begin_layout Plain Layout
+
+	xlabel={Number of Documents},
+\end_layout
+
+\begin_layout Plain Layout
+
+	ylabel={Time taken},
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend cell align=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=x] table [x={ndocs}, y={kdt}] {ndocs_time.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=square] table [x={ndocs}, y={pat_10}] {ndocs_time.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=triangle] table [x={ndocs}, y={pat_30}] {ndocs_time.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=diamond] table [x={ndocs}, y={vpt}] {ndocs_time.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+legend{kdt,pat ($n_c=10$),pat ($n_c=30$),vpt}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Time taken to construct the trees.
 \end_layout
 
 \end_inset
