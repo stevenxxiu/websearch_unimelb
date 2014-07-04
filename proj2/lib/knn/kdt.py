@@ -26,7 +26,7 @@ class KDTree:
         i_mu = len(points)//2
         mu = self.X[points[i_mu],axis]
         left_lower_bnd = mu - self.X[points[i_mu-1],axis] if i_mu-1>=0 else None
-        right_lower_bnd = self.X[points[i_mu+1],axis] - mu if i_mu-1>=0 else None
+        right_lower_bnd = self.X[points[i_mu+1],axis] - mu if i_mu+1<len(points) else None
         # create node and construct subtrees
         return TreeNode(
             pivot = points[i_mu],
