@@ -16,12 +16,22 @@ def main():
     with open('data/pickle/lyrl.db', 'rb') as docs_sr, open('data/pickle/lyrl_classif.db', 'rb') as classif_sr:
         docs_data = pickle.load(docs_sr)
         tf_idfs = l2_norm_sparse(get_tf_idf(docs_data.freq_matrix))
-        train_indexes, test_indexes = get_train_test(len(docs_data.docs), 2000, 500)
+        train_indexes, test_indexes = get_train_test(len(docs_data.docs), 100, 500)
         train_X = tf_idfs[train_indexes]
         test_X = tf_idfs[test_indexes]
 
         k = 1
         leaf_size = 30
+
+        start = time.clock()
+        tree = KDTree()
+        tree.fit(train_X)
+        print('Tree construction took {} s'.format(time.clock() - start))
+        start = time.clock()
+        res = tree.search(test_X[0], k)
+        print('Search took {} s'.format(time.clock() - start))
+        print('Traversed {} nodes'.format(tree.n_traversed))
+        print(res)
 
         start = time.clock()
         tree = PrincipalAxisTree(leaf_size)
@@ -35,16 +45,6 @@ def main():
 
         start = time.clock()
         tree = VPTree(lambda x, y: np.sqrt(np.sum(np.power((x - y).data, 2))))
-        tree.fit(train_X)
-        print('Tree construction took {} s'.format(time.clock() - start))
-        start = time.clock()
-        res = tree.search(test_X[0], k)
-        print('Search took {} s'.format(time.clock() - start))
-        print('Traversed {} nodes'.format(tree.n_traversed))
-        print(res)
-
-        start = time.clock()
-        tree = KDTree()
         tree.fit(train_X)
         print('Tree construction took {} s'.format(time.clock() - start))
         start = time.clock()
