@@ -664,7 +664,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	xlabel={Number of Documents},
+	xlabel={Number of Documents (log scale)},
 \end_layout
 
 \begin_layout Plain Layout
