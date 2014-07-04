@@ -630,7 +630,7 @@ Experimental Results
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -766,13 +766,10 @@ Number of documents vs.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -811,7 +808,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	ylabel={Time taken (s)},
+	ylabel={Time Taken (s)},
 \end_layout
 
 \begin_layout Plain Layout
@@ -882,7 +879,131 @@ end{tikzpicture}
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Time taken to construct the trees.
+Tree construction time.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+	width=220pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend style={legend pos=north west,font=
+\backslash
+tiny},
+\end_layout
+
+\begin_layout Plain Layout
+
+	xlabel={Number of Documents},
+\end_layout
+
+\begin_layout Plain Layout
+
+	ylabel={Time Taken (s)},
+\end_layout
+
+\begin_layout Plain Layout
+
+	legend cell align=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=x] table [x={ndocs}, y={kdt}] {ndocs_memory.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=square] table [x={ndocs}, y={pat_10}] {ndocs_memory.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=triangle] table [x={ndocs}, y={pat_30}] {ndocs_memory.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[mark=diamond] table [x={ndocs}, y={vpt}] {ndocs_memory.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+legend{kdt,pat ($n_c=10$),pat ($n_c=30$),vpt}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tree construction process memory usage.
 \end_layout
 
 \end_inset
