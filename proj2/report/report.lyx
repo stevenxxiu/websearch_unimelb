@@ -119,8 +119,12 @@ Text Modeling
 
 \begin_layout Standard
 We used 30,000 documents from the RCV1v2 document collection.
- The bag of words model and tf-idf weights were used to pre-process each
- document, with the following formulas:
+ To pre-process each document, we used the bag of words model and unit-length
+ normalized tf-idf weights using the 
+\begin_inset Formula $l_{2}$
+\end_inset
+
+ metric, with the following formulas:
 \end_layout
 
 \begin_layout Standard
@@ -161,6 +165,10 @@ is the number of documents term
 \end_inset
 
  is the number of documents in the collection.
+\end_layout
+
+\begin_layout Standard
+Euclidean distance was used as the distance function.
 \end_layout
 
 \end_body
