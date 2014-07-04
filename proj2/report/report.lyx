@@ -108,10 +108,59 @@ s comparable but less than that of support vector machines.
 \end_layout
 
 \begin_layout Standard
-We investigate some algorithms with faster average time, using the bag-of-words
- model and tf-idf weights, to see which are more suitable for text classificatio
-n.
+We give a review of some algorithms with faster average time, and compare
+ them for their effectiveness on text classification.
  We will also investigate the effect of an inverted index on time and memory.
+\end_layout
+
+\begin_layout Section
+Text Modeling
+\end_layout
+
+\begin_layout Standard
+We used 30,000 documents from the RCV1v2 document collection.
+ The bag of words model and tf-idf weights were used to pre-process each
+ document, with the following formulas:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+tf_{d,t} & =log(1+f_{d,t})\\
+idf_{t} & =log(\frac{N}{f_{t}})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $f_{d,t}$
+\end_inset
+
+ is the number of times term 
+\begin_inset Formula $t$
+\end_inset
+
+ appears in the document 
+\begin_inset Formula $d$
+\end_inset
+
+; 
+\begin_inset Formula $f_{t}$
+\end_inset
+
+is the number of documents term 
+\begin_inset Formula $t$
+\end_inset
+
+ appears in throughout the collection; and 
+\begin_inset Formula $N$
+\end_inset
+
+ is the number of documents in the collection.
 \end_layout
 
 \end_body
