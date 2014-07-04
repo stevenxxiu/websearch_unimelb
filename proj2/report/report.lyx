@@ -182,8 +182,15 @@ Principal Axis Trees
 \begin_layout Standard
 Not very good for text classification.
  Very few nodes in the tree are pruned.
- A small amount of points per leaf is required to prune more nodes, but
- this has a very memory usage since the principal axis are not sparse.
+ The main problem is probably the same as kd-trees: since the boundaries
+ for tree nodes are hyperplanes, for large dimensions, a small variation
+ in the dimension of the query point is likely to result in a bigger change
+ between the distance between the projected point and a point on the boundary.
+ But the paper says that large dimensions are alright?
+\end_layout
+
+\begin_layout Standard
+Has a very memory usage since the principal axis are not sparse.
  A possible mitigation is the use of sparse principal component analysis.
 \end_layout
 
