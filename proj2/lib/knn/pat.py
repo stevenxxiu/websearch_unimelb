@@ -58,6 +58,7 @@ class PrincipalAxisTree:
         return TreeNode(None, p, gmins, gmaxes, children)
 
     def search(self, q, k):
+        self.n_traversed = 0
         # max heap
         nearest = [(-np.inf, None)] * k
         self._search(nearest, self.root, q, q, 0)

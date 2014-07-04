@@ -37,6 +37,7 @@ class KDTree:
         )
 
     def search(self, q, k):
+        self.n_traversed = 0
         # max heap
         nearest = [(-np.inf, None)] * k
         self._search(nearest, self.root, q, 0)
@@ -45,6 +46,7 @@ class KDTree:
             nearest[i] = (-d, n)
         return sorted(nearest)
 
+    # noinspection PyUnresolvedReferences
     def _search(self, nearest, node, q, depth):
         if not node:
             return

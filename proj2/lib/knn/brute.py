@@ -7,10 +7,12 @@ class KNeighborsBrute:
         self.X = None
         self.X_l2_sq = None
 
+    # noinspection PyUnresolvedReferences
     def fit(self, X):
         self.X = X
         self.X_l2_sq = np.power(l2_sparse(X), 2)
 
+    # noinspection PyTypeChecker,PyUnresolvedReferences
     def kneighbors(self, y, k=None):
         dists = np.asarray(np.sqrt(self.X_l2_sq + np.power(l2_sparse(y), 2).T - 2*self.X*y.T).T)[0]
         if k is None:

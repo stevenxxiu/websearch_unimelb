@@ -65,11 +65,13 @@ class VPTree:
             node.right.upper_bnd = max(right_dists)
         return node
 
-    def _select_vp(self, items):
+    @staticmethod
+    def _select_vp(items):
         # pick a random item
         return random.randrange(len(items))
 
     def search(self, q, k):
+        self.n_traversed = 0
         # max heap
         nearest = [(-np.inf, None)] * k
         self._search(nearest, self.root, q)
