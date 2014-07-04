@@ -7,3 +7,7 @@
 
 #caches
 __pycache__
+
+#lyx
+*.lyx~
+\#*.lyx\#
