@@ -1266,10 +1266,29 @@ The vp tree shows approximately
 Overall, in our implementation, no search algorithm achieved significantly
  better query performance compared to linear search, but incurred much higher
  time and memory costs during tree construction.
+ Therefore, unless it is known in advance that the query point is very close
+ to some existing point, linear search is the most practical solution.
 \end_layout
 
 \begin_layout Section
-Conclusion
+Concluding Remarks
+\end_layout
+
+\begin_layout Standard
+We implemented and investigated three exact nearest neighbor algorithms
+ based on space partitioning trees.
+ None appeared to be particularly suitable to the problem of text classification.
+\end_layout
+
+\begin_layout Standard
+There were however some positive results when the query point was close
+ to an existing point in the database.
+ This could be a point of further investigation to improve these algorithms.
+\end_layout
+
+\begin_layout Standard
+Other exact nearest neighbor and approximate nearest neighbor techniques
+ could be used as comparison in the future.
 \end_layout
 
 \begin_layout Section
