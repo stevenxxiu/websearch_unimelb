@@ -6,6 +6,7 @@ from workshops.lib.classif import get_train_test
 from workshops.lib.weights import l2_norm_sparse
 from workshops.lib.features import get_tf_idf
 from sklearn.neighbors import KNeighborsClassifier
+from proj2.lib.knn.brute import KNeighborsBrute
 from proj2.lib.knn.pat import PrincipalAxisTree
 
 def main():
@@ -18,23 +19,30 @@ def main():
         train_X = tf_idfs[train_indexes]
         test_X = tf_idfs[test_indexes]
 
-        tree = PrincipalAxisTree(6)
+        start = time.clock()
+        tree = PrincipalAxisTree(30)
         tree.fit(train_X)
+        print('Tree construction took {} s'.format(time.clock() - start))
         start = time.clock()
         res = tree.search(test_X[0], 40)
-        print('Search took {} ms'.format(time.clock() - start))
+        print('Search took {} s'.format(time.clock() - start))
         print(res)
 
         tree = KNeighborsClassifier(40, leaf_size=30)
         tree.fit(train_X, np.zeros(train_X.shape[0]))
         start = time.clock()
         res = tree.kneighbors(test_X[0], 40)
-        print('Search took {} ms'.format(time.clock() - start))
-        print(list(zip(res[0][0], res[1][0])))
+        res = list(zip(res[0][0], res[1][0]))
+        print('Search took {} s'.format(time.clock() - start))
+        print(res)
 
+        # to be fair, don't assume normalized
+        tree = KNeighborsBrute()
+        tree.fit(train_X)
         start = time.clock()
-        res = train_X*test_X[0].T
-        print('Search took {} ms'.format(time.clock() - start))
+        res = tree.kneighbors(test_X[0], 40)
+        print('Search took {} s'.format(time.clock() - start))
+        print(res)
 
 if __name__ == '__main__':
     main()
