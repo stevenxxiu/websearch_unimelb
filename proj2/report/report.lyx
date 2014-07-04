@@ -682,7 +682,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	xlabel={Number of Documents (log scale)},
+	xlabel={Database Size (log scale)},
 \end_layout
 
 \begin_layout Plain Layout
@@ -770,7 +770,7 @@ end{tikzpicture}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Number of documents vs.
+Database size vs.
  average nodes visited for 50 random test documents.
  kd trees were no better than a linear search.
 \end_layout
@@ -876,7 +876,8 @@ end{tikzpicture}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Nodes traversed vs minimum distance for all test points.
+Nodes traversed vs minimum distance for all test points, for a database
+ of size 20000.
 \end_layout
 
 \end_inset
@@ -999,7 +1000,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	xlabel={Number of Documents},
+	xlabel={Database Size},
 \end_layout
 
 \begin_layout Plain Layout
@@ -1090,7 +1091,7 @@ Tree construction CPU time.
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1124,7 +1125,7 @@ tiny},
 
 \begin_layout Plain Layout
 
-	xlabel={Number of Documents},
+	xlabel={Database Size},
 \end_layout
 
 \begin_layout Plain Layout
