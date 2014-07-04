@@ -787,7 +787,7 @@ Database size vs.
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -814,7 +814,7 @@ begin{axis}[
 
 \begin_layout Plain Layout
 
-	legend style={legend pos=north west,font=
+	legend style={legend pos=south east,font=
 \backslash
 tiny},
 \end_layout
@@ -843,14 +843,28 @@ tiny},
 
 
 \backslash
-addplot[only marks,mark=x] table [x={dist}, y={pat_10}] {nodes_dist_pat_10.dat};
+addplot[only marks,mark=square] table [x={dist}, y={pat_10}] {nodes_dist.dat};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-legend{pat ($n_c=10$)}
+addplot[only marks,mark=triangle] table [x={dist}, y={pat_30}] {nodes_dist.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[only marks,mark=diamond] table [x={dist}, y={vpt}] {nodes_dist.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+legend{pat ($n_c=10$),pat ($n_c=30$),vpt}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1091,7 +1105,7 @@ Tree construction CPU time.
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
