@@ -26,6 +26,7 @@ def main():
         start = time.clock()
         res = tree.search(test_X[0], 40)
         print('Search took {} s'.format(time.clock() - start))
+        print('Traversed {} nodes'.format(tree.n_traversed))
         print(res)
 
         tree = KNeighborsClassifier(40, leaf_size=30)
