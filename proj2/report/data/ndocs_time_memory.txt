@@ -1,0 +1,632 @@
+2000
+KD tree construction took 0.8255622275280367 s
+KD tree construction used 147963904 bytes
+power iteration failed to converge in 1000 iterations, error: 0.00046978732744171577
+power iteration failed to converge in 1000 iterations, error: 4.931230652294801e-06
+power iteration failed to converge in 1000 iterations, error: 4.4580340217284016e-05
+power iteration failed to converge in 1000 iterations, error: 1.5545936527602974e-07
+power iteration failed to converge in 1000 iterations, error: 0.0004689709865508872
+PA tree 10 construction took 37.599478429044616 s
+PA tree 10 construction used 224075776 bytes
+power iteration failed to converge in 1000 iterations, error: 9.790154229289704e-08
+PA tree 30 construction took 6.460761849476604 s
+PA tree 30 construction used 167129088 bytes
+VP tree construction took 9.948433026409639 s
+VP tree construction used 151326720 bytes
+4000
+KD tree construction took 1.7801520081794422 s
+KD tree construction used 153153536 bytes
+power iteration failed to converge in 1000 iterations, error: 1.5459548801749707e-07
+power iteration failed to converge in 1000 iterations, error: 9.859775405358603e-06
+power iteration failed to converge in 1000 iterations, error: 1.8781071263289373e-08
+power iteration failed to converge in 1000 iterations, error: 3.3296521594072554e-07
+power iteration failed to converge in 1000 iterations, error: 2.00454429678679e-07
+power iteration failed to converge in 1000 iterations, error: 1.8770368042723127e-07
+power iteration failed to converge in 1000 iterations, error: 6.633119140533528e-07
+power iteration failed to converge in 1000 iterations, error: 6.680261473159541e-06
+power iteration failed to converge in 1000 iterations, error: 3.495675902930907e-08
+power iteration failed to converge in 1000 iterations, error: 1.0564811612161988e-05
+power iteration failed to converge in 1000 iterations, error: 1.3416272970617066e-08
+power iteration failed to converge in 1000 iterations, error: 2.3687343005915655e-07
+power iteration failed to converge in 1000 iterations, error: 6.88816797922041e-08
+power iteration failed to converge in 1000 iterations, error: 0.00023800176614401664
+power iteration failed to converge in 1000 iterations, error: 1.5270888288857355e-06
+power iteration failed to converge in 1000 iterations, error: 1.833618018322493e-07
+power iteration failed to converge in 1000 iterations, error: 2.0610425098644444e-05
+power iteration failed to converge in 1000 iterations, error: 9.679352111153833e-08
+power iteration failed to converge in 1000 iterations, error: 2.1673340985838355e-07
+power iteration failed to converge in 1000 iterations, error: 2.5839113813684017e-05
+power iteration failed to converge in 1000 iterations, error: 0.001071830128398445
+power iteration failed to converge in 1000 iterations, error: 6.115638183755168e-07
+power iteration failed to converge in 1000 iterations, error: 9.456544836134893e-07
+power iteration failed to converge in 1000 iterations, error: 2.00711918727013e-06
+power iteration failed to converge in 1000 iterations, error: 8.713749485051071e-06
+power iteration failed to converge in 1000 iterations, error: 4.897900154168561e-07
+power iteration failed to converge in 1000 iterations, error: 0.0002837242695545671
+power iteration failed to converge in 1000 iterations, error: 0.00023188186379863784
+power iteration failed to converge in 1000 iterations, error: 1.554859617734815e-08
+power iteration failed to converge in 1000 iterations, error: 1.718582971435177e-08
+power iteration failed to converge in 1000 iterations, error: 3.524775094249175e-08
+power iteration failed to converge in 1000 iterations, error: 6.483761241307348e-06
+power iteration failed to converge in 1000 iterations, error: 5.748920675843175e-05
+power iteration failed to converge in 1000 iterations, error: 8.009688388657069e-07
+power iteration failed to converge in 1000 iterations, error: 2.447397443381674e-05
+power iteration failed to converge in 1000 iterations, error: 7.595441423696286e-06
+power iteration failed to converge in 1000 iterations, error: 2.9493784735008864e-06
+power iteration failed to converge in 1000 iterations, error: 7.676778352911284e-06
+power iteration failed to converge in 1000 iterations, error: 1.8566925487058326e-06
+power iteration failed to converge in 1000 iterations, error: 6.023601945384129e-08
+power iteration failed to converge in 1000 iterations, error: 3.158999516013588e-06
+power iteration failed to converge in 1000 iterations, error: 3.8111972545555877e-05
+power iteration failed to converge in 1000 iterations, error: 1.2366382684697607e-06
+power iteration failed to converge in 1000 iterations, error: 3.334950922874642e-08
+power iteration failed to converge in 1000 iterations, error: 1.8523912699111355e-05
+power iteration failed to converge in 1000 iterations, error: 4.5561246483034537e-07
+power iteration failed to converge in 1000 iterations, error: 3.0863827219327494e-07
+power iteration failed to converge in 1000 iterations, error: 5.5122119663403486e-05
+PA tree 10 construction took 247.19867040245265 s
+PA tree 10 construction used 509571072 bytes
+PA tree 30 construction took 6.7387352487744465 s
+PA tree 30 construction used 170950656 bytes
+VP tree construction took 21.95282145675236 s
+VP tree construction used 157478912 bytes
+6000
+KD tree construction took 2.7881322188205786 s
+KD tree construction used 159621120 bytes
+power iteration failed to converge in 1000 iterations, error: 1.4183511520197804e-07
+power iteration failed to converge in 1000 iterations, error: 3.2482841847981643e-08
+power iteration failed to converge in 1000 iterations, error: 2.9001062693878913e-06
+power iteration failed to converge in 1000 iterations, error: 2.652806880110728e-06
+power iteration failed to converge in 1000 iterations, error: 5.24934802826822e-08
+power iteration failed to converge in 1000 iterations, error: 1.0355584964161262e-07
+power iteration failed to converge in 1000 iterations, error: 9.810495363613914e-07
+power iteration failed to converge in 1000 iterations, error: 4.40253376961762e-08
+power iteration failed to converge in 1000 iterations, error: 1.0511632709872052e-08
+power iteration failed to converge in 1000 iterations, error: 3.761381271837244e-08
+power iteration failed to converge in 1000 iterations, error: 4.4211401051957866e-07
+power iteration failed to converge in 1000 iterations, error: 1.3670510718383027e-06
+power iteration failed to converge in 1000 iterations, error: 5.185020808693417e-06
+power iteration failed to converge in 1000 iterations, error: 3.518171914599434e-05
+power iteration failed to converge in 1000 iterations, error: 0.00031383510094981583
+power iteration failed to converge in 1000 iterations, error: 1.9724318251515245e-07
+power iteration failed to converge in 1000 iterations, error: 0.0004579959127365978
+power iteration failed to converge in 1000 iterations, error: 1.0763760689507483e-08
+power iteration failed to converge in 1000 iterations, error: 3.9885526989687486e-07
+power iteration failed to converge in 1000 iterations, error: 5.470447381253368e-05
+power iteration failed to converge in 1000 iterations, error: 0.0004686623859140944
+power iteration failed to converge in 1000 iterations, error: 5.4959915320023096e-08
+power iteration failed to converge in 1000 iterations, error: 4.939188010606501e-06
+power iteration failed to converge in 1000 iterations, error: 3.36505290135524e-05
+power iteration failed to converge in 1000 iterations, error: 4.00328801370255e-07
+power iteration failed to converge in 1000 iterations, error: 0.0004170044606667439
+PA tree 10 construction took 199.43560071818104 s
+PA tree 10 construction used 511729664 bytes
+power iteration failed to converge in 1000 iterations, error: 2.7431277237196857e-06
+PA tree 30 construction took 8.912272523741308 s
+PA tree 30 construction used 173588480 bytes
+VP tree construction took 35.053188277488516 s
+VP tree construction used 159903744 bytes
+8000
+KD tree construction took 3.806210136503978 s
+KD tree construction used 162037760 bytes
+power iteration failed to converge in 1000 iterations, error: 2.320608088735227e-05
+power iteration failed to converge in 1000 iterations, error: 6.369014396420463e-07
+power iteration failed to converge in 1000 iterations, error: 2.414581001969633e-07
+power iteration failed to converge in 1000 iterations, error: 5.422309508721279e-05
+power iteration failed to converge in 1000 iterations, error: 7.595571168981575e-08
+power iteration failed to converge in 1000 iterations, error: 2.5085508794334295e-08
+power iteration failed to converge in 1000 iterations, error: 1.3923876430397544e-08
+power iteration failed to converge in 1000 iterations, error: 0.0008672886848483034
+power iteration failed to converge in 1000 iterations, error: 1.2035768355033762e-05
+power iteration failed to converge in 1000 iterations, error: 2.6108264031430645e-07
+power iteration failed to converge in 1000 iterations, error: 1.965840271414283e-06
+power iteration failed to converge in 1000 iterations, error: 2.323119421579977e-08
+power iteration failed to converge in 1000 iterations, error: 2.803050608139214e-08
+power iteration failed to converge in 1000 iterations, error: 7.772855840129803e-07
+power iteration failed to converge in 1000 iterations, error: 1.321859174060329e-08
+PA tree 10 construction took 177.98687117226575 s
+PA tree 10 construction used 516009984 bytes
+PA tree 30 construction took 6.404588540899454 s
+PA tree 30 construction used 177152000 bytes
+VP tree construction took 48.33333372227514 s
+VP tree construction used 164364288 bytes
+10000
+KD tree construction took 4.905603824853756 s
+KD tree construction used 166449152 bytes
+power iteration failed to converge in 1000 iterations, error: 2.0521680627485323e-07
+power iteration failed to converge in 1000 iterations, error: 3.916925211976986e-07
+power iteration failed to converge in 1000 iterations, error: 1.176101613457371e-07
+power iteration failed to converge in 1000 iterations, error: 0.00015197255208347532
+power iteration failed to converge in 1000 iterations, error: 2.667085505533265e-05
+power iteration failed to converge in 1000 iterations, error: 0.00013260365944015723
+power iteration failed to converge in 1000 iterations, error: 2.8358053863167156e-05
+power iteration failed to converge in 1000 iterations, error: 3.6547189006717884e-05
+power iteration failed to converge in 1000 iterations, error: 5.761259645319257e-07
+power iteration failed to converge in 1000 iterations, error: 3.7870223413976218e-06
+power iteration failed to converge in 1000 iterations, error: 7.79375364463739e-06
+power iteration failed to converge in 1000 iterations, error: 1.065164765296845e-05
+power iteration failed to converge in 1000 iterations, error: 6.289220418274324e-07
+power iteration failed to converge in 1000 iterations, error: 1.415441486861207e-05
+power iteration failed to converge in 1000 iterations, error: 8.203078155335749e-06
+power iteration failed to converge in 1000 iterations, error: 9.31309875220178e-08
+power iteration failed to converge in 1000 iterations, error: 3.0793904445506826e-08
+power iteration failed to converge in 1000 iterations, error: 2.739008148603498e-08
+power iteration failed to converge in 1000 iterations, error: 2.2043739969680093e-07
+power iteration failed to converge in 1000 iterations, error: 9.036886537712712e-08
+power iteration failed to converge in 1000 iterations, error: 1.3574552602086624e-07
+power iteration failed to converge in 1000 iterations, error: 7.63576633018196e-07
+PA tree 10 construction took 158.78398502963012 s
+PA tree 10 construction used 521015296 bytes
+PA tree 30 construction took 7.46643728823949 s
+PA tree 30 construction used 179830784 bytes
+VP tree construction took 62.66806034237584 s
+VP tree construction used 167235584 bytes
+12000
+KD tree construction took 6.0264589328505735 s
+KD tree construction used 169168896 bytes
+power iteration failed to converge in 1000 iterations, error: 6.340108646284051e-07
+power iteration failed to converge in 1000 iterations, error: 2.218091691175416e-06
+power iteration failed to converge in 1000 iterations, error: 4.225983662228434e-06
+power iteration failed to converge in 1000 iterations, error: 5.097849524233003e-05
+power iteration failed to converge in 1000 iterations, error: 5.294392533438568e-08
+power iteration failed to converge in 1000 iterations, error: 0.00020988961305239205
+power iteration failed to converge in 1000 iterations, error: 1.752117919372658e-07
+power iteration failed to converge in 1000 iterations, error: 3.301229966077906e-08
+power iteration failed to converge in 1000 iterations, error: 0.00015427094803690492
+power iteration failed to converge in 1000 iterations, error: 3.8392799108334294e-05
+power iteration failed to converge in 1000 iterations, error: 1.8668347801249103e-08
+PA tree 10 construction took 155.42652135800972 s
+PA tree 10 construction used 522510336 bytes
+PA tree 30 construction took 8.203871818395328 s
+PA tree 30 construction used 184766464 bytes
+VP tree construction took 77.07388309284579 s
+VP tree construction used 171425792 bytes
+14000
+KD tree construction took 7.063051452624677 s
+KD tree construction used 173473792 bytes
+power iteration failed to converge in 1000 iterations, error: 6.555979496631584e-08
+power iteration failed to converge in 1000 iterations, error: 1.4402839429551804e-06
+power iteration failed to converge in 1000 iterations, error: 0.00023056260556454764
+power iteration failed to converge in 1000 iterations, error: 5.798319531321501e-06
+power iteration failed to converge in 1000 iterations, error: 6.705617756556486e-05
+power iteration failed to converge in 1000 iterations, error: 2.8446849219505648e-08
+power iteration failed to converge in 1000 iterations, error: 1.4339520132880552e-07
+power iteration failed to converge in 1000 iterations, error: 3.1965697239866125e-06
+power iteration failed to converge in 1000 iterations, error: 1.964579777375159e-07
+power iteration failed to converge in 1000 iterations, error: 6.61878467938484e-07
+PA tree 10 construction took 149.08386732611757 s
+PA tree 10 construction used 527368192 bytes
+PA tree 30 construction took 9.957367116818205 s
+PA tree 30 construction used 187957248 bytes
+VP tree construction took 91.27808395600482 s
+VP tree construction used 173092864 bytes
+16000
+KD tree construction took 8.235372895520868 s
+KD tree construction used 174985216 bytes
+power iteration failed to converge in 1000 iterations, error: 1.2509150928023726e-06
+power iteration failed to converge in 1000 iterations, error: 5.143576735808814
+power iteration failed to converge in 1000 iterations, error: 3.496709865030874e-07
+power iteration failed to converge in 1000 iterations, error: 0.00011280275351722641
+power iteration failed to converge in 1000 iterations, error: 6.849100725817838e-07
+power iteration failed to converge in 1000 iterations, error: 1.5007400001529336e-08
+power iteration failed to converge in 1000 iterations, error: 7.082462293077809
+power iteration failed to converge in 1000 iterations, error: 1.7602968264453234e-08
+power iteration failed to converge in 1000 iterations, error: 1.1874535742085882e-08
+power iteration failed to converge in 1000 iterations, error: 0.0007131250056523996
+power iteration failed to converge in 1000 iterations, error: 1.991125756193614e-08
+power iteration failed to converge in 1000 iterations, error: 1.3660671143344758e-06
+power iteration failed to converge in 1000 iterations, error: 4.9063866059905446e-05
+power iteration failed to converge in 1000 iterations, error: 1.3468106251631558e-08
+power iteration failed to converge in 1000 iterations, error: 1.7403077005797175e-07
+power iteration failed to converge in 1000 iterations, error: 9.558016416930226e-07
+PA tree 10 construction took 203.11911799667746 s
+PA tree 10 construction used 699559936 bytes
+PA tree 30 construction took 9.119802631483026 s
+PA tree 30 construction used 190423040 bytes
+VP tree construction took 105.92539843441205 s
+VP tree construction used 176525312 bytes
+18000
+KD tree construction took 9.286539356291769 s
+KD tree construction used 178409472 bytes
+power iteration failed to converge in 1000 iterations, error: 1.6252977730595725e-08
+power iteration failed to converge in 1000 iterations, error: 1.3130118579202099e-08
+power iteration failed to converge in 1000 iterations, error: 6.19236434803169e-05
+power iteration failed to converge in 1000 iterations, error: 1.9590278313570643e-06
+power iteration failed to converge in 1000 iterations, error: 6.6235736168730026e-06
+power iteration failed to converge in 1000 iterations, error: 2.8040831019846804e-08
+power iteration failed to converge in 1000 iterations, error: 1.2563621967235305e-06
+power iteration failed to converge in 1000 iterations, error: 1.5565777061801993e-06
+power iteration failed to converge in 1000 iterations, error: 2.005529932836564e-08
+power iteration failed to converge in 1000 iterations, error: 5.710852915375233e-08
+power iteration failed to converge in 1000 iterations, error: 1.0563810930175332e-07
+power iteration failed to converge in 1000 iterations, error: 0.00020760774214296693
+power iteration failed to converge in 1000 iterations, error: 6.659650606419493e-06
+power iteration failed to converge in 1000 iterations, error: 2.566331451497178e-07
+power iteration failed to converge in 1000 iterations, error: 7.041251779843233e-07
+power iteration failed to converge in 1000 iterations, error: 2.4609077880367934e-05
+power iteration failed to converge in 1000 iterations, error: 1.1050097059551664e-07
+power iteration failed to converge in 1000 iterations, error: 1.888340922192623e-07
+power iteration failed to converge in 1000 iterations, error: 0.0001290769691810695
+power iteration failed to converge in 1000 iterations, error: 6.563149610743283
+power iteration failed to converge in 1000 iterations, error: 2.257502897272303e-07
+power iteration failed to converge in 1000 iterations, error: 13.240824293352984
+power iteration failed to converge in 1000 iterations, error: 1.9554912032981468e-08
+power iteration failed to converge in 1000 iterations, error: 0.00013176121595717325
+power iteration failed to converge in 1000 iterations, error: 2.5694602169000795e-06
+power iteration failed to converge in 1000 iterations, error: 1.5512812186722902e-08
+power iteration failed to converge in 1000 iterations, error: 2.3906170782927918e-05
+power iteration failed to converge in 1000 iterations, error: 1.5331941217426473e-07
+power iteration failed to converge in 1000 iterations, error: 1.6428968098816145e-08
+power iteration failed to converge in 1000 iterations, error: 4.977949152290377e-07
+power iteration failed to converge in 1000 iterations, error: 6.665619975669427e-07
+power iteration failed to converge in 1000 iterations, error: 2.3866638780215414e-05
+power iteration failed to converge in 1000 iterations, error: 0.00030559922913431627
+power iteration failed to converge in 1000 iterations, error: 1.6068489872656053e-06
+power iteration failed to converge in 1000 iterations, error: 0.00017574629741210748
+power iteration failed to converge in 1000 iterations, error: 0.00018935028758609255
+power iteration failed to converge in 1000 iterations, error: 0.00042778165210347995
+power iteration failed to converge in 1000 iterations, error: 7.562597377974364e-08
+power iteration failed to converge in 1000 iterations, error: 1.11707983489924e-06
+power iteration failed to converge in 1000 iterations, error: 4.8947880141305626e-06
+power iteration failed to converge in 1000 iterations, error: 1.5202996738470156e-07
+power iteration failed to converge in 1000 iterations, error: 1.3315643493383433e-07
+power iteration failed to converge in 1000 iterations, error: 0.00018460838590698796
+power iteration failed to converge in 1000 iterations, error: 4.282572579812865e-06
+power iteration failed to converge in 1000 iterations, error: 3.1716346035641973e-07
+power iteration failed to converge in 1000 iterations, error: 0.00016772779403826038
+power iteration failed to converge in 1000 iterations, error: 0.8821513742578029
+power iteration failed to converge in 1000 iterations, error: 0.8952732100826909
+power iteration failed to converge in 1000 iterations, error: 2.532039127161115e-07
+power iteration failed to converge in 1000 iterations, error: 5.978898213836398e-05
+power iteration failed to converge in 1000 iterations, error: 2.2039279062554054e-08
+power iteration failed to converge in 1000 iterations, error: 7.458181667694894e-08
+power iteration failed to converge in 1000 iterations, error: 0.00045704732812824975
+power iteration failed to converge in 1000 iterations, error: 1.2381678428677496e-05
+power iteration failed to converge in 1000 iterations, error: 1.1909545793303833e-07
+power iteration failed to converge in 1000 iterations, error: 2.1275787844160857e-05
+power iteration failed to converge in 1000 iterations, error: 7.269006757175707e-05
+power iteration failed to converge in 1000 iterations, error: 1.088434889873896e-08
+power iteration failed to converge in 1000 iterations, error: 1.243726921798527e-07
+power iteration failed to converge in 1000 iterations, error: 1.0740960336864253e-08
+power iteration failed to converge in 1000 iterations, error: 2.124187263607448e-08
+power iteration failed to converge in 1000 iterations, error: 0.0002961942950143845
+power iteration failed to converge in 1000 iterations, error: 4.760750224436336e-05
+power iteration failed to converge in 1000 iterations, error: 7.216550958514482e-08
+power iteration failed to converge in 1000 iterations, error: 1.0643605262710028e-07
+power iteration failed to converge in 1000 iterations, error: 0.0012461154021346562
+power iteration failed to converge in 1000 iterations, error: 9.216772470911714e-07
+power iteration failed to converge in 1000 iterations, error: 0.0005650780391922303
+power iteration failed to converge in 1000 iterations, error: 2.9874811079620396e-06
+power iteration failed to converge in 1000 iterations, error: 1.6010146966490956e-05
+power iteration failed to converge in 1000 iterations, error: 2.398176742759127e-08
+power iteration failed to converge in 1000 iterations, error: 4.523407514720303e-06
+power iteration failed to converge in 1000 iterations, error: 4.542960851136677e-08
+power iteration failed to converge in 1000 iterations, error: 1.8277392951570833e-08
+power iteration failed to converge in 1000 iterations, error: 0.00013408294747311363
+power iteration failed to converge in 1000 iterations, error: 2.754593408644916e-08
+power iteration failed to converge in 1000 iterations, error: 3.0181051507749456e-07
+power iteration failed to converge in 1000 iterations, error: 1.6439260708787928e-08
+power iteration failed to converge in 1000 iterations, error: 3.995256399797788e-07
+power iteration failed to converge in 1000 iterations, error: 1.7137929448650824e-05
+power iteration failed to converge in 1000 iterations, error: 3.2158205808671984e-05
+power iteration failed to converge in 1000 iterations, error: 2.463795732677524e-08
+power iteration failed to converge in 1000 iterations, error: 2.318548194759479e-05
+power iteration failed to converge in 1000 iterations, error: 1.6621926735589394e-05
+power iteration failed to converge in 1000 iterations, error: 1.4913806961747069e-05
+power iteration failed to converge in 1000 iterations, error: 2.1311103716448176e-07
+power iteration failed to converge in 1000 iterations, error: 2.799227905394587e-08
+power iteration failed to converge in 1000 iterations, error: 5.458297193626765e-07
+power iteration failed to converge in 1000 iterations, error: 0.00019633522518165832
+power iteration failed to converge in 1000 iterations, error: 3.1475006017484247e-08
+power iteration failed to converge in 1000 iterations, error: 6.457115971268091e-05
+power iteration failed to converge in 1000 iterations, error: 3.119403921248115e-07
+power iteration failed to converge in 1000 iterations, error: 7.133074911270208e-08
+power iteration failed to converge in 1000 iterations, error: 1.124218420549901e-06
+power iteration failed to converge in 1000 iterations, error: 8.579740349601924e-06
+power iteration failed to converge in 1000 iterations, error: 0.0015106200250838118
+power iteration failed to converge in 1000 iterations, error: 0.002150916019469681
+power iteration failed to converge in 1000 iterations, error: 3.575272172225098e-06
+power iteration failed to converge in 1000 iterations, error: 9.99967009888622e-07
+power iteration failed to converge in 1000 iterations, error: 8.620341263690455e-05
+power iteration failed to converge in 1000 iterations, error: 6.172093990830398e-05
+power iteration failed to converge in 1000 iterations, error: 6.379711678456117e-06
+power iteration failed to converge in 1000 iterations, error: 1.5913431471667336e-07
+power iteration failed to converge in 1000 iterations, error: 1.3060261410846217e-08
+power iteration failed to converge in 1000 iterations, error: 2.8056581308547567e-08
+power iteration failed to converge in 1000 iterations, error: 2.935991384048556e-07
+power iteration failed to converge in 1000 iterations, error: 1.4057835362240798e-07
+power iteration failed to converge in 1000 iterations, error: 4.1209969092132663e-05
+power iteration failed to converge in 1000 iterations, error: 7.245406410764108e-06
+power iteration failed to converge in 1000 iterations, error: 4.277804244486993e-07
+power iteration failed to converge in 1000 iterations, error: 1.9063926696001178e-06
+power iteration failed to converge in 1000 iterations, error: 6.3278379397776325e-06
+power iteration failed to converge in 1000 iterations, error: 3.1791885203938803e-08
+power iteration failed to converge in 1000 iterations, error: 9.289525054838302e-08
+power iteration failed to converge in 1000 iterations, error: 1.1805291628963748e-08
+power iteration failed to converge in 1000 iterations, error: 1.7239692252013147e-07
+power iteration failed to converge in 1000 iterations, error: 8.404574790228485e-06
+power iteration failed to converge in 1000 iterations, error: 5.244300778759869e-06
+power iteration failed to converge in 1000 iterations, error: 6.435257720088707e-07
+power iteration failed to converge in 1000 iterations, error: 9.208778465085712e-06
+power iteration failed to converge in 1000 iterations, error: 3.4012669463887035e-08
+power iteration failed to converge in 1000 iterations, error: 1.6988954938419037e-07
+power iteration failed to converge in 1000 iterations, error: 8.866157983136724e-08
+power iteration failed to converge in 1000 iterations, error: 3.5425687523217564e-08
+power iteration failed to converge in 1000 iterations, error: 0.000461527797521474
+power iteration failed to converge in 1000 iterations, error: 0.00022472593543370971
+power iteration failed to converge in 1000 iterations, error: 4.92307216202071e-07
+power iteration failed to converge in 1000 iterations, error: 6.738424341544435e-06
+power iteration failed to converge in 1000 iterations, error: 4.859086663034864e-05
+power iteration failed to converge in 1000 iterations, error: 1.0181224208864314e-05
+power iteration failed to converge in 1000 iterations, error: 3.381054891176446e-05
+power iteration failed to converge in 1000 iterations, error: 2.9934769969839747e-08
+power iteration failed to converge in 1000 iterations, error: 3.806657623224753e-08
+power iteration failed to converge in 1000 iterations, error: 6.485226283542336e-08
+power iteration failed to converge in 1000 iterations, error: 3.724719897177115e-07
+power iteration failed to converge in 1000 iterations, error: 5.898804990286943e-06
+power iteration failed to converge in 1000 iterations, error: 1.0990005081435057e-07
+power iteration failed to converge in 1000 iterations, error: 2.0235459010783198e-06
+power iteration failed to converge in 1000 iterations, error: 2.9800356144931545e-07
+power iteration failed to converge in 1000 iterations, error: 9.40535383701059e-06
+power iteration failed to converge in 1000 iterations, error: 4.17877675250246e-07
+power iteration failed to converge in 1000 iterations, error: 5.820297631617584e-05
+power iteration failed to converge in 1000 iterations, error: 4.3423918322834775e-08
+power iteration failed to converge in 1000 iterations, error: 3.396548185346799e-07
+power iteration failed to converge in 1000 iterations, error: 2.6351444270948134e-07
+power iteration failed to converge in 1000 iterations, error: 4.8748938521660366e-05
+power iteration failed to converge in 1000 iterations, error: 9.18102816094656e-06
+power iteration failed to converge in 1000 iterations, error: 1.5755676567407026e-07
+power iteration failed to converge in 1000 iterations, error: 1.4968904223932678e-05
+power iteration failed to converge in 1000 iterations, error: 6.087359155389346e-07
+power iteration failed to converge in 1000 iterations, error: 1.0902988444898222e-07
+power iteration failed to converge in 1000 iterations, error: 3.485024581700695e-05
+power iteration failed to converge in 1000 iterations, error: 2.0482463592937962e-08
+power iteration failed to converge in 1000 iterations, error: 9.788997986362094e-07
+power iteration failed to converge in 1000 iterations, error: 2.9119297945525216e-07
+power iteration failed to converge in 1000 iterations, error: 0.0001385569273066112
+power iteration failed to converge in 1000 iterations, error: 4.258907706170646e-05
+power iteration failed to converge in 1000 iterations, error: 3.2066978248972144e-07
+power iteration failed to converge in 1000 iterations, error: 7.258068526676308e-06
+power iteration failed to converge in 1000 iterations, error: 2.4345488628148954e-05
+power iteration failed to converge in 1000 iterations, error: 2.2955933314623353e-08
+power iteration failed to converge in 1000 iterations, error: 0.0005681917144654525
+power iteration failed to converge in 1000 iterations, error: 1.5011512477644193e-07
+power iteration failed to converge in 1000 iterations, error: 0.0002644942654813864
+power iteration failed to converge in 1000 iterations, error: 8.247292594221005e-07
+power iteration failed to converge in 1000 iterations, error: 3.872786800440968e-07
+power iteration failed to converge in 1000 iterations, error: 6.291285806308942e-07
+power iteration failed to converge in 1000 iterations, error: 1.735768720432173e-05
+power iteration failed to converge in 1000 iterations, error: 9.282335037825822e-07
+power iteration failed to converge in 1000 iterations, error: 2.683460403420969e-07
+power iteration failed to converge in 1000 iterations, error: 7.030908954054702e-08
+power iteration failed to converge in 1000 iterations, error: 8.280937464301983e-06
+power iteration failed to converge in 1000 iterations, error: 5.028453682802501e-07
+power iteration failed to converge in 1000 iterations, error: 7.61743387639696e-07
+power iteration failed to converge in 1000 iterations, error: 1.72913662381799e-05
+power iteration failed to converge in 1000 iterations, error: 3.4639409214204397e-06
+power iteration failed to converge in 1000 iterations, error: 3.092408518303282e-08
+power iteration failed to converge in 1000 iterations, error: 2.1362769866677274e-07
+power iteration failed to converge in 1000 iterations, error: 2.196200855025636e-07
+power iteration failed to converge in 1000 iterations, error: 1.8223766657722053e-08
+power iteration failed to converge in 1000 iterations, error: 7.729040811264219e-07
+power iteration failed to converge in 1000 iterations, error: 2.5402102157784455e-08
+power iteration failed to converge in 1000 iterations, error: 1.4415100185722392e-05
+power iteration failed to converge in 1000 iterations, error: 1.8776157988485165e-06
+power iteration failed to converge in 1000 iterations, error: 6.761724417013448e-08
+power iteration failed to converge in 1000 iterations, error: 3.954845964471024e-07
+power iteration failed to converge in 1000 iterations, error: 6.755866547509962e-06
+power iteration failed to converge in 1000 iterations, error: 1.3508650387530907e-07
+power iteration failed to converge in 1000 iterations, error: 4.4851365293182687e-07
+power iteration failed to converge in 1000 iterations, error: 0.0016721741502126561
+power iteration failed to converge in 1000 iterations, error: 1.475775421664726e-07
+power iteration failed to converge in 1000 iterations, error: 0.0022724111940932963
+power iteration failed to converge in 1000 iterations, error: 6.649535917575247e-08
+power iteration failed to converge in 1000 iterations, error: 3.1424077511654345e-05
+power iteration failed to converge in 1000 iterations, error: 5.370517357190384e-06
+power iteration failed to converge in 1000 iterations, error: 5.13771088559269e-07
+power iteration failed to converge in 1000 iterations, error: 0.00024125855528077356
+PA tree 10 construction took 955.5042088850837 s
+PA tree 10 construction used 1603698688 bytes
+PA tree 30 construction took 10.381491815448953 s
+PA tree 30 construction used 198094848 bytes
+VP tree construction took 120.92276170070636 s
+VP tree construction used 181407744 bytes
+20000
+KD tree construction took 10.52711600140583 s
+KD tree construction used 183132160 bytes
+power iteration failed to converge in 1000 iterations, error: 2.288431594560684e-06
+power iteration failed to converge in 1000 iterations, error: 3.199284425149619e-07
+power iteration failed to converge in 1000 iterations, error: 2.627682690240873e-07
+power iteration failed to converge in 1000 iterations, error: 4.615966830669909e-08
+power iteration failed to converge in 1000 iterations, error: 1.2489067667575179e-08
+power iteration failed to converge in 1000 iterations, error: 2.168658585443542e-06
+power iteration failed to converge in 1000 iterations, error: 9.581682934150246e-08
+power iteration failed to converge in 1000 iterations, error: 0.0734231839633433
+power iteration failed to converge in 1000 iterations, error: 5.8592520853635284e-08
+power iteration failed to converge in 1000 iterations, error: 1.3000001692926172e-07
+power iteration failed to converge in 1000 iterations, error: 2.7127144719397978e-05
+power iteration failed to converge in 1000 iterations, error: 7.1581377112211715e-06
+power iteration failed to converge in 1000 iterations, error: 1.1574945993814189e-07
+power iteration failed to converge in 1000 iterations, error: 1.4159370425930948e-08
+power iteration failed to converge in 1000 iterations, error: 9.891194141379341e-08
+power iteration failed to converge in 1000 iterations, error: 0.0004508794514053588
+power iteration failed to converge in 1000 iterations, error: 0.00029042517754560384
+power iteration failed to converge in 1000 iterations, error: 7.377005500117757e-07
+power iteration failed to converge in 1000 iterations, error: 1.4695294701960217e-07
+power iteration failed to converge in 1000 iterations, error: 1.2091404767760298e-05
+power iteration failed to converge in 1000 iterations, error: 1.3910350515378665e-05
+power iteration failed to converge in 1000 iterations, error: 0.8561955579782046
+power iteration failed to converge in 1000 iterations, error: 1.8610257142693924e-07
+power iteration failed to converge in 1000 iterations, error: 2.192715099111472e-06
+power iteration failed to converge in 1000 iterations, error: 0.0001676229515848112
+power iteration failed to converge in 1000 iterations, error: 0.00013062718676300818
+power iteration failed to converge in 1000 iterations, error: 7.874775240316332e-08
+power iteration failed to converge in 1000 iterations, error: 1.2614040877144753e-08
+power iteration failed to converge in 1000 iterations, error: 5.567159051838482e-08
+power iteration failed to converge in 1000 iterations, error: 7.118513444647335e-07
+power iteration failed to converge in 1000 iterations, error: 3.276333488163815e-06
+power iteration failed to converge in 1000 iterations, error: 2.121149007565295e-07
+power iteration failed to converge in 1000 iterations, error: 2.3588386145547455e-08
+power iteration failed to converge in 1000 iterations, error: 7.353547047171758e-07
+power iteration failed to converge in 1000 iterations, error: 1.0115739549000809e-06
+power iteration failed to converge in 1000 iterations, error: 1.061531239465892e-06
+power iteration failed to converge in 1000 iterations, error: 4.4759336192447263e-07
+power iteration failed to converge in 1000 iterations, error: 1.839740594437346e-08
+power iteration failed to converge in 1000 iterations, error: 5.1945694871767404e-08
+power iteration failed to converge in 1000 iterations, error: 9.934485163476739e-07
+power iteration failed to converge in 1000 iterations, error: 2.2629252731821287e-07
+power iteration failed to converge in 1000 iterations, error: 1.4364425335831876e-08
+power iteration failed to converge in 1000 iterations, error: 2.8786284847768682e-05
+power iteration failed to converge in 1000 iterations, error: 1.6662614599660848e-07
+power iteration failed to converge in 1000 iterations, error: 2.5470068811095207e-05
+power iteration failed to converge in 1000 iterations, error: 1.745486631829496e-07
+power iteration failed to converge in 1000 iterations, error: 2.2586124364233975e-08
+power iteration failed to converge in 1000 iterations, error: 1.0647225386316295e-06
+power iteration failed to converge in 1000 iterations, error: 4.870095615500244e-06
+power iteration failed to converge in 1000 iterations, error: 7.766534267361451e-06
+power iteration failed to converge in 1000 iterations, error: 2.570523351483594e-06
+power iteration failed to converge in 1000 iterations, error: 2.6454578098446258e-08
+power iteration failed to converge in 1000 iterations, error: 6.24405462525069e-07
+power iteration failed to converge in 1000 iterations, error: 0.00016678637786032065
+power iteration failed to converge in 1000 iterations, error: 7.1341807176932e-07
+power iteration failed to converge in 1000 iterations, error: 1.0534546238582989e-07
+power iteration failed to converge in 1000 iterations, error: 2.8873353194421226e-08
+power iteration failed to converge in 1000 iterations, error: 7.36380054070342e-08
+power iteration failed to converge in 1000 iterations, error: 5.6445838511992815e-06
+power iteration failed to converge in 1000 iterations, error: 0.0006465255247415271
+power iteration failed to converge in 1000 iterations, error: 0.0002245550683563189
+power iteration failed to converge in 1000 iterations, error: 1.0751584810029646e-07
+power iteration failed to converge in 1000 iterations, error: 2.0633204297974524e-06
+power iteration failed to converge in 1000 iterations, error: 2.626342455532265e-05
+power iteration failed to converge in 1000 iterations, error: 2.6622453300033377e-08
+power iteration failed to converge in 1000 iterations, error: 4.310506311439136e-07
+power iteration failed to converge in 1000 iterations, error: 7.825438905584986e-06
+power iteration failed to converge in 1000 iterations, error: 4.162530136400319e-06
+power iteration failed to converge in 1000 iterations, error: 8.497228675221659e-08
+power iteration failed to converge in 1000 iterations, error: 8.623283124966751e-08
+power iteration failed to converge in 1000 iterations, error: 4.4196162117286834e-06
+power iteration failed to converge in 1000 iterations, error: 3.6143048569623566e-08
+power iteration failed to converge in 1000 iterations, error: 8.335046247333336e-07
+power iteration failed to converge in 1000 iterations, error: 5.537144694741714e-05
+power iteration failed to converge in 1000 iterations, error: 1.1970138879854701e-06
+power iteration failed to converge in 1000 iterations, error: 8.680061907321884e-06
+power iteration failed to converge in 1000 iterations, error: 0.0002591400953631885
+power iteration failed to converge in 1000 iterations, error: 6.562957615727189e-06
+power iteration failed to converge in 1000 iterations, error: 0.0002318310361659983
+power iteration failed to converge in 1000 iterations, error: 6.699488189028781e-05
+power iteration failed to converge in 1000 iterations, error: 2.3743841244400075e-06
+power iteration failed to converge in 1000 iterations, error: 1.4406212272589924e-08
+power iteration failed to converge in 1000 iterations, error: 4.5988276408254637e-05
+power iteration failed to converge in 1000 iterations, error: 1.1748221242775629e-07
+power iteration failed to converge in 1000 iterations, error: 4.557312477015438e-06
+power iteration failed to converge in 1000 iterations, error: 8.152674181173655e-08
+power iteration failed to converge in 1000 iterations, error: 5.930069852961434e-08
+power iteration failed to converge in 1000 iterations, error: 1.5416161417496045e-05
+power iteration failed to converge in 1000 iterations, error: 3.252660079624235e-08
+power iteration failed to converge in 1000 iterations, error: 2.365443561931483e-06
+power iteration failed to converge in 1000 iterations, error: 0.00011038016976422499
+power iteration failed to converge in 1000 iterations, error: 1.2362832201061671e-07
+power iteration failed to converge in 1000 iterations, error: 5.064315472219465e-07
+power iteration failed to converge in 1000 iterations, error: 3.666862716293845e-05
+power iteration failed to converge in 1000 iterations, error: 8.961073533165706e-08
+power iteration failed to converge in 1000 iterations, error: 3.8876449503019847e-07
+power iteration failed to converge in 1000 iterations, error: 6.468411009783424e-07
+power iteration failed to converge in 1000 iterations, error: 8.846139147416533e-06
+power iteration failed to converge in 1000 iterations, error: 1.8100992043031496e-06
+power iteration failed to converge in 1000 iterations, error: 2.0630573218995705e-06
+power iteration failed to converge in 1000 iterations, error: 1.4000147416911545e-06
+power iteration failed to converge in 1000 iterations, error: 2.248124443512186e-07
+power iteration failed to converge in 1000 iterations, error: 1.64730722175424e-05
+power iteration failed to converge in 1000 iterations, error: 1.4350785578827897e-06
+power iteration failed to converge in 1000 iterations, error: 3.968088584382825e-05
+power iteration failed to converge in 1000 iterations, error: 9.720558029370496e-07
+power iteration failed to converge in 1000 iterations, error: 1.400148474151424e-07
+power iteration failed to converge in 1000 iterations, error: 1.4200125201830477e-07
+power iteration failed to converge in 1000 iterations, error: 6.564966306860142e-05
+power iteration failed to converge in 1000 iterations, error: 3.566570135060676e-08
+power iteration failed to converge in 1000 iterations, error: 2.245153696896901e-08
+power iteration failed to converge in 1000 iterations, error: 1.4562981107061994e-06
+power iteration failed to converge in 1000 iterations, error: 1.5103745925910267e-07
+power iteration failed to converge in 1000 iterations, error: 4.26989348073449e-06
+power iteration failed to converge in 1000 iterations, error: 4.704661109228249e-06
+power iteration failed to converge in 1000 iterations, error: 5.036934903662662e-07
+power iteration failed to converge in 1000 iterations, error: 0.0001252118023437384
+power iteration failed to converge in 1000 iterations, error: 1.7295865231596944e-06
+power iteration failed to converge in 1000 iterations, error: 2.233197602354974e-06
+power iteration failed to converge in 1000 iterations, error: 8.226352246512929e-06
+power iteration failed to converge in 1000 iterations, error: 0.00019778715115543091
+power iteration failed to converge in 1000 iterations, error: 1.1021289657558303e-07
+power iteration failed to converge in 1000 iterations, error: 4.9045498096483495e-06
+power iteration failed to converge in 1000 iterations, error: 0.00031986664092547494
+power iteration failed to converge in 1000 iterations, error: 7.89507664296379e-08
+power iteration failed to converge in 1000 iterations, error: 0.0003129499939863306
+power iteration failed to converge in 1000 iterations, error: 2.871628336308758e-07
+power iteration failed to converge in 1000 iterations, error: 0.00010834648249188951
+power iteration failed to converge in 1000 iterations, error: 8.28145089190542e-06
+power iteration failed to converge in 1000 iterations, error: 1.0714380664346391e-08
+power iteration failed to converge in 1000 iterations, error: 5.9141662468179456e-05
+power iteration failed to converge in 1000 iterations, error: 3.027814463648498e-08
+power iteration failed to converge in 1000 iterations, error: 0.0021656664208382884
+power iteration failed to converge in 1000 iterations, error: 3.863745214817852e-08
+power iteration failed to converge in 1000 iterations, error: 2.949975326315508e-08
+power iteration failed to converge in 1000 iterations, error: 2.7505534555506347e-08
+power iteration failed to converge in 1000 iterations, error: 3.433804703198342e-08
+power iteration failed to converge in 1000 iterations, error: 3.3128327547806043e-07
+power iteration failed to converge in 1000 iterations, error: 4.032143454867483e-06
+power iteration failed to converge in 1000 iterations, error: 8.817332667319141e-07
+power iteration failed to converge in 1000 iterations, error: 1.9142317782712946e-07
+power iteration failed to converge in 1000 iterations, error: 8.81472290733664e-06
+power iteration failed to converge in 1000 iterations, error: 3.5206230307874634e-06
+power iteration failed to converge in 1000 iterations, error: 6.806428129019475e-07
+power iteration failed to converge in 1000 iterations, error: 1.1367030351304343e-07
+power iteration failed to converge in 1000 iterations, error: 2.0688389920035105e-08
+power iteration failed to converge in 1000 iterations, error: 1.706387922562454e-06
+power iteration failed to converge in 1000 iterations, error: 2.2004077874208548e-08
+power iteration failed to converge in 1000 iterations, error: 2.039481876140505e-05
+power iteration failed to converge in 1000 iterations, error: 3.3650611586748643e-06
+power iteration failed to converge in 1000 iterations, error: 1.1870528728486103e-08
+power iteration failed to converge in 1000 iterations, error: 7.773961677200311e-07
+power iteration failed to converge in 1000 iterations, error: 1.3225483070245653e-07
+power iteration failed to converge in 1000 iterations, error: 3.8451980713871334e-08
+power iteration failed to converge in 1000 iterations, error: 2.2733471587320348e-08
+power iteration failed to converge in 1000 iterations, error: 3.9928092336778687e-07
+power iteration failed to converge in 1000 iterations, error: 3.5856465748409366e-06
+power iteration failed to converge in 1000 iterations, error: 3.451425780458381e-05
+power iteration failed to converge in 1000 iterations, error: 5.2619788296591474e-08
+power iteration failed to converge in 1000 iterations, error: 5.0491698779160134e-08
+power iteration failed to converge in 1000 iterations, error: 6.830790712542955e-06
+power iteration failed to converge in 1000 iterations, error: 3.9189959126302625e-05
+power iteration failed to converge in 1000 iterations, error: 1.5117919522134905e-06
+power iteration failed to converge in 1000 iterations, error: 1.384533254375226e-08
+power iteration failed to converge in 1000 iterations, error: 3.976055120221447e-08
+power iteration failed to converge in 1000 iterations, error: 1.3572629999552524e-05
+power iteration failed to converge in 1000 iterations, error: 5.264544864538303e-08
+power iteration failed to converge in 1000 iterations, error: 2.39975220273146e-06
+power iteration failed to converge in 1000 iterations, error: 4.213745315401283e-08
+power iteration failed to converge in 1000 iterations, error: 1.097076860427697e-06
+power iteration failed to converge in 1000 iterations, error: 0.0012455686925157354
+power iteration failed to converge in 1000 iterations, error: 2.3061106579306146e-08
+power iteration failed to converge in 1000 iterations, error: 0.004265615712795096
+power iteration failed to converge in 1000 iterations, error: 5.002002793299165e-07
+power iteration failed to converge in 1000 iterations, error: 7.529679844355526e-05
+power iteration failed to converge in 1000 iterations, error: 1.189753257995656e-05
+power iteration failed to converge in 1000 iterations, error: 2.8275915613931377e-08
+power iteration failed to converge in 1000 iterations, error: 7.1575167799861535e-06
+power iteration failed to converge in 1000 iterations, error: 2.7197793480695717e-08
+power iteration failed to converge in 1000 iterations, error: 2.9115781591212454e-06
+power iteration failed to converge in 1000 iterations, error: 4.09843576620059e-07
+power iteration failed to converge in 1000 iterations, error: 4.491977013953703e-07
+power iteration failed to converge in 1000 iterations, error: 8.20177462197875e-05
+power iteration failed to converge in 1000 iterations, error: 1.950372607124537e-08
+power iteration failed to converge in 1000 iterations, error: 1.6429045041300647e-06
+power iteration failed to converge in 1000 iterations, error: 3.910180990358532e-06
+power iteration failed to converge in 1000 iterations, error: 3.60592866224433e-08
+power iteration failed to converge in 1000 iterations, error: 9.440287135516201e-08
+power iteration failed to converge in 1000 iterations, error: 3.1832590862706394e-07
+power iteration failed to converge in 1000 iterations, error: 1.7433799659662157e-07
+PA tree 10 construction took 1057.179228757579 s
+PA tree 10 construction used 1946542080 bytes
+PA tree 30 construction took 11.366780772467337 s
+PA tree 30 construction used 207286272 bytes
+VP tree construction took 137.53390809207986 s
+VP tree construction used 186695680 bytes
