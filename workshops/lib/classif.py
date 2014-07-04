@@ -1,5 +1,6 @@
 
 import numpy as np
+from scipy import sparse
 from scipy.misc import logsumexp
 
 # noinspection PyUnresolvedReferences
@@ -69,7 +70,10 @@ class KNN:
 
     def predict(self, X, k):
         # find the nearest k training documents
-        closest_docs = self.distance_func(X, self.X).todense().argsort(axis=1)[:,:k]
+        dists = self.distance_func(X, self.X)
+        if sparse.isspmatrix(dists):
+            dists = dists.todense()
+        closest_docs = dists.argsort(axis=1)[:,:k]
         return mode(self.y[closest_docs], axis=1, dtype=int)[0].T[0]
 
 
