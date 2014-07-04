@@ -6,8 +6,7 @@ from collections import namedtuple
 TreeNode = namedtuple('Node', ('p', 'left', 'right', 'left_lower_bnd', 'right_lower_bnd'))
 
 class KDTree:
-    def __init__(self, distance):
-        self.distance = distance
+    def __init__(self):
         self.X = None
         self.root = None
         self.n_traversed = 0
@@ -32,7 +31,7 @@ class KDTree:
         return TreeNode(
             p = points[i_mu],
             left = self._build_tree(points[:i_mu], depth+1),
-            right_child = self._build_tree(points[i_mu+1:], depth+1),
+            right = self._build_tree(points[i_mu+1:], depth+1),
             left_lower_bnd = left_lower_bnd,
             right_lower_bnd = right_lower_bnd
         )
@@ -52,15 +51,15 @@ class KDTree:
         axis = depth % self.X.shape[1]
         # compare with pivot
         d = -nearest[0][0]
-        x = self.distance(q, self.X[node.p])
+        x = np.sqrt(np.sum(np.power((q - self.X[node.p]).data, 2)))
         self.n_traversed += 1
         if x < d:
             d = x
             heapq.heapreplace(nearest, (-d, node.p))
         # check if left/right nodes need to be visited, visit the one with lower minimum axis distance first
         mu = self.X[node.p,axis]
-        left_dist = q[axis] - mu + node.left_lower_bnd
-        right_dist = mu - q[axis] + node.left_lower_bnd
+        left_dist = q[0,axis] - mu + node.left_lower_bnd if node.left else None
+        right_dist = mu - q[0,axis] + node.left_lower_bnd if node.right else None
         if node.left and node.right:
             if left_dist < right_dist:
                 if left_dist <= d:
