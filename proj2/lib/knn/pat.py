@@ -28,7 +28,7 @@ class PrincipalAxisTree:
             # construct leaf node
             return TreeNode(points, None, None, None, ())
         # calculate the largest principal axis
-        p = first_sparse_pca(Y)
+        p = first_sparse_pca(Y, 100)
         # project vectors in Y onto the principal axis (unit vector)
         g = Y*p
         # divide vectors in G into regions with similar numbers of points
@@ -77,7 +77,6 @@ class PrincipalAxisTree:
             # XXX use sparse vectors & partial distance search
             d_k_sq = nearest[-1][0]
             for p in node.points:
-                print('test')
                 d_sq = np.sum(np.power((q - X[p]).data, 2))
                 if d_sq < d_k_sq:
                     nearest.add((d_sq, p))
