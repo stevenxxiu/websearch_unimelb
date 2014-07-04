@@ -1,0 +1,4 @@
+
+to view the principal axis:
+    docs_data = pickle.load(open('data/pickle/lyrl.db', 'rb'))
+    list(docs_data.terms[i] for i in p.argsort()[::-1][5:])
