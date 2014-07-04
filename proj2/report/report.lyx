@@ -417,6 +417,41 @@ If this inequality is not satisfied, the region can be pruned.
 Vantage Point Tree
 \end_layout
 
+\begin_layout Standard
+Both the k-d tree and the principal axis tree require Euclidean distances.
+ The vantage point tree can work with any metric.
+ Cosine distance in particular can be turned into a metric.
+\end_layout
+
+\begin_layout Standard
+It has the theoretical property that a data distribution satisfying the
+ Zero Point Spheres (ZPS) property, and with a small enough distance bound,
+ the nearest neighbor can be expected to be computed in 
+\begin_inset Formula $O(log(n))$
+\end_inset
+
+ time where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of test points 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yianilos_data_1993"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Tree Construction
+\end_layout
+
+\begin_layout Subsubsection
+Tree Search
+\end_layout
+
 \begin_layout Section
 Experimental Setup
 \end_layout
@@ -474,6 +509,13 @@ is the number of documents term
 \begin_layout Standard
 Euclidean distance was used as the distance function, which is rank-equivalent
  to cosine similarity due to unit-length normalization.
+\end_layout
+
+\begin_layout Standard
+We implemented all of the above algorithms in python.
+ Due to python's performance limits compared to other languages, we evaluated
+ performance based on the number of distances computed instead of the total
+ time spent.
 \end_layout
 
 \begin_layout Section
