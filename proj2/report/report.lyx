@@ -118,7 +118,7 @@ Algorithms
 
 \begin_layout Standard
 A common approach to search for exact nearest neighbors is by organizing
- a set of test vertices in a tree structure, then using branch and bound
+ points in the database into a tree structure, then using branch and bound
  to prune portions of the tree which are known to be non-optimal.
  Algorithms include the K-D tree 
 \begin_inset CommandInset citation
@@ -204,8 +204,8 @@ The process is then repeated for each child, with the axis selected as the
 \end_layout
 
 \begin_layout Standard
-Each node in the tree stores the axis used, the pivot point, and the minimum
- distances to the pivot of the left and right child.
+Each node stores the axis used, the pivot point, and the minimum distances
+ to the pivot of the left and right child.
 \end_layout
 
 \begin_layout Subsubsection
@@ -308,8 +308,8 @@ Each point in the dataset is then projected onto the axis, and split evenly
 \end_layout
 
 \begin_layout Standard
-Each node in the tree stores the principal axis, and the left and right
- separating hyperplanes for each region.
+Each node stores the principal axis, and the left and right separating hyperplan
+es for each region.
 \end_layout
 
 \begin_layout Subsubsection
@@ -419,22 +419,28 @@ Vantage Point Tree
 
 \begin_layout Standard
 Both the k-d tree and the principal axis tree require Euclidean distances.
- The vantage point tree can work with any metric.
+ The vantage point tree is a binary tree which can work with any metric.
  Cosine distance in particular can be turned into a metric.
 \end_layout
 
 \begin_layout Standard
+Instead of using hyerplanes to partition the data, vantage point trees use
+ spheres around a vantage point to partition data.
+\end_layout
+
+\begin_layout Standard
 It has the theoretical property that a data distribution satisfying the
- Zero Point Spheres (ZPS) property, and with a small enough distance bound,
- the nearest neighbor can be expected to be computed in 
+ Zero Point Spheres (ZPS) property (the probability of points being on a
+ sphere is zero), and with a small enough distance bound, the nearest neighbor
+ can be expected to be computed in 
 \begin_inset Formula $O(log(n))$
 \end_inset
 
- time where 
+ time with a database of size 
 \begin_inset Formula $n$
 \end_inset
 
- is the number of test points 
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "yianilos_data_1993"
@@ -446,6 +452,76 @@ key "yianilos_data_1993"
 
 \begin_layout Subsubsection
 Tree Construction
+\end_layout
+
+\begin_layout Standard
+Starting from the root node, a vantage point 
+\begin_inset Formula $p$
+\end_inset
+
+ is chosen amongst the points in the database 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ This can be random for speed, but there can be other criterions to ensure
+ that the tree is more balanced 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yianilos_data_1993"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We then define a sphere with radius 
+\begin_inset Formula $\mu=Median_{s\in S}d(p,s)$
+\end_inset
+
+.
+ The points in the node are partitioned in two, with the left child being
+ inside and right child outside or on the sphere.
+ This can be done by computing the distances between each point and 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ For each partition, upper and lower distance bounds to 
+\begin_inset Formula $p$
+\end_inset
+
+ are computed.
+ This is performed recursively for each child node.
+\end_layout
+
+\begin_layout Standard
+Each node stores 
+\begin_inset Formula $p$
+\end_inset
+
+, 
+\begin_inset Formula $\mu$
+\end_inset
+
+, and the bounds.
 \end_layout
 
 \begin_layout Subsubsection
