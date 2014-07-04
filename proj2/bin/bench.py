@@ -19,20 +19,23 @@ def main():
         train_X = tf_idfs[train_indexes]
         test_X = tf_idfs[test_indexes]
 
+        k = 40
+        leaf_size = 30
+
         start = time.clock()
-        tree = PrincipalAxisTree(30)
+        tree = PrincipalAxisTree(leaf_size)
         tree.fit(train_X)
         print('Tree construction took {} s'.format(time.clock() - start))
         start = time.clock()
-        res = tree.search(test_X[0], 40)
+        res = tree.search(test_X[0], k)
         print('Search took {} s'.format(time.clock() - start))
         print('Traversed {} nodes'.format(tree.n_traversed))
         print(res)
 
-        tree = KNeighborsClassifier(40, leaf_size=30)
+        tree = KNeighborsClassifier(k, leaf_size=leaf_size)
         tree.fit(train_X, np.zeros(train_X.shape[0]))
         start = time.clock()
-        res = tree.kneighbors(test_X[0], 40)
+        res = tree.kneighbors(test_X[0], k)
         res = list(zip(res[0][0], res[1][0]))
         print('Search took {} s'.format(time.clock() - start))
         print(res)
@@ -41,7 +44,7 @@ def main():
         tree = KNeighborsBrute()
         tree.fit(train_X)
         start = time.clock()
-        res = tree.kneighbors(test_X[0], 40)
+        res = tree.kneighbors(test_X[0], k)
         print('Search took {} s'.format(time.clock() - start))
         print(res)
 
