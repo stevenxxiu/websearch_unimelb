@@ -110,7 +110,6 @@ s comparable but less than that of support vector machines.
 \begin_layout Standard
 We give a review of some algorithms with faster average time, and compare
  them for their effectiveness on text classification.
- We will also investigate the effect of an inverted index on time and memory.
 \end_layout
 
 \begin_layout Section
@@ -146,8 +145,8 @@ key "yianilos_data_1993"
 \end_layout
 
 \begin_layout Standard
-Faster queries compared to the naive algorithm on high-dimensional datasets
- often depend on a low intrinsic dimension 
+Faster-than-naive algorithms on high-dimensional datasets often depend on
+ a low intrinsic dimension 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "mcnames_fast_2001"
@@ -158,9 +157,9 @@ key "mcnames_fast_2001"
 \end_layout
 
 \begin_layout Standard
-We give algorithms to find the single nearest point, but it is easy to find
- multiple nearest points by using a max-heap to store the best distances,
- and use the maximum distance in the heap for comparison during search.
+We only give algorithms to find the single nearest point, but it is easy
+ to find multiple nearest points by using a max-heap to store the best distances
+, then using the maximum distance in the heap for comparison during search.
 \end_layout
 
 \begin_layout Subsection
@@ -186,8 +185,16 @@ We start from the root node of the tree with the entire dataset of points,
  on the axis.
  The space is then partitioned in two, the points to the left and right
  of the pivot, assigned to the left and right child nodes.
- For each child, we also store the minimum distance a projected point has
- to the pivot, to aid in branch-and-bound search.
+ For each child 
+\begin_inset Formula $i$
+\end_inset
+
+, we also store the minimum distance a projected point has to the pivot,
+ 
+\begin_inset Formula $lb_{i}$
+\end_inset
+
+, to aid in branch-and-bound search.
 \end_layout
 
 \begin_layout Standard
@@ -224,8 +231,11 @@ Let
 \end_layout
 
 \begin_layout Standard
-For each child node, we check whether the points in it can be closer to
- 
+For each child node 
+\begin_inset Formula $i$
+\end_inset
+
+, we check whether the points in it can be closer to 
 \begin_inset Formula $q$
 \end_inset
 
@@ -237,13 +247,17 @@ For each child node, we check whether the points in it can be closer to
 \begin_inset Formula $S(q,d)$
 \end_inset
 
- with the separating hyperplane.
+ with the region's separating hyperplane.
  The distance between 
 \begin_inset Formula $q$
 \end_inset
 
  and the hyperplane can be calculated by projecting the query point on the
- axis, and adding or subtracting the minimum distance.
+ axis, computing it's distance to the pivot point, then adding 
+\begin_inset Formula $lb_{i}$
+\end_inset
+
+.
  We have no intersections if this is greater than 
 \begin_inset Formula $d$
 \end_inset
@@ -259,12 +273,148 @@ We repeat the process for each child node that isn't pruned.
 Principal Axis Tree
 \end_layout
 
-\begin_layout Subsection
-Vantage Point Tree
+\begin_layout Standard
+A principal axis tree is similar to that of a k-d tree, where the axis are
+ selected to be the principal components of the dataset.
+ This splits the data amongst the axis of most variance into a predefined
+ 
+\begin_inset Formula $n_{c}$
+\end_inset
+
+ number of regions, to try to adapt and cluster the points in the dataset.
+\end_layout
+
+\begin_layout Subsubsection
+Tree Construction
+\end_layout
+
+\begin_layout Standard
+PCA is first performed on the dataset to compute the principal axis.
+\end_layout
+
+\begin_layout Standard
+Each point in the dataset is then projected onto the axis, and split evenly
+ into 
+\begin_inset Formula $n_{c}$
+\end_inset
+
+ regions, with the left and right separating hyperplanes for each region
+ stored as projected points.
+ This process is continued recursively until we have less than 
+\begin_inset Formula $n_{c}$
+\end_inset
+
+ points in a node, where it then becomes a terminal node.
+\end_layout
+
+\begin_layout Standard
+Each node in the tree stores the principal axis, and the left and right
+ separating hyperplanes for each region.
+\end_layout
+
+\begin_layout Subsubsection
+Tree Search
+\end_layout
+
+\begin_layout Standard
+The depth-first search begins by projecting the query point onto the first
+ principal axis, with a binary search to determine which region it is in.
+ This process is repeated for child region until we reach a terminal node,
+ where we compute the distance and store it as the current best.
+ The algorithm then moves onto the parent node, where the elimination criterion
+ is applied to the siblings of the terminal node.
+ This continues until we have searched or eliminated all nodes.
+\end_layout
+
+\begin_layout Standard
+Regions closer to the one the query point is in are therefore visited first,
+ to arrive at a smaller distance sooner.
+\end_layout
+
+\begin_layout Standard
+The elimination criterion for the root regions compares it's closest separating
+ hyperplane's distance to the query point, and the current best distance,
+ same as a k-d tree.
+ For a child region 
+\begin_inset Formula $r_{n}$
+\end_inset
+
+ nested in parent regions 
+\begin_inset Formula $r_{n-1},r_{n-2},\dots,r_{1}$
+\end_inset
+
+, it can be proved, using the law of cosines 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mcnames_fast_2001"
+
+\end_inset
+
+, that for any point 
+\begin_inset Formula $x\in r_{n}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+d(q,x)^{2}\ge d(q,r_{1})^{2}+d(b_{2},r_{2})^{2}+\dots+d(b_{n},r_{n})^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $d(q,r_{i})^{2}$
+\end_inset
+
+ is the distance between 
+\begin_inset Formula $q$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+'s closest separating hyperplane, and 
+\begin_inset Formula $b_{2}$
+\end_inset
+
+ is 
+\begin_inset Formula $q$
+\end_inset
+
+ projected onto 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+'s closest separating hyerplane, 
+\begin_inset Formula $b_{3}$
+\end_inset
+
+ is 
+\begin_inset Formula $b_{2}$
+\end_inset
+
+ projected onto 
+\begin_inset Formula $r_{2}$
+\end_inset
+
+'s separating hyperplane, and so forth.
+\end_layout
+
+\begin_layout Standard
+If this inequality is not satisfied, the region can be pruned.
+ For efficiency, we only need to compute the squared distance to every region.
 \end_layout
 
 \begin_layout Subsection
-Inverted Index
+Vantage Point Tree
 \end_layout
 
 \begin_layout Section
@@ -322,7 +472,8 @@ is the number of documents term
 \end_layout
 
 \begin_layout Standard
-Euclidean distance was used as the distance function.
+Euclidean distance was used as the distance function, which is rank-equivalent
+ to cosine similarity due to unit-length normalization.
 \end_layout
 
 \begin_layout Section
