@@ -1,7 +1,9 @@
-
 import unittest
+
 import numpy as np
-from proj2.lib import eig
+
+from proj2.lib.linalg import eig
+
 
 class TestEigen(unittest.TestCase):
     def test_power_iter(self):
