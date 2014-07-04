@@ -1236,8 +1236,36 @@ Tree process memory usage.
 \end_layout
 
 \begin_layout Standard
-The pa tree had a very memory usage since the principal axes was not sparse.
- A possible mitigation is the use of sparse principal component analysis.
+The pa tree had sudden jumps in time and memory.
+ They could be explained by the increase in the depth of the search tree,
+ leading to more principal component computations.
+ More documents are required to see the 
+\begin_inset Formula $O(n\cdot log(n))$
+\end_inset
+
+ behaviour.
+\end_layout
+
+\begin_layout Standard
+The main storage costs of the pa tree come from the non-sparse principal
+ axis.
+ This could be decreased by using sparse PCA instead, so that there is linear
+ instead of quadratic growth.
+ The current implementation
+\end_layout
+
+\begin_layout Standard
+The vp tree shows approximately 
+\begin_inset Formula $O(n\cdot log(n))$
+\end_inset
+
+ time and memory use.
+\end_layout
+
+\begin_layout Standard
+Overall, in our implementation, no search algorithm achieved significantly
+ better query performance compared to linear search, but incurred much higher
+ time and memory costs during tree construction.
 \end_layout
 
 \begin_layout Section
