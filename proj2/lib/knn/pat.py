@@ -73,13 +73,12 @@ class PrincipalAxisTree:
         args:
             b: boundary point of the current convex hull being searched
         '''
-        d_k_sq = nearest[-1][0]
         X = self.X
         # check if node is a leaf node
         if not node.children:
-            # partial distance search
+            # XXX use sparse vectors & partial distance search
+            d_k_sq = nearest[-1][0]
             for p in node.points:
-                # XXX use sparse vectors & partial distance search
                 d_sq = np.sum(np.power((q - X[p]).data, 2))
                 if d_sq < d_k_sq:
                     nearest.add((d_sq, p))
@@ -96,42 +95,52 @@ class PrincipalAxisTree:
         # perform a binary search
         # the boundary conditions don't matter here, as we will search both above and below until the
         # bounds are reached
-        i = np.searchsorted(node.gmaxes, sigma)
+        i = np.searchsorted(node.gmins, sigma) - 1
         il = i - 1
         iu = i + 1
-        if i == 0:
+        if il < 0:
             lower_done = True
-        elif i == nc-1:
+        elif iu > nc-1:
             upper_done = True
         # search the region b is in
-        self._search(nearest, node.children[i], q, b, d_lb_sq)
+        if i >= 0:
+            self._search(nearest, node.children[i], q, b, d_lb_sq)
         # initialize distances
+        dl = du = 0
+        bl = bu = 0
         if not lower_done:
-            while il>=0:
-                dl = sigma - node.gmaxes[il]
+            dl = sigma - node.gmaxes[il]
+        if not upper_done:
+            du = node.gmaxes[iu] - sigma
+        while not upper_done or not lower_done:
+            if (upper_done or dl<du) and not lower_done:
                 cur_d_lb_sq = d_lb_sq + dl**2
                 if nearest[-1][0] <= cur_d_lb_sq:
                     # lower bound is exceeded for the child
-                    break
+                    lower_done = True
+                    continue
                 if not node.children[il].children:
                     # calculate the boundary point
                     bl = b - dl*node.p
-                else:
-                    bl = 0
                 self._search(nearest, node.children[il], q, bl, cur_d_lb_sq)
                 il -= 1
-        if not upper_done:
-            while iu<nc:
-                du = node.gmaxes[iu] - sigma
+                if il < 0:
+                    lower_done = True
+                    continue
+                dl = sigma - node.gmaxes[il]
+            else:
                 cur_d_lb_sq = d_lb_sq + du**2
                 if nearest[-1][0] <= cur_d_lb_sq:
                     # lower bound is exceeded for the child
-                    break
+                    upper_done = True
+                    continue
                 if not node.children[iu].children:
                     # calculate the boundary point
-                    bu = du*node.p - b
-                else:
-                    bu = 0
+                    bu = b + du*node.p
                 self._search(nearest, node.children[iu], q, bu, cur_d_lb_sq)
                 iu += 1
+                if iu > nc-1:
+                    upper_done = True
+                    continue
+                du = node.gmaxes[iu] - sigma
 
