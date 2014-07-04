@@ -787,7 +787,7 @@ Database size vs.
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -905,9 +905,12 @@ Nodes traversed vs minimum distance for all test points, for a database
 \end_layout
 
 \begin_layout Standard
-None of the algorithms appear to exhibit logarithmic query time, but both
- vp trees and pa trees performed better than the naive algorithm.
- The performance benefit increases the smaller the minimum distance is.
+None of the algorithms appeared to exhibit logarithmic query time, but both
+ vp trees and pa trees performed better than linear search on average.
+\end_layout
+
+\begin_layout Standard
+The performance benefit decreased when the minimum distance increased.
 \end_layout
 
 \begin_layout Subsubsection
@@ -950,7 +953,8 @@ Better choice of axes compared to the kd-tree leads to better efficiency.
 \end_layout
 
 \begin_layout Standard
-Despite the lowest average query times, pa trees showed greater variance.
+Despite the lowest average query times, pa trees had worse performance when
+ the minimum distance was large enough.
  In particular, there were 42% of test documents where all leaf nodes were
  visited for 
 \begin_inset Formula $n_{c}=10$
@@ -961,6 +965,7 @@ Despite the lowest average query times, pa trees showed greater variance.
 \end_inset
 
 .
+ This requires further investigation.
 \end_layout
 
 \begin_layout Subsubsection
@@ -968,7 +973,9 @@ Vantage Point Tree
 \end_layout
 
 \begin_layout Standard
-ZPS is not true, but is true for most points 
+The ZPS property is not completely satisfied, as unit length normalization
+ implies that all database points lie on a sphere.
+ However the search tree still gave reasonable results.
 \end_layout
 
 \begin_layout Subsection
