@@ -1,8 +1,9 @@
 
+import heapq
 import numpy as np
 from collections import namedtuple
 
-TreeNode = namedtuple('Node', ('pivot', 'left', 'right', 'left_lower_bnd', 'right_lower_bnd'))
+TreeNode = namedtuple('Node', ('p', 'left', 'right', 'left_lower_bnd', 'right_lower_bnd'))
 
 class KDTree:
     def __init__(self, distance):
@@ -29,7 +30,7 @@ class KDTree:
         right_lower_bnd = self.X[points[i_mu+1],axis] - mu if i_mu+1<len(points) else None
         # create node and construct subtrees
         return TreeNode(
-            pivot = points[i_mu],
+            p = points[i_mu],
             left = self._build_tree(points[:i_mu], depth+1),
             right_child = self._build_tree(points[i_mu+1:], depth+1),
             left_lower_bnd = left_lower_bnd,
@@ -39,11 +40,41 @@ class KDTree:
     def search(self, q, k):
         # max heap
         nearest = [(-np.inf, None)] * k
-        self._search(nearest, self.root, q)
+        self._search(nearest, self.root, q, 0)
         nearest = list(nearest)
         for i, (d, n) in enumerate(nearest):
             nearest[i] = (-d, n)
         return sorted(nearest)
 
-    def _search(self, nearest, node, q):
-        pass
+    def _search(self, nearest, node, q, depth):
+        if not node:
+            return
+        axis = depth % self.X.shape[1]
+        # compare with pivot
+        d = -nearest[0][0]
+        x = self.distance(q, self.X[node.p])
+        self.n_traversed += 1
+        if x < d:
+            d = x
+            heapq.heapreplace(nearest, (-d, node.p))
+        # check if left/right nodes need to be visited, visit the one with lower minimum axis distance first
+        mu = self.X[node.p,axis]
+        left_dist = q[axis] - mu + node.left_lower_bnd
+        right_dist = mu - q[axis] + node.left_lower_bnd
+        if node.left and node.right:
+            if left_dist < right_dist:
+                if left_dist <= d:
+                    self._search(nearest, node.left, q, depth+1)
+                if right_dist <= d:
+                    self._search(nearest, node.right, q, depth+1)
+            else:
+                if right_dist <= d:
+                    self._search(nearest, node.right, q, depth+1)
+                if left_dist <= d:
+                    self._search(nearest, node.left, q, depth+1)
+        elif node.left and not node.right:
+            if left_dist <= d:
+                self._search(nearest, node.left, q, depth+1)
+        elif node.right and not node.left:
+            if right_dist <= d:
+                self._search(nearest, node.right, q, depth+1)
