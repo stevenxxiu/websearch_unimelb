@@ -2,7 +2,7 @@
 import numpy as np
 from collections import namedtuple
 from blist import sortedlist
-from sklearn.decomposition import TruncatedSVD
+from proj2.lib.linalg.eig import first_sparse_pca
 from proj2.lib.linalg.dist import dist_sq_lt
 
 TreeNode = namedtuple('TreeNode', ('points', 'p', 'gmins', 'gmaxes', 'children'))
@@ -15,7 +15,6 @@ class PrincipalAxisTree:
         self.nc = nc
         self.X = None
         self.root = None
-        self.pca = TruncatedSVD(1)
 
     def fit(self, X):
         self.X = X
@@ -24,14 +23,12 @@ class PrincipalAxisTree:
     def _build_tree(self, points):
         nc = self.nc
         ny = points.size
-        pca = self.pca
         Y = self.X[points]
         if ny <= nc:
             # construct leaf node
             return TreeNode(points, None, None, None, ())
         # calculate the largest principal axis
-        pca.fit(Y)
-        p = pca.components_[0]
+        p = first_sparse_pca(Y)
         # project vectors in Y onto the principal axis (unit vector)
         g = Y*p
         # divide vectors in G into regions with similar numbers of points
