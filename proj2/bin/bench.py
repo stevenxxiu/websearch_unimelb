@@ -7,7 +7,6 @@ from workshops.lib.features import get_tf_idf
 from proj2.lib.knn.pat import PrincipalAxisTree
 
 def main():
-    start = time.clock()
     with open('data/pickle/lyrl.db', 'rb') as docs_sr, open('data/pickle/lyrl_classif.db', 'rb') as classif_sr:
         # noinspection PyArgumentList
         docs_data = pickle.load(docs_sr)
@@ -18,7 +17,10 @@ def main():
         test_X = tf_idfs[test_indexes]
         tree = PrincipalAxisTree(6)
         tree.fit(train_X)
-        tree.search(test_X[0], 40)
+        start = time.clock()
+        res = tree.search(test_X[0], 40)
+        print('Search took {} ms'.format(time.clock() - start))
+        print(res)
 
 if __name__ == '__main__':
     main()
