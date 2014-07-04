@@ -117,8 +117,130 @@ We give a review of some algorithms with faster average time, and compare
 Algorithms
 \end_layout
 
+\begin_layout Standard
+A common approach to search for exact nearest neighbors is by organizing
+ a set of test vertices in a tree structure, then using branch and bound
+ to prune portions of the tree which are known to be non-optimal.
+ Algorithms include the K-D tree 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sproull_refinements_1991"
+
+\end_inset
+
+, the principal axis tree 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mcnames_fast_2001"
+
+\end_inset
+
+, and the vantage point tree 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yianilos_data_1993"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Faster queries compared to the naive algorithm on high-dimensional datasets
+ often depend on a low intrinsic dimension 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mcnames_fast_2001"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We give algorithms to find the single nearest point, but it is easy to find
+ multiple nearest points by using a max-heap to store the best distances,
+ and use the maximum distance in the heap for comparison during search.
+\end_layout
+
 \begin_layout Subsection
 K-D Tree
+\end_layout
+
+\begin_layout Standard
+A k-d tree is a space partitioning binary tree.
+ Each node includes a pivot element and some distance bounds to aid in the
+ search process.
+\end_layout
+
+\begin_layout Standard
+There are many ways to choose the axis, the simplest way is to cycle it
+ amongst the dimensions of the dataset, described below.
+\end_layout
+
+\begin_layout Subsubsection
+Tree Construction
+\end_layout
+
+\begin_layout Standard
+We start from the root node of the tree with the entire dataset of points,
+ and select the first dimension of the dataset as the axis to partition
+ the tree.
+ The pivot is selected as the median of all points in the dataset, projected
+ on the axis.
+ The space is then partitioned in two, the points to the left and right
+ of the pivot, assigned to the left and right child nodes.
+ For each child, we also store the minimum distance a projected point has
+ to the pivot, to aid in branch-and-bound search.
+\end_layout
+
+\begin_layout Standard
+The process is then repeated for each child, with the axis selected as the
+ one after the parent's axis.
+ We continue until no points remain.
+\end_layout
+
+\begin_layout Standard
+Each node in the tree stores the axis used, the pivot point, and the minimum
+ distances to the pivot of the left and right child.
+\end_layout
+
+\begin_layout Subsubsection
+Tree Search
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $q$
+\end_inset
+
+ be the query point.
+ The distance between 
+\begin_inset Formula $q$
+\end_inset
+
+ and the root node's pivot is computed, and stored as the current best distance
+ 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ We check whether the nodes in each child can be closer than 
+\begin_inset Formula $d$
+\end_inset
+
+, by intersecting a hypersphere 
+\begin_inset Formula $S(q,d)$
+\end_inset
+
+ with the separating hyperplane of each child.
+ We can check for intersections by projecting the query point on the axis
+ and adding the minimum distance to check if this is smaller than 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ We can then ignore a node if there are no intersections.
 \end_layout
 
 \begin_layout Subsection
@@ -138,8 +260,8 @@ Experimental Setup
 \end_layout
 
 \begin_layout Standard
-We used 30,000 documents from the RCV1v2 document collection.
- To pre-process each document, we used the bag of words model and unit-length
+30,000 documents were used from the RCV1v2 document collection.
+ To pre-process each document, the bag of words model was used with unit-length
  normalized tf-idf weights using the 
 \begin_inset Formula $l_{2}$
 \end_inset
@@ -222,6 +344,21 @@ Not very good for text classification.
 \begin_layout Standard
 Has a very memory usage since the principal axis are not sparse.
  A possible mitigation is the use of sparse principal component analysis.
+\end_layout
+
+\begin_layout Section
+Bibliography
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "report"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
