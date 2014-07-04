@@ -684,7 +684,7 @@ begin{axis}[
 
 
 \backslash
-addplot[mark=*] table [x={ndocs}, y={naive}] {doc_nodes.dat};
+addplot[mark=o] table [x={ndocs}, y={naive}] {doc_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
@@ -698,21 +698,28 @@ addplot[mark=x] table [x={ndocs}, y={kdt}] {doc_nodes.dat};
 
 
 \backslash
-addplot[mark=square*] table [x={ndocs}, y={pat}] {doc_nodes.dat};
+addplot[mark=square] table [x={ndocs}, y={pat_10}] {doc_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-addplot[mark=triangle*] table [x={ndocs}, y={vpt}] {doc_nodes.dat};
+addplot[mark=triangle] table [x={ndocs}, y={pat_30}] {doc_nodes.dat};
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-legend{naive,kdt,pat ($n_c=30$),vpt}
+addplot[mark=diamond] table [x={ndocs}, y={vpt}] {doc_nodes.dat};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+legend{naive,kdt,pat ($n_c=10$),pat ($n_c=30$),vpt}
 \end_layout
 
 \begin_layout Plain Layout
@@ -742,30 +749,6 @@ Number of documents vs.
  average nodes visited for 50 random test documents.
  KDT is no better than naive, with VPT having slightly lower performance
  compared to PAT.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Number of dimensions vs.
- average nodes visited for 50 random test documents.
 \end_layout
 
 \end_inset
