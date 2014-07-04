@@ -104,6 +104,7 @@ def main():
             ball_time_logger.update(time.clock() - start, 'Ball tree search took {} s')
             ball_res = list(zip(ball_res[0][0], ball_res[1][0]))
 
+            print((naive_res, kd_res, pa_res, vp_res, ball_res))
             # assert len(set(tuple(x[1] for x in xs) for xs in (naive_res, kd_res, pa_res, vp_res, ball_res))) == 1
 
         naive_time_logger.average('Naive search took an average of {} s')
