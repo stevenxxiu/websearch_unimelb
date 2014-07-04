@@ -25,7 +25,7 @@ def main():
         print('Search took {} ms'.format(time.clock() - start))
         print(res)
 
-        tree = KNeighborsClassifier(40)
+        tree = KNeighborsClassifier(40, leaf_size=30)
         tree.fit(train_X, np.zeros(train_X.shape[0]))
         start = time.clock()
         res = tree.kneighbors(test_X[0], 40)
